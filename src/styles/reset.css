@@ -1,0 +1,13 @@
+/* Modern CSS reset for consistent baseline */
+*,*::before,*::after{box-sizing:border-box}
+*{margin:0}
+html,body,#root{height:100%}
+body{
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  /* Brend tokeni (tokens.<brand>.<theme>.css) postavljaju --font-family-primary: Proxima Nova | Roboto */
+  font-family:var(--font-family-primary, "Proxima Nova"),"Roboto",ui-sans-serif,system-ui,sans-serif;
+}
+img,svg,video,canvas{display:block;max-width:100%}
+button,input,select,textarea{font:inherit}

@@ -1,0 +1,222 @@
+# Kaizen Design System — Cursor Rules
+
+## Project Overview
+This is **kaizen** — a Vue 3 component library built with TypeScript, Vite, and Storybook (`@storybook/vue3-vite`).
+It is NOT a React project. All components are Vue 3 Single File Components (SFC).
+
+Figma source file: **Kaizen Reworked 3 Lvls**
+Figma library & tokens: https://www.figma.com/design/JCQ4u9ytPIMpGaLzdAq8dD/Kaizen-Reworked-3-Lvls?node-id=1930-5660&p=f&t=DUBWp0ybbtNgIppz-0
+
+---
+
+## Token Architecture (3-Level System)
+
+The design system uses a strict 3-level token architecture. **Always respect these rules:**
+
+| Collection | Role | Use in components? |
+|---|---|---|
+| `core-primitive` | Raw values (colors, spacing base). Never assigned to roles. | ❌ NEVER |
+| `core-alias` | Brand decisions and role assignments | ❌ NEVER directly |
+| `core-mapped` | Component-level decisions. Final token mapping. | ✅ ALWAYS use these |
+| `system-fixed` | Values identical across all brands | ✅ Use when applicable |
+| `system-responsive` | Breakpoint/screen-width dependent values | ✅ Use when applicable |
+
+**Rule:** Components always consume `core-mapped` and `system-*` tokens. Never use `core-primitive` or `core-alias` directly in component CSS.
+
+---
+
+## CSS Namespace
+
+All CSS classes use the `ds-kaizen` namespace prefix:
+
+```css
+.ds-kaizen-c-badge { }
+.ds-kaizen-c-badge--large { }
+.ds-kaizen-c-badge__icon { }
+```
+
+Pattern: `ds-kaizen-c-<component-name>` for block, `--<modifier>` for modifiers, `__<element>` for elements (BEM).
+
+---
+
+## Component File Structure
+
+Every component lives in `src/components/<ComponentName>/` and contains exactly these files:
+
+```
+src/components/Badge/
+├── Badge.vue              # Vue 3 SFC implementation
+├── Badge.module.css       # BEM CSS with ds-kaizen namespace + core-mapped tokens
+├── Badge.stories.ts       # Storybook stories
+└── README.md              # Documentation (follow CLAUDE.md template)
+```
+
+---
+
+## How to Build a Component
+
+### Step 1 — Read Figma
+Use Figma MCP to read the component node from Figma. Extract:
+- All variants and props
+- All states (default, hover, focus, disabled, etc.)
+- Exact token names used (must be from `core-mapped` or `system-*`)
+- Spacing, typography, border-radius values
+- Accessibility requirements (focus ring, ARIA roles, keyboard nav)
+
+### Step 2 — Badge.vue (Vue 3 SFC)
+```vue
+<template>
+  <span
+    :class="[
+      $style['ds-kaizen-c-badge'],
+      $style[`ds-kaizen-c-badge--${variant}`],
+      $style[`ds-kaizen-c-badge--${size}`],
+      { [$style['ds-kaizen-c-badge--rounded']]: rounded }
+    ]"
+    v-bind="$attrs"
+  >
+    <slot name="iconLeft" />
+    <slot />
+    <slot name="iconRight" />
+  </span>
+</template>
+
+<script setup lang="ts">
+defineOptions({ inheritAttrs: false })
+
+withDefaults(defineProps<{
+  variant?: 'primary' | 'secondary' | 'success' | 'warning' | 'error' | 'neutral'
+  size?: 'small' | 'large'
+  rounded?: boolean
+}>(), {
+  variant: 'neutral',
+  size: 'small',
+  rounded: false
+})
+</script>
+
+<style module src="./Badge.module.css" />
+```
+
+### Step 3 — Badge.module.css
+- Use CSS custom properties from `core-mapped` tokens
+- Use BEM with `ds-kaizen` namespace
+- Always include focus-visible ring for interactive elements
+- Never hardcode color values — always use token variables
+
+```css
+.ds-kaizen-c-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--core-mapped-badge-gap);
+  padding: var(--core-mapped-badge-padding-y) var(--core-mapped-badge-padding-x);
+  border-radius: var(--core-mapped-badge-border-radius);
+  font-size: var(--system-fixed-badge-font-size);
+  font-weight: var(--system-fixed-badge-font-weight);
+  color: var(--core-mapped-badge-text-default);
+  background-color: var(--core-mapped-badge-surface-default);
+}
+
+/* Always include focus ring for accessibility */
+.ds-kaizen-c-badge:focus-visible {
+  outline: 2px solid var(--core-mapped-focus-ring);
+  outline-offset: 2px;
+}
+```
+
+### Step 4 — Badge.stories.ts
+```typescript
+import type { Meta, StoryObj } from '@storybook/vue3'
+import Badge from './Badge.vue'
+
+const meta: Meta<typeof Badge> = {
+  title: 'Components/Badge',
+  component: Badge,
+  tags: ['autodocs'],
+  argTypes: {
+    variant: {
+      control: 'select',
+      options: ['primary', 'secondary', 'success', 'warning', 'error', 'neutral']
+    },
+    size: {
+      control: 'radio',
+      options: ['small', 'large']
+    },
+    rounded: { control: 'boolean' }
+  }
+}
+
+export default meta
+type Story = StoryObj<typeof meta>
+
+export const Default: Story = {
+  args: { variant: 'neutral', size: 'small', rounded: false }
+}
+
+export const AllVariants: Story = {
+  render: () => ({
+    components: { Badge },
+    template: `
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <Badge variant="primary">Primary</Badge>
+        <Badge variant="secondary">Secondary</Badge>
+        <Badge variant="success">Success</Badge>
+        <Badge variant="warning">Warning</Badge>
+        <Badge variant="error">Error</Badge>
+        <Badge variant="neutral">Neutral</Badge>
+      </div>
+    `
+  })
+}
+```
+
+### Step 5 — README.md
+Follow the Component Documentation Template defined in `CLAUDE.md`. Always include:
+- Overview
+- Figma link + node ID
+- Props table (name, type, default, description)
+- Slots table
+- Events table
+- Usage examples
+- Accessibility notes (focus ring, ARIA, keyboard)
+- Token mapping table (prop/state → core-mapped token)
+- Storybook notes
+
+---
+
+## Accessibility Rules (Always Apply)
+
+- Every interactive element must have `:focus-visible` with `var(--core-mapped-focus-ring)`
+- Use semantic HTML elements where possible
+- Add ARIA roles/attributes when semantic HTML is insufficient
+- Keyboard navigation must work for all interactive components
+- Color contrast must meet WCAG AA minimum (4.5:1 for text)
+- Never use color alone to convey meaning — always pair with icon or text
+
+---
+
+## Workflow for Each New Component
+
+1. **Get Figma link** for the component node
+2. **Use Figma MCP** to extract design data (variants, tokens, states)
+3. **Delete old version** of the component if it exists
+4. **Create** `ComponentName.vue`, `ComponentName.module.css`, `ComponentName.stories.ts`, `README.md`
+5. **Run** `npm run storybook` to verify it renders correctly
+6. **Never** use `core-primitive` or `core-alias` tokens in component CSS
+
+---
+
+## Theme Switcher
+
+The Storybook theme switcher reads from the `core-mapped` collection which has `dark` and `light` modes. The `data-theme` attribute on the root element controls which mode is active. This is already configured in `.storybook/preview.ts`.
+
+---
+
+## What NOT to Do
+
+- ❌ Never create React components (.tsx, .jsx)
+- ❌ Never use `core-primitive` or `core-alias` tokens directly in component CSS
+- ❌ Never hardcode color hex values in CSS
+- ❌ Never skip README.md documentation
+- ❌ Never skip focus-visible styles on interactive elements
+- ❌ Never use inline styles for design token values

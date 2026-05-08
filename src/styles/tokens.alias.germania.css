@@ -1,0 +1,64 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+
+:root {
+  --primary-100: #ffffa0;
+  --primary-200: #ffff6e;
+  --primary-300: #ffcd27;
+  --primary-400: #fee000;
+  --primary-500: #b9a400;
+  --secondary-100: #ff7878;
+  --secondary-200: #ff4646;
+  --secondary-300: #ff3232;
+  --secondary-400: #ff0000;
+  --secondary-500: #c30000;
+  --error-100: #ffcdcd;
+  --error-200: #ff3c3c;
+  --error-300: #e20000;
+  --error-400: #b00000;
+  --error-500: #920000;
+  --success-100: #b7ffbe;
+  --success-200: #78e483;
+  --success-300: #057d11;
+  --success-400: #066710;
+  --success-500: #005f00;
+  --information-100: #60a9ff;
+  --information-200: #2e77e3;
+  --information-300: #246dd9;
+  --information-400: #246dd9;
+  --information-500: #002793;
+  --neutral-50: #ffffff;
+  --neutral-100: #f9f8f8;
+  --neutral-200: #efefef;
+  --neutral-300: #e1e1e1;
+  --neutral-400: #cfc4c4;
+  --neutral-500: #8f8f8f;
+  --neutral-600: #706e6e;
+  --neutral-700: #41444d;
+  --neutral-800: #313540;
+  --neutral-900: #1e2733;
+  --neutral-950: #000000;
+  --warrning-100: #ffa867;
+  --warrning-200: #ff8a49;
+  --warrning-300: #ff7635;
+  --warrning-400: #ff6221;
+  --warrning-500: #ff4e0d;
+  --font-family-primary: Roboto;
+  --font-weight-primary: Regular;
+  --font-weight-secondary: Semi Bold;
+  --font-weight-tertiary: Bold;
+  --border-width-1: 0.063rem;
+  --border-width-2: 0.125rem;
+  --border-width-4: 0.25rem;
+  --border-width-none: 0rem;
+  --radius-2xl: 2.5rem;
+  --radius-xl: 2rem;
+  --radius-lg: 1.5rem;
+  --radius-s: 0.25rem;
+  --radius-md: 1rem;
+  --radius-sm: 0.5rem;
+  --radius-xs: 0.125rem;
+  --radius-round: 624.938rem;
+  --radius-none: 0rem;
+}

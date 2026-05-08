@@ -1,0 +1,45 @@
+/* ------------------------------------*\
+  #ICON (Kaizen)
+  Size variants from Figma `icon` (8026:1509).
+\*------------------------------------ */
+
+/**
+ * Global BEM root so parent components (e.g. Button) can set icon color per context.
+ * Default stroke: Figma `icon/default/default` → `var(--icon-default-default)`.
+ */
+:global(.kzn-c-icon) {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  color: var(--icon-default-default);
+  line-height: 0;
+}
+
+.kzn-c-icon__svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Figma `size=small` (16×16) → token `icon-size/sm` */
+.kzn-c-icon--small {
+  width: var(--icon-size-sm);
+  height: var(--icon-size-sm);
+}
+
+/* Figma `size=default` (24×24) → token `icon-size/default` */
+.kzn-c-icon--default {
+  width: var(--icon-size-default);
+  height: var(--icon-size-default);
+}
+
+.kzn-c-icon--lg {
+  width: var(--icon-size-lg);
+  height: var(--icon-size-lg);
+}
+
+.kzn-c-icon--xl {
+  width: var(--icon-size-xlg);
+  height: var(--icon-size-xlg);
+}

@@ -1,0 +1,175 @@
+/**
+ * Auto-generated system-responsive tokens.
+ * Desktop values in :root; other breakpoints override via @media queries.
+ * Breakpoint thresholds come from screens.screen-size in each JSON file.
+ */
+
+:root {
+  --screens-screen-size: 101.75rem;
+  --typography-font-size-h1: 3rem;
+  --typography-font-size-h2: 2.5rem;
+  --typography-font-size-h3: 2rem;
+  --typography-font-size-h4: 1.75rem;
+  --typography-font-size-h5: 1.5rem;
+  --typography-font-size-h6: 1.25rem;
+  --typography-font-size-paragraph-default: 1rem;
+  --typography-font-size-paragraph-lg: 1.25rem;
+  --typography-font-size-paragraph-sm: 1rem;
+  --typography-font-size-paragraph-xs: 1rem;
+  --typography-font-size-caption: 0.688rem;
+  --typography-font-size-label: 0.625rem;
+  --typography-line-height-h6: 1.5rem;
+  --typography-line-height-h1: 3.5rem;
+  --typography-line-height-h4: 2rem;
+  --typography-line-height-h3: 2rem;
+  --typography-line-height-h5: 1.75rem;
+  --typography-line-height-h2: 3rem;
+  --typography-line-height-paragraph-xs: 1rem;
+  --typography-line-height-paragraph-sm: 1rem;
+  --typography-line-height-paragraph-default: 1rem;
+  --typography-line-height-paragraph-lg: 1rem;
+  --typography-line-height-caption: 1rem;
+  --typography-line-height-label: 1rem;
+  --typography-letter-spacing-paragraph-sm: 0rem;
+  --typography-letter-spacing-paragraph-xs: 0rem;
+  --typography-letter-spacing-paragraph-default: 0rem;
+  --typography-letter-spacing-h6: 0rem;
+  --typography-letter-spacing-h1: 0rem;
+  --typography-letter-spacing-h4: 0rem;
+  --typography-letter-spacing-h3: 0rem;
+  --typography-letter-spacing-h5: 0rem;
+  --typography-letter-spacing-paragraph-lg: 0rem;
+  --typography-letter-spacing-h2: 0rem;
+  --typography-letter-spacing-caption: 0rem;
+  --typography-letter-spacing-label: 0rem;
+  --typography-paragraph-spacing-default: 3rem;
+}
+
+@media (max-width: 48rem) {
+  :root {
+    --screens-screen-size: 48rem;
+    --typography-font-size-h1: 2.75rem;
+    --typography-font-size-h2: 2.5rem;
+    --typography-font-size-h3: 2rem;
+    --typography-font-size-h4: 1.75rem;
+    --typography-font-size-h5: 1.5rem;
+    --typography-font-size-h6: 1.25rem;
+    --typography-font-size-paragraph-default: 1rem;
+    --typography-font-size-paragraph-lg: 1.25rem;
+    --typography-font-size-paragraph-sm: 1rem;
+    --typography-font-size-paragraph-xs: 1rem;
+    --typography-font-size-caption: 0.688rem;
+    --typography-font-size-label: 0.625rem;
+    --typography-line-height-h6: 1.5rem;
+    --typography-line-height-h1: 3.5rem;
+    --typography-line-height-h4: 2rem;
+    --typography-line-height-h3: 2.375rem;
+    --typography-line-height-h5: 1.75rem;
+    --typography-line-height-h2: 3rem;
+    --typography-line-height-paragraph-xs: 1rem;
+    --typography-line-height-paragraph-sm: 1rem;
+    --typography-line-height-paragraph-default: 1rem;
+    --typography-line-height-paragraph-lg: 1rem;
+    --typography-line-height-caption: 1rem;
+    --typography-line-height-label: 1rem;
+    --typography-letter-spacing-paragraph-sm: 0rem;
+    --typography-letter-spacing-paragraph-xs: 0rem;
+    --typography-letter-spacing-paragraph-default: 0rem;
+    --typography-letter-spacing-h6: 0rem;
+    --typography-letter-spacing-h1: 0rem;
+    --typography-letter-spacing-h4: 0rem;
+    --typography-letter-spacing-h3: 0rem;
+    --typography-letter-spacing-h5: 0rem;
+    --typography-letter-spacing-paragraph-lg: 0rem;
+    --typography-letter-spacing-h2: 0rem;
+    --typography-letter-spacing-caption: 0rem;
+    --typography-letter-spacing-label: 0rem;
+    --typography-paragraph-spacing-default: 2.5rem;
+  }
+}
+
+@media (max-width: 25.875rem) {
+  :root {
+    --screens-screen-size: 25.875rem;
+    --typography-font-size-h1: 2.5rem;
+    --typography-font-size-h2: 2.5rem;
+    --typography-font-size-h3: 2rem;
+    --typography-font-size-h4: 1.75rem;
+    --typography-font-size-h5: 1.5rem;
+    --typography-font-size-h6: 1.25rem;
+    --typography-font-size-paragraph-default: 1rem;
+    --typography-font-size-paragraph-lg: 1.25rem;
+    --typography-font-size-paragraph-sm: 0.875rem;
+    --typography-font-size-paragraph-xs: 0.75rem;
+    --typography-font-size-caption: 0.688rem;
+    --typography-font-size-label: 0.625rem;
+    --typography-line-height-h6: 1.5rem;
+    --typography-line-height-h1: 3.5rem;
+    --typography-line-height-h4: 2rem;
+    --typography-line-height-h3: 2.375rem;
+    --typography-line-height-h5: 1.75rem;
+    --typography-line-height-h2: 3rem;
+    --typography-line-height-paragraph-xs: 0.875rem;
+    --typography-line-height-paragraph-sm: 1rem;
+    --typography-line-height-paragraph-default: 1.25rem;
+    --typography-line-height-paragraph-lg: 1.5rem;
+    --typography-line-height-caption: 1rem;
+    --typography-line-height-label: 1rem;
+    --typography-letter-spacing-paragraph-sm: 0rem;
+    --typography-letter-spacing-paragraph-xs: 0rem;
+    --typography-letter-spacing-paragraph-default: 0rem;
+    --typography-letter-spacing-h6: 0rem;
+    --typography-letter-spacing-h1: 0rem;
+    --typography-letter-spacing-h4: 0rem;
+    --typography-letter-spacing-h3: 0rem;
+    --typography-letter-spacing-h5: 0rem;
+    --typography-letter-spacing-paragraph-lg: 0rem;
+    --typography-letter-spacing-h2: 0rem;
+    --typography-letter-spacing-caption: 0rem;
+    --typography-letter-spacing-label: 0rem;
+    --typography-paragraph-spacing-default: 2rem;
+  }
+}
+
+@media (min-width: 159.375rem) {
+  :root {
+    --screens-screen-size: 159.375rem;
+    --typography-font-size-h1: 3.5rem;
+    --typography-font-size-h2: 2.5rem;
+    --typography-font-size-h3: 2rem;
+    --typography-font-size-h4: 1.75rem;
+    --typography-font-size-h5: 1.5rem;
+    --typography-font-size-h6: 1.25rem;
+    --typography-font-size-paragraph-default: 1rem;
+    --typography-font-size-paragraph-lg: 1.25rem;
+    --typography-font-size-paragraph-sm: 0.875rem;
+    --typography-font-size-paragraph-xs: 0.75rem;
+    --typography-font-size-caption: 0.688rem;
+    --typography-font-size-label: 0.625rem;
+    --typography-line-height-h6: 1.5rem;
+    --typography-line-height-h1: 4.5rem;
+    --typography-line-height-h4: 2rem;
+    --typography-line-height-h3: 2.375rem;
+    --typography-line-height-h5: 1.75rem;
+    --typography-line-height-h2: 3.5rem;
+    --typography-line-height-paragraph-xs: 0.875rem;
+    --typography-line-height-paragraph-sm: 1rem;
+    --typography-line-height-paragraph-default: 1.25rem;
+    --typography-line-height-paragraph-lg: 1.5rem;
+    --typography-line-height-caption: 1rem;
+    --typography-line-height-label: 1rem;
+    --typography-letter-spacing-paragraph-sm: 0rem;
+    --typography-letter-spacing-paragraph-xs: 0rem;
+    --typography-letter-spacing-paragraph-default: 0rem;
+    --typography-letter-spacing-h6: 0rem;
+    --typography-letter-spacing-h1: 0rem;
+    --typography-letter-spacing-h4: 0rem;
+    --typography-letter-spacing-h3: 0rem;
+    --typography-letter-spacing-h5: 0rem;
+    --typography-letter-spacing-paragraph-lg: 0rem;
+    --typography-letter-spacing-h2: 0rem;
+    --typography-letter-spacing-caption: 0rem;
+    --typography-letter-spacing-label: 0rem;
+    --typography-paragraph-spacing-default: 3.5rem;
+  }
+}

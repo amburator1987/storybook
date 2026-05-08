@@ -1,0 +1,46 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+
+:root {
+  --elevation-none-shade: rgba(0, 0, 0, 0);
+  --elevation-none-blur: 0rem;
+  --elevation-none-position-y: 0rem;
+  --elevation-none-position-x: 0rem;
+  --elevation-none-spread: 0rem;
+  --elevation-none-number: 0rem;
+  --elevation-elevation-01-shade: rgba(0, 0, 0, 0.15);
+  --elevation-elevation-01-number: 0rem;
+  --elevation-elevation-01-position-x: 0.125rem;
+  --elevation-elevation-01-position-y: 0.125rem;
+  --elevation-elevation-01-blur: 0.125rem;
+  --elevation-elevation-01-spread: 0.125rem;
+  --elevation-elevation-02-shade: rgba(0, 0, 0, 0.3);
+  --elevation-elevation-02-number: 0rem;
+  --elevation-elevation-02-position-x: 0.75rem;
+  --elevation-elevation-02-position-y: 0.75rem;
+  --elevation-elevation-02-blur: 0.75rem;
+  --elevation-elevation-02-spread: 0.75rem;
+  --states-focused: rgba(0, 0, 0, 0.4);
+  --states-pressed: rgba(0, 0, 0, 0.25);
+  --states-disabled: rgba(0, 0, 0, 0.6);
+  --states-hover: rgba(0, 0, 0, 0.15);
+  --states-none: rgba(0, 0, 0, 0);
+  --icon-size-default: 1.5rem;
+  --icon-size-xsm: 0.5rem;
+  --icon-size-sm: 1rem;
+  --icon-size-lg: 2rem;
+  --icon-size-xlg: 2.5rem;
+  --icon-size-xxlg: 3rem;
+  --icon-size-3xlg: 3.5rem;
+  --spacing-7xl: 3.5rem;
+  --spacing-4xl: 2rem;
+  --spacing-3xl: 1.5rem;
+  --spacing-xl: 0.75rem;
+  --spacing-lg: 0.5rem;
+  --spacing-md: 0.25rem;
+  --spacing-5xl: 2.5rem;
+  --spacing-2xl: 1rem;
+  --spacing-6xl: 3rem;
+  --spacing-sm: 0.125rem;
+}

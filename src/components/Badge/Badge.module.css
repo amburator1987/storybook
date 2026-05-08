@@ -1,0 +1,93 @@
+/* ------------------------------------*\
+  #BADGE (Kaizen)
+  Recreated 1:1 from Figma `badge` component set (node 6507:1994).
+\*------------------------------------ */
+
+/**
+ * CSS variable names match the Figma Code panel exactly. The token build
+ * pipeline converts JSON paths like `surface/primary/default` to the
+ * CSS-safe identifier `--surface-primary-default` (no collection prefix).
+ *
+ * Token sources:
+ *   - colors / radius / font-family / font-weight  -> tokens.<brand>.<theme>.css
+ *   - icon-size                                    -> tokens.system-fixed.css
+ *   - padding / typography (font-size label, line-height, letter-spacing)
+ *                                                  -> tokens.responsive.css
+ *
+ * Where Figma references aliases that don't exist in the JSON exports
+ * (e.g. `--typography/family/body/font-family`, `--typography/weight/font-weight-secondary`),
+ * the brand-aware aliases that DO exist are used:
+ *   `--font-family-primary`, `--font-weight-secondary`.
+ */
+
+/* ------------------------------------*\
+  Base
+\*------------------------------------ */
+
+.kzn-c-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 16px;
+  min-width: 16px;
+
+  border-radius: var(--radius-xl);
+
+  font-family: var(--font-family-primary);
+  font-weight: var(--font-weight-secondary);
+  font-size: var(--typography-font-size-label);
+  line-height: var(--typography-line-height-label);
+  letter-spacing: var(--typography-letter-spacing-label);
+  text-align: center;
+  text-transform: uppercase;
+
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+/* Frame uses a single badge style (counter) */
+.kzn-c-badge {
+  min-width: var(--icon-size-sm);
+  padding: 0 var(--spacing-md);
+}
+
+/* ------------------------------------*\
+  Variant backgrounds (Figma property `badge`)
+\*------------------------------------ */
+
+.kzn-c-badge--brand {
+  background-color: var(--surface-primary-default);
+}
+
+.kzn-c-badge--action {
+  background-color: var(--surface-secondary-default);
+}
+
+.kzn-c-badge--warrning {
+  background-color: var(--surface-error-default);
+}
+
+.kzn-c-badge--info {
+  background-color: var(--surface-information-default);
+}
+
+/* ------------------------------------*\
+  Text colors per variant
+\*------------------------------------ */
+
+.kzn-c-badge--brand {
+  color: var(--text-default-body);
+}
+
+.kzn-c-badge--action {
+  color: var(--text-primary-on-color);
+}
+
+.kzn-c-badge--warrning {
+  color: var(--text-error-on-color);
+}
+
+.kzn-c-badge--info {
+  color: var(--text-information-on-color);
+}

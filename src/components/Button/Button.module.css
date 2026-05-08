@@ -1,0 +1,118 @@
+/* ------------------------------------*\
+  #BUTTON (Kaizen)
+  Recreated from Figma component set `button` (node 8091:1786).
+\*------------------------------------ */
+
+.kzn-c-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--scaler-8);
+  box-sizing: border-box;
+  height: var(--scaler-32);
+  padding: 0 var(--padding-sm) 0 var(--padding-s);
+  margin: 0;
+  border: none;
+  border-radius: var(--radius-round);
+  overflow: hidden;
+  cursor: pointer;
+  font-family: var(--font-family-primary);
+  font-weight: var(--font-weight-secondary);
+  font-size: 14px;
+  line-height: var(--scaler-16);
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  appearance: none;
+}
+
+.kzn-c-button:focus-visible,
+.kzn-c-button--demo-focus {
+  outline: 2px solid var(--border-primary-focus);
+  outline-offset: 2px;
+}
+
+.kzn-c-button:disabled {
+  cursor: not-allowed;
+}
+
+/* State overlay — matches Figma `states/*` layers */
+.kzn-c-button::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--states-none);
+  pointer-events: none;
+}
+
+.kzn-c-button:hover:not(:disabled):not(.kzn-c-button--pressed)::after {
+  background: var(--states-hover);
+}
+
+.kzn-c-button:active:not(:disabled):not(.kzn-c-button--pressed)::after,
+.kzn-c-button--pressed:not(:disabled)::after {
+  background: var(--states-pressed);
+}
+
+.kzn-c-button:disabled::after {
+  background: var(--states-disabled);
+}
+
+/* ------------------------------------*\
+  Variant backgrounds (Figma property `type`)
+\*------------------------------------ */
+
+.kzn-c-button--primary {
+  background-color: var(--surface-secondary-default);
+  color: var(--text-on-color-body);
+}
+
+.kzn-c-button--brand {
+  background-color: var(--surface-primary-default);
+  color: var(--text-default-body);
+}
+
+.kzn-c-button--secondary {
+  background-color: var(--surface-default-default-elevated);
+  color: var(--text-default-body);
+}
+
+/* Icon color per Figma `button` + `icon` instances (8091:1786) — token per variant/state */
+.kzn-c-button--primary .kzn-c-button__icon .kzn-c-icon {
+  color: var(--icon-default-on-color);
+}
+
+.kzn-c-button--brand .kzn-c-button__icon .kzn-c-icon {
+  color: var(--icon-primary-on-color);
+}
+
+.kzn-c-button--secondary .kzn-c-button__icon .kzn-c-icon {
+  color: var(--icon-default-default);
+}
+
+.kzn-c-button:disabled .kzn-c-button__icon .kzn-c-icon {
+  color: var(--icon-disabled-default);
+}
+
+.kzn-c-button--primary:disabled .kzn-c-button__icon .kzn-c-icon {
+  color: var(--icon-disabled-on-color);
+}
+
+/* ------------------------------------*\
+  Icon + label (above state overlay)
+\*------------------------------------ */
+
+.kzn-c-button__icon,
+.kzn-c-button__label {
+  position: relative;
+  z-index: 1;
+}
+
+.kzn-c-button__icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+}
