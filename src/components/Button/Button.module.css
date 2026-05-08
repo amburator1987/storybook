@@ -66,7 +66,6 @@
 
 .kzn-c-button--primary {
   background-color: var(--surface-secondary-default);
-  background: purple;
   color: var(--text-on-color-body);
 }
 

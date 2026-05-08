@@ -1,23 +1,42 @@
 name: Storybook Component Change Notifier
 
+# Pokreće se nakon što Release workflow završi — tako je novi tag već kreiran
+# i možemo ga pouzdano pročitati. head_sha = originalni push commit (prije
+# semantic-release chore commita), pa git diff HEAD~1 HEAD daje pravi diff koda.
 on:
-  push:
+  workflow_run:
+    workflows: ["Release"]
+    types:
+      - completed
     branches:
       - master
 
 jobs:
   notify:
     runs-on: ubuntu-latest
+    # Notifikacija se šalje i kad nema nove verzije (neutral commits)
+    if: ${{ github.event.workflow_run.conclusion != 'cancelled' }}
 
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 2  # potrebno za git diff HEAD~1
+          ref: ${{ github.event.workflow_run.head_sha }}
+          fetch-depth: 2          # HEAD i HEAD~1 za diff originalnog commita
+
+      - name: Fetch tags
+        run: git fetch --tags --force
+
+      - name: Get latest version tag
+        id: version
+        run: |
+          TAG=$(git tag --sort=-version:refname | grep -E '^v[0-9]+\.[0-9]+\.[0-9]+' | head -n1)
+          echo "tag=${TAG:-bez verzije}" >> "$GITHUB_OUTPUT"
 
       - name: Analyze changes and notify team
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           GOOGLE_CHAT_WEBHOOK_URL: ${{ secrets.GOOGLE_CHAT_WEBHOOK_URL }}
+          RELEASE_VERSION: ${{ steps.version.outputs.tag }}
         run: |
           python3 << 'PYEOF'
           import json, os, subprocess, urllib.request
@@ -25,13 +44,14 @@ jobs:
           def git(*args):
               return subprocess.check_output(['git'] + list(args), text=True).strip()
 
-          # --- Commit info ---
+          # --- Commit info (originalni push commit = HEAD ovdje) ---
           commit_msg = git('log', '-1', '--pretty=%s')
           commit_sha = git('log', '-1', '--pretty=%h')
           commit_url = git('log', '-1', '--pretty=%H')
           author     = git('log', '-1', '--pretty=%an')
           repo_url   = git('remote', 'get-url', 'origin').replace('.git', '')
-          diff       = git('diff', 'HEAD~1', 'HEAD')[:12000]  # limit da ne prekoracimo token limit
+          diff       = git('diff', 'HEAD~1', 'HEAD')[:12000]
+          version    = os.environ.get('RELEASE_VERSION', 'bez verzije')
 
           # --- Conventional commits → tip izmjene ---
           TYPES = {
@@ -87,11 +107,13 @@ jobs:
 
           # --- Google Chat poruka ---
           commit_link = f"{repo_url}/commit/{commit_url}"
+          version_line = f"*Verzija:* `{version}`\n" if version != 'bez verzije' else ''
           message = (
               f"*{commit_type}*\n"
               f"*Commit:* <{commit_link}|`{commit_sha}`> — {commit_msg}\n"
-              f"*Autor:* {author}\n\n"
-              f"{description}"
+              f"*Autor:* {author}\n"
+              f"{version_line}"
+              f"\n{description}"
           )
 
           gchat_payload = {"text": message}
@@ -102,7 +124,7 @@ jobs:
           )
           try:
               urllib.request.urlopen(req2, timeout=10)
-              print(f"✅ Notifikacija poslana u Google Chat.")
+              print(f"✅ Notifikacija poslana u Google Chat ({version}).")
           except Exception as e:
               print(f"❌ Greška pri slanju u Google Chat: {e}")
               raise SystemExit(1)
