@@ -1,6 +1,7 @@
 /* ------------------------------------*\
   #BUTTON (Kaizen)
-  Recreated from Figma component set `button` (node 8091:1786).
+  Figma component set `button` — node 8091:1786.
+  https://www.figma.com/design/JCQ4u9ytPIMpGaLzdAq8dD/Kaizen-Reworked-3-Lvls?node-id=8091-1786
 \*------------------------------------ */
 
 .kzn-c-button {
@@ -8,11 +9,11 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: var(--scaler-8);
+  gap: var(--spacing-lg);
   box-sizing: border-box;
   height: var(--scaler-32);
-  padding: 0 var(--padding-sm) 0 var(--padding-s);
-  margin: 0;
+  /* Figma: padding-left=8, padding-right=12, padding-top/bottom=0 */
+  padding: 0 var(--scaler-12) 0 var(--scaler-8);
   border: none;
   border-radius: var(--radius-round);
   overflow: hidden;
@@ -27,17 +28,11 @@
   appearance: none;
 }
 
-.kzn-c-button:focus-visible,
-.kzn-c-button--demo-focus {
-  outline: 2px solid var(--border-primary-focus);
-  outline-offset: 2px;
-}
-
 .kzn-c-button:disabled {
   cursor: not-allowed;
 }
 
-/* State overlay — matches Figma `states/*` layers */
+/* State overlay — sits above bg, below content */
 .kzn-c-button::after {
   content: "";
   position: absolute;
@@ -61,7 +56,7 @@
 }
 
 /* ------------------------------------*\
-  Variant backgrounds (Figma property `type`)
+  Variant backgrounds — Figma property `type`
 \*------------------------------------ */
 
 .kzn-c-button--primary {
@@ -79,29 +74,8 @@
   color: var(--text-default-body);
 }
 
-/* Icon color per Figma `button` + `icon` instances (8091:1786) — token per variant/state */
-.kzn-c-button--primary .kzn-c-button__icon .kzn-c-icon {
-  color: var(--icon-default-on-color);
-}
-
-.kzn-c-button--brand .kzn-c-button__icon .kzn-c-icon {
-  color: var(--icon-primary-on-color);
-}
-
-.kzn-c-button--secondary .kzn-c-button__icon .kzn-c-icon {
-  color: var(--icon-default-default);
-}
-
-.kzn-c-button:disabled .kzn-c-button__icon .kzn-c-icon {
-  color: var(--icon-disabled-default);
-}
-
-.kzn-c-button--primary:disabled .kzn-c-button__icon .kzn-c-icon {
-  color: var(--icon-disabled-on-color);
-}
-
 /* ------------------------------------*\
-  Icon + label (above state overlay)
+  Icon + label — above state overlay
 \*------------------------------------ */
 
 .kzn-c-button__icon,
@@ -115,4 +89,48 @@
   flex-shrink: 0;
   align-items: center;
   justify-content: center;
+}
+
+/* Icon color per variant — targets Icon's global BEM class.
+   :global() needed because .kzn-c-icon is a non-module class on <Icon>. */
+.kzn-c-button--primary .kzn-c-button__icon :global(.kzn-c-icon) {
+  color: var(--icon-default-on-color);
+}
+
+.kzn-c-button--brand .kzn-c-button__icon :global(.kzn-c-icon),
+.kzn-c-button--secondary .kzn-c-button__icon :global(.kzn-c-icon) {
+  color: var(--text-default-body);
+}
+
+.kzn-c-button:disabled .kzn-c-button__icon :global(.kzn-c-icon) {
+  color: var(--icon-disabled-default);
+}
+
+/* Primary on-color surface needs separate disabled icon token */
+.kzn-c-button--primary:disabled .kzn-c-button__icon :global(.kzn-c-icon) {
+  color: var(--icon-disabled-on-color);
+}
+
+/* ------------------------------------*\
+  Focus rings — Figma nodes 8209:1384 / 8209:1394 / 8209:1403
+  Figma: focus frame inset=-4px → outline-offset:4px
+         border-width = scale/2 = 2px
+\*------------------------------------ */
+
+.kzn-c-button--primary:focus-visible,
+.kzn-c-button--primary.kzn-c-button--focus {
+  outline: 2px solid var(--border-secondary-focus);
+  outline-offset: 4px;
+}
+
+.kzn-c-button--brand:focus-visible,
+.kzn-c-button--brand.kzn-c-button--focus {
+  outline: 2px solid var(--border-primary-focus);
+  outline-offset: 4px;
+}
+
+.kzn-c-button--secondary:focus-visible,
+.kzn-c-button--secondary.kzn-c-button--focus {
+  outline: 2px solid var(--border-default-focus);
+  outline-offset: 4px;
 }

@@ -1,0 +1,134 @@
+/* ------------------------------------*\
+  #ACTION LIST ITEM (Kaizen)
+  Figma component set `action-list` — node 6507:1674.
+  https://www.figma.com/design/JCQ4u9ytPIMpGaLzdAq8dD/Kaizen-Reworked-3-Lvls?node-id=6507-1674
+\*------------------------------------ */
+
+.kzn-c-action-list-item {
+  position: relative;
+  display: flex;
+  width: 100%;
+  max-width: 400px;
+  min-width: 256px;
+  height: var(--scaler-48);
+  align-items: center;
+  padding: 0 var(--spacing-xl);
+  margin: 0;
+  border: none;
+  background-color: var(--surface-default-body);
+  color: var(--text-default-body);
+  font-family: var(--font-family-primary);
+  text-align: left;
+  cursor: pointer;
+  appearance: none;
+  box-sizing: border-box;
+}
+
+/* Figma State=Hover, State=Selected, State=Focus all use elevated surface */
+.kzn-c-action-list-item:hover,
+.kzn-c-action-list-item--hover,
+.kzn-c-action-list-item--selected,
+.kzn-c-action-list-item--focus,
+.kzn-c-action-list-item:focus-visible {
+  background-color: var(--surface-default-default);
+}
+
+/* Focus ring — Figma: inset=-4px/-4.5px, border=2px solid border/default/focus */
+.kzn-c-action-list-item:focus-visible,
+.kzn-c-action-list-item--focus {
+  outline: 2px solid var(--border-default-focus);
+  outline-offset: 4px;
+}
+
+/* ------------------------------------*\
+  Inner flex row
+\*------------------------------------ */
+
+.kzn-c-action-list-item__inner {
+  display: flex;
+  flex: 1 0 0;
+  align-items: center;
+  gap: var(--spacing-xl);
+  min-width: 0;
+}
+
+/* ------------------------------------*\
+  Lead / trail icon wrappers
+\*------------------------------------ */
+
+.kzn-c-action-list-item__lead,
+.kzn-c-action-list-item__trail {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+}
+
+/* Icon color — :global() targets non-module class on <Icon> */
+.kzn-c-action-list-item__lead :global(.kzn-c-icon),
+.kzn-c-action-list-item__trail :global(.kzn-c-icon) {
+  color: var(--icon-default-default);
+}
+
+/* ------------------------------------*\
+  Info block (title + subhead)
+\*------------------------------------ */
+
+.kzn-c-action-list-item__info {
+  display: flex;
+  flex: 1 0 0;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  align-items: flex-start;
+  justify-content: center;
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.kzn-c-action-list-item__title {
+  width: 100%;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 14px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.kzn-c-action-list-item__subhead {
+  width: 100%;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ------------------------------------*\
+  Counter
+\*------------------------------------ */
+
+.kzn-c-action-list-item__counter {
+  flex-shrink: 0;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 14px;
+  text-align: right;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ------------------------------------*\
+  Selected left accent bar — Figma node `Selector`
+  Figma: w=4px, h=48px, left=0, top=0, color=surface/secondary/default
+\*------------------------------------ */
+
+.kzn-c-action-list-item__selector {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: var(--scaler-4);
+  height: 100%;
+  background-color: var(--surface-secondary-default);
+  pointer-events: none;
+}

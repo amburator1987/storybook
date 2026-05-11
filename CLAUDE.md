@@ -136,3 +136,11 @@ Minimum 2 primera — basic i edge case.
 
 # Dimenzije ikonica
 Uvek koristi token vrednosti za width i height ikonica, ne vrednosti iz SVG viewBox ili bounding box-a. Dimenzije se čitaju iz Figma Layer properties, ne iz SVG path-a.
+
+
+## Props pravila
+- Ako je Figma property enum (npr. state: default, pressed, disabled, focus) → Vue prop mora biti string union type, NIKAD boolean
+- Boolean props se prave SAMO ako je Figma property eksplicitno boolean (true/false toggle)
+- Ne konvertuj enum varijante u više boolean propsa
+- Imena propsa moraju biti tačno kako su nazvani u Figma properties panelu — bez izmišljanja, bez preimenovanja
+- Ako Figma kaže `icon-right-show` → prop se zove `iconRightShow` (camelCase konverzija je jedina dozvoljena izmena)
