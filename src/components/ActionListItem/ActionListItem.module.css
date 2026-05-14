@@ -36,8 +36,8 @@
 /* Focus ring — Figma: inset=-4px/-4.5px, border=2px solid border/default/focus */
 .kzn-c-action-list-item:focus-visible,
 .kzn-c-action-list-item--focus {
-  outline: 2px solid var(--border-default-focus);
-  outline-offset: 4px;
+  outline: var(--border-width-2) solid var(--border-default-focus);
+  outline-offset: var(--scaler-4);
 }
 
 /* ------------------------------------*\
@@ -88,8 +88,8 @@
 .kzn-c-action-list-item__title {
   width: 100%;
   font-weight: 600;
-  font-size: 14px;
-  line-height: 14px;
+  font-size: var(--typography-font-size-paragraph-sm);
+  line-height: var(--typography-line-height-paragraph-sm);
   overflow: hidden;
   text-overflow: ellipsis;
 }
@@ -97,8 +97,8 @@
 .kzn-c-action-list-item__subhead {
   width: 100%;
   font-weight: 400;
-  font-size: 12px;
-  line-height: 14px;
+  font-size: var(--typography-font-size-paragraph-xs);
+  line-height: var(--typography-line-height-paragraph-xs);
   overflow: hidden;
   text-overflow: ellipsis;
 }
@@ -110,8 +110,8 @@
 .kzn-c-action-list-item__counter {
   flex-shrink: 0;
   font-weight: 600;
-  font-size: 14px;
-  line-height: 14px;
+  font-size: var(--typography-font-size-paragraph-sm);
+  line-height: var(--typography-line-height-paragraph-sm);
   text-align: right;
   white-space: nowrap;
   overflow: hidden;

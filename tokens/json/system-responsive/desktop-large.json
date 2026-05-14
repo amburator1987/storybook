@@ -8,7 +8,7 @@
         "com.figma.hiddenFromPublishing": false
       },
       "$type": "dimension",
-      "$value": "159.375rem"
+      "$value": "2550px"
     }
   },
   "typography": {
@@ -21,7 +21,7 @@
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "dimension",
-        "$value": "3.5rem"
+        "$value": "56px"
       },
       "h2": {
         "$extensions": {
@@ -31,7 +31,7 @@
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "dimension",
-        "$value": "2.5rem"
+        "$value": "40px"
       },
       "h3": {
         "$extensions": {
@@ -41,7 +41,7 @@
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "dimension",
-        "$value": "2rem"
+        "$value": "32px"
       },
       "h4": {
         "$extensions": {
@@ -51,7 +51,7 @@
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "dimension",
-        "$value": "1.75rem"
+        "$value": "28px"
       },
       "h5": {
         "$extensions": {
@@ -61,7 +61,7 @@
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "dimension",
-        "$value": "1.5rem"
+        "$value": "24px"
       },
       "h6": {
         "$extensions": {
@@ -71,7 +71,7 @@
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "dimension",
-        "$value": "1.25rem"
+        "$value": "20px"
       },
       "paragraph-default": {
         "$extensions": {
@@ -81,7 +81,7 @@
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "dimension",
-        "$value": "1rem"
+        "$value": "16px"
       },
       "paragraph-lg": {
         "$extensions": {
@@ -91,7 +91,7 @@
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "dimension",
-        "$value": "1.25rem"
+        "$value": "20px"
       },
       "paragraph-sm": {
         "$extensions": {
@@ -101,7 +101,7 @@
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "dimension",
-        "$value": "0.875rem"
+        "$value": "14px"
       },
       "paragraph-xs": {
         "$extensions": {
@@ -111,7 +111,7 @@
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "dimension",
-        "$value": "0.75rem"
+        "$value": "12px"
       },
       "caption": {
         "$extensions": {
@@ -121,7 +121,7 @@
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "dimension",
-        "$value": "0.688rem"
+        "$value": "11px"
       },
       "label": {
         "$extensions": {
@@ -131,7 +131,7 @@
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "dimension",
-        "$value": "0.625rem"
+        "$value": "10px"
       }
     },
     "line-height": {
@@ -143,7 +143,7 @@
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "dimension",
-        "$value": "1.5rem"
+        "$value": "24px"
       },
       "h1": {
         "$extensions": {
@@ -153,7 +153,7 @@
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "dimension",
-        "$value": "4.5rem"
+        "$value": "72px"
       },
       "h4": {
         "$extensions": {
@@ -163,7 +163,7 @@
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "dimension",
-        "$value": "2rem"
+        "$value": "32px"
       },
       "h3": {
         "$extensions": {
@@ -173,7 +173,7 @@
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "dimension",
-        "$value": "2.375rem"
+        "$value": "38px"
       },
       "h5": {
         "$extensions": {
@@ -183,7 +183,7 @@
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "dimension",
-        "$value": "1.75rem"
+        "$value": "28px"
       },
       "h2": {
         "$extensions": {
@@ -193,7 +193,7 @@
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "dimension",
-        "$value": "3.5rem"
+        "$value": "56px"
       },
       "paragraph-xs": {
         "$extensions": {
@@ -203,7 +203,7 @@
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "dimension",
-        "$value": "0.875rem"
+        "$value": "16px"
       },
       "paragraph-sm": {
         "$extensions": {
@@ -213,7 +213,7 @@
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "dimension",
-        "$value": "1rem"
+        "$value": "16px"
       },
       "paragraph-default": {
         "$extensions": {
@@ -223,7 +223,7 @@
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "dimension",
-        "$value": "1.25rem"
+        "$value": "20px"
       },
       "paragraph-lg": {
         "$extensions": {
@@ -233,7 +233,7 @@
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "dimension",
-        "$value": "1.5rem"
+        "$value": "24px"
       },
       "caption": {
         "$extensions": {
@@ -243,7 +243,7 @@
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "dimension",
-        "$value": "1rem"
+        "$value": "16px"
       },
       "label": {
         "$extensions": {
@@ -253,7 +253,7 @@
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "dimension",
-        "$value": "1rem"
+        "$value": "16px"
       }
     },
     "letter-spacing": {
@@ -265,7 +265,7 @@
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "dimension",
-        "$value": "0rem"
+        "$value": "0px"
       },
       "paragraph-xs": {
         "$extensions": {
@@ -275,7 +275,7 @@
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "dimension",
-        "$value": "0rem"
+        "$value": "0px"
       },
       "paragraph-default": {
         "$extensions": {
@@ -285,7 +285,7 @@
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "dimension",
-        "$value": "0rem"
+        "$value": "0px"
       },
       "h6": {
         "$extensions": {
@@ -295,7 +295,7 @@
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "dimension",
-        "$value": "0rem"
+        "$value": "0px"
       },
       "h1": {
         "$extensions": {
@@ -305,7 +305,7 @@
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "dimension",
-        "$value": "0rem"
+        "$value": "0px"
       },
       "h4": {
         "$extensions": {
@@ -315,7 +315,7 @@
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "dimension",
-        "$value": "0rem"
+        "$value": "0px"
       },
       "h3": {
         "$extensions": {
@@ -325,7 +325,7 @@
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "dimension",
-        "$value": "0rem"
+        "$value": "0px"
       },
       "h5": {
         "$extensions": {
@@ -335,7 +335,7 @@
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "dimension",
-        "$value": "0rem"
+        "$value": "0px"
       },
       "paragraph-lg": {
         "$extensions": {
@@ -345,7 +345,7 @@
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "dimension",
-        "$value": "0rem"
+        "$value": "0px"
       },
       "h2": {
         "$extensions": {
@@ -355,7 +355,7 @@
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "dimension",
-        "$value": "0rem"
+        "$value": "0px"
       },
       "caption": {
         "$extensions": {
@@ -365,7 +365,7 @@
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "dimension",
-        "$value": "0rem"
+        "$value": "0px"
       },
       "label": {
         "$extensions": {
@@ -375,7 +375,7 @@
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "dimension",
-        "$value": "0rem"
+        "$value": "0px"
       }
     },
     "paragraph-spacing": {
@@ -387,7 +387,7 @@
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "dimension",
-        "$value": "{scaler.56}"
+        "$value": "{scale.56}"
       }
     }
   }

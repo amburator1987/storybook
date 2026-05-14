@@ -37,8 +37,8 @@
   --text-disabled-on-color: var(--neutral-600);
   --icon-primary-default: var(--primary-400);
   --icon-primary-default-hover: var(--primary-300);
-  --icon-primary-on-color: var(--neutral-900);
-  --icon-primary-on-color-hover: var(--neutral-900);
+  --icon-primary-on-color: var(--neutral-50);
+  --icon-primary-on-color-hover: var(--neutral-200);
   --icon-secondary-default: var(--secondary-400);
   --icon-secondary-default-hover: var(--secondary-300);
   --icon-secondary-on-color: var(--neutral-900);

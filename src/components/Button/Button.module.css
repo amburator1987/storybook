@@ -11,17 +11,18 @@
   justify-content: center;
   gap: var(--spacing-lg);
   box-sizing: border-box;
-  height: var(--scaler-32);
-  /* Figma: padding-left=8, padding-right=12, padding-top/bottom=0 */
-  padding: 0 var(--scaler-12) 0 var(--scaler-8);
+  /* Figma: padding-left=spacing/lg(8px), padding-right=spacing/xl(12px), top/bottom=0 */
+  padding: 0 var(--spacing-xl) 0 var(--spacing-lg);
   border: none;
   border-radius: var(--radius-round);
   overflow: hidden;
   cursor: pointer;
   font-family: var(--font-family-primary);
-  font-weight: var(--font-weight-secondary);
-  font-size: 14px;
-  line-height: var(--scaler-16);
+  /* --font-weight-secondary outputs "Semi Bold" (string), not numeric → use 600 directly */
+  font-weight: 600;
+  font-size: var(--typography-font-size-paragraph-sm);
+  line-height: var(--typography-line-height-paragraph-sm);
+  letter-spacing: var(--typography-letter-spacing-paragraph-sm);
   text-align: center;
   white-space: nowrap;
   vertical-align: middle;
@@ -56,20 +57,43 @@
 }
 
 /* ------------------------------------*\
-  Variant backgrounds — Figma property `type`
+  Size variants — Figma property `size`
+  sm: scale/32 (32px) | md: scale/40 (40px) | lg: scale/48 (48px)
+\*------------------------------------ */
+
+.kzn-c-button--sm {
+  height: var(--scale-32);
+}
+
+.kzn-c-button--md {
+  height: var(--scale-40);
+}
+
+.kzn-c-button--lg {
+  height: var(--scale-48);
+}
+
+/* ------------------------------------*\
+  Variant colors — Figma property `type`
 \*------------------------------------ */
 
 .kzn-c-button--primary {
-  background-color: var(--surface-secondary-default);
-  color: var(--text-on-color-body);
-}
-
-.kzn-c-button--brand {
   background-color: var(--surface-primary-default);
   color: var(--text-default-body);
 }
 
 .kzn-c-button--secondary {
+  /* Figma uses surface/action for inner layer; maps to same value as surface/secondary/default */
+  background-color: var(--surface-secondary-default);
+  color: var(--text-on-color-body);
+}
+
+.kzn-c-button--danger {
+  background-color: var(--surface-error-default);
+  color: var(--text-error-on-color);
+}
+
+.kzn-c-button--tertiary {
   background-color: var(--surface-default-default-elevated);
   color: var(--text-default-body);
 }
@@ -91,46 +115,48 @@
   justify-content: center;
 }
 
-/* Icon color per variant — targets Icon's global BEM class.
-   :global() needed because .kzn-c-icon is a non-module class on <Icon>. */
+/* Icon color per type — :global() needed because .kzn-c-icon is on <Icon>, not a module class */
 .kzn-c-button--primary .kzn-c-button__icon :global(.kzn-c-icon) {
-  color: var(--icon-default-on-color);
+  color: var(--icon-primary-on-color);
 }
 
-.kzn-c-button--brand .kzn-c-button__icon :global(.kzn-c-icon),
 .kzn-c-button--secondary .kzn-c-button__icon :global(.kzn-c-icon) {
-  color: var(--text-default-body);
+  color: var(--icon-secondary-on-color);
 }
 
-.kzn-c-button:disabled .kzn-c-button__icon :global(.kzn-c-icon) {
-  color: var(--icon-disabled-default);
+.kzn-c-button--danger .kzn-c-button__icon :global(.kzn-c-icon) {
+  color: var(--icon-error-on-color);
 }
 
-/* Primary on-color surface needs separate disabled icon token */
-.kzn-c-button--primary:disabled .kzn-c-button__icon :global(.kzn-c-icon) {
-  color: var(--icon-disabled-on-color);
+.kzn-c-button--tertiary .kzn-c-button__icon :global(.kzn-c-icon) {
+  color: var(--icon-default-default);
 }
 
 /* ------------------------------------*\
-  Focus rings — Figma nodes 8209:1384 / 8209:1394 / 8209:1403
-  Figma: focus frame inset=-4px → outline-offset:4px
-         border-width = scale/2 = 2px
+  Focus rings
+  Figma: inset=-4px → outline-offset:4px | border=scale/2(2px) | radius=radius/xl(32px)
 \*------------------------------------ */
 
 .kzn-c-button--primary:focus-visible,
 .kzn-c-button--primary.kzn-c-button--focus {
-  outline: 2px solid var(--border-secondary-focus);
-  outline-offset: 4px;
-}
-
-.kzn-c-button--brand:focus-visible,
-.kzn-c-button--brand.kzn-c-button--focus {
-  outline: 2px solid var(--border-primary-focus);
-  outline-offset: 4px;
+  outline: var(--border-width-2) solid var(--border-primary-focus);
+  outline-offset: var(--scale-4);
 }
 
 .kzn-c-button--secondary:focus-visible,
 .kzn-c-button--secondary.kzn-c-button--focus {
-  outline: 2px solid var(--border-default-focus);
-  outline-offset: 4px;
+  outline: var(--border-width-2) solid var(--border-secondary-focus);
+  outline-offset: var(--scale-4);
+}
+
+.kzn-c-button--danger:focus-visible,
+.kzn-c-button--danger.kzn-c-button--focus {
+  outline: var(--border-width-2) solid var(--border-error-focus);
+  outline-offset: var(--scale-4);
+}
+
+.kzn-c-button--tertiary:focus-visible,
+.kzn-c-button--tertiary.kzn-c-button--focus {
+  outline: var(--border-width-2) solid var(--border-secondary-focus);
+  outline-offset: var(--scale-4);
 }

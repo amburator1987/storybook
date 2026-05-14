@@ -369,7 +369,7 @@
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
-        "$value": "{neutral.900}"
+        "$value": "{neutral.50}"
       },
       "on-color-hover": {
         "$extensions": {
@@ -379,7 +379,7 @@
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
-        "$value": "{neutral.900}"
+        "$value": "{neutral.200}"
       }
     },
     "secondary": {

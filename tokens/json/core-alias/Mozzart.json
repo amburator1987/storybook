@@ -608,7 +608,7 @@
         "com.figma.hiddenFromPublishing": false
       },
       "$type": "dimension",
-      "$value": "624.938rem"
+      "$value": "9999px"
     },
     "none": {
       "$extensions": {

@@ -86,6 +86,16 @@ function applyAliasAndMappedLayers(brand: string, theme: string) {
   mappedEl.textContent = mappedCss;
 }
 
+function injectCanvasOverride() {
+  const id = "kaizen-canvas-override";
+  if (document.getElementById(id)) return;
+  const el = document.createElement("style");
+  el.id = id;
+  el.textContent =
+    ".sb-show-main { background-color: var(--surface-default-body); }";
+  document.head.appendChild(el);
+}
+
 const withBrandTheme = (storyFn: any, context: any) => {
   const brand = context.globals.brand ?? "mozzart";
   const theme = context.globals.theme;
@@ -96,6 +106,8 @@ const withBrandTheme = (storyFn: any, context: any) => {
   );
 
   document.documentElement.setAttribute("data-brand", brand);
+
+  injectCanvasOverride();
 
   return storyFn();
 };
@@ -120,6 +132,10 @@ const preview: Preview = {
   ],
   decorators: [withBrandTheme],
   parameters: {
+    backgrounds: { disable: true },
+
+    layout: "centered",
+
     controls: {
       matchers: {
        color: /(background|color)$/i,

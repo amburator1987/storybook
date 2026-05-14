@@ -4,23 +4,24 @@
     :class="[
       $style['kzn-c-button'],
       $style[`kzn-c-button--${type}`],
+      $style[`kzn-c-button--${size}`],
       { [$style['kzn-c-button--pressed']]: state === 'pressed' },
       { [$style['kzn-c-button--focus']]: state === 'focus' },
     ]"
     :disabled="state === 'disabled'"
     :aria-pressed="state === 'pressed' ? true : undefined"
   >
-    <span v-if="!hideIcon" :class="$style['kzn-c-button__icon']" aria-hidden="true">
-      <slot name="icon">
-        <Icon :name="iconName" :size="iconSize" />
+    <span v-if="iconLeftShow" :class="$style['kzn-c-button__icon']" aria-hidden="true">
+      <slot name="icon-left">
+        <Icon :name="iconName" size="small" />
       </slot>
     </span>
     <span :class="$style['kzn-c-button__label']">
       <slot>ButtonText</slot>
     </span>
-    <span v-if="showIconRight" :class="$style['kzn-c-button__icon']" aria-hidden="true">
+    <span v-if="iconRightShow" :class="$style['kzn-c-button__icon']" aria-hidden="true">
       <slot name="icon-right">
-        <Icon :name="iconRightName" :size="iconRightSize" />
+        <Icon :name="iconRightName" size="small" />
       </slot>
     </span>
   </button>
@@ -28,10 +29,10 @@
 
 <script setup lang="ts">
 import Icon from "../Icon/Icon.vue";
-import type { IconName, IconSize } from "../Icon/Icon.vue";
+import type { IconName } from "../Icon/Icon.vue";
 
-export type ButtonType = "primary" | "brand" | "secondary";
-export type ButtonSize = "sm";
+export type ButtonType = "primary" | "secondary" | "danger" | "tertiary";
+export type ButtonSize = "sm" | "md" | "lg";
 /** Figma property `state` — enum, matches component set variant names exactly. */
 export type ButtonState = "default" | "pressed" | "disabled" | "focus";
 
@@ -39,35 +40,31 @@ withDefaults(
   defineProps<{
     /** Figma property `type`. */
     type?: ButtonType;
-    /** Only `sm` available in Figma (reserved for future sizes). */
+    /** Figma property `size`. Controls button height: sm=32px, md=40px, lg=48px. */
     size?: ButtonSize;
-    /** Figma property `state`. `disabled` → native disabled; `focus` → static focus ring (docs/screenshots). */
+    /** Figma property `state`. `disabled` → native disabled; `focus` → static focus ring. */
     state?: ButtonState;
-    /** Hide the leading icon (text-only button). */
-    hideIcon?: boolean;
-    /** Show a trailing icon after the label. */
-    showIconRight?: boolean;
+    /** Figma property `icon-left-show`. */
+    iconLeftShow?: boolean;
+    /** Figma property `icon-right-show`. */
+    iconRightShow?: boolean;
     iconName?: IconName;
-    iconSize?: IconSize;
     iconRightName?: IconName;
-    iconRightSize?: IconSize;
   }>(),
   {
     type: "primary",
     size: "sm",
     state: "default",
-    hideIcon: false,
-    showIconRight: false,
-    iconName: "chevron-down",
-    iconSize: "small",
-    iconRightName: "chevron-down",
-    iconRightSize: "small",
+    iconLeftShow: true,
+    iconRightShow: false,
+    iconName: "activity",
+    iconRightName: "activity",
   }
 );
 
 defineSlots<{
   default?: () => unknown;
-  icon?: () => unknown;
+  "icon-left"?: () => unknown;
   "icon-right"?: () => unknown;
 }>();
 </script>

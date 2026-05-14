@@ -144,3 +144,5 @@ Uvek koristi token vrednosti za width i height ikonica, ne vrednosti iz SVG view
 - Ne konvertuj enum varijante u više boolean propsa
 - Imena propsa moraju biti tačno kako su nazvani u Figma properties panelu — bez izmišljanja, bez preimenovanja
 - Ako Figma kaže `icon-right-show` → prop se zove `iconRightShow` (camelCase konverzija je jedina dozvoljena izmena)
+- Nikad ne hardkoduj dimenzionalne vrednosti (px, rem) — uvek koristi token iz Figme
+- border-width, outline-width, gap, padding, margin — sve mora biti token

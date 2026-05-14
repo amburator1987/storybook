@@ -147,29 +147,6 @@ StyleDictionary.registerTransform({
   },
 });
 
-// Number tokens come from JSON unit-less; render them as pixels.
-// We ONLY add a unit; the numeric value itself is read verbatim from JSON.
-StyleDictionary.registerTransform({
-  name: "kaizen/number-to-px",
-  type: "value",
-  transitive: true,
-  filter: (token) => {
-    const t = token.$type ?? token.type;
-    return t === "number" || t === "dimension";
-  },
-  transform: (token) => {
-    const v = token.$value !== undefined ? token.$value : token.value;
-    if (typeof v === "number") return `${v}px`;
-    if (typeof v === "string") {
-      const trimmed = v.trim();
-      if (trimmed === "") return v;
-      const num = Number(trimmed);
-      if (!Number.isNaN(num)) return `${num}px`;
-    }
-    return v;
-  },
-});
-
 // CSS variable name = kebab-case path, no prefix.
 StyleDictionary.registerTransform({
   name: "kaizen/name-path",
@@ -181,7 +158,6 @@ StyleDictionary.registerTransform({
 const cssTransforms = [
   "color/css", // built-in: handles DTCG color objects -> hex/rgba
   "kaizen/font-weight-string-to-number",
-  "kaizen/number-to-px",
   "kaizen/name-path",
 ];
 
@@ -334,11 +310,19 @@ async function buildResponsive() {
 
   for (const bp of breakpoints) {
     const data = loadCollectionFile(path.join("system-responsive", bp.file));
-    const screenValue = data?.screens?.["screen-size"]?.$value;
-    if (typeof screenValue !== "string") {
+    const rawScreen = data?.screens?.["screen-size"]?.$value;
+    if (rawScreen == null) {
       throw new Error(
-        `Missing screens.screen-size in system-responsive/${bp.file} (got ${screenValue})`
+        `Missing screens.screen-size in system-responsive/${bp.file}`
       );
+    }
+    let screenValue;
+    if (typeof rawScreen === "number") {
+      screenValue = `${rawScreen}px`;
+    } else {
+      const trimmed = String(rawScreen).trim();
+      const num = Number(trimmed);
+      screenValue = Number.isNaN(num) ? trimmed : `${num}px`;
     }
     screenSizes[bp.key] = screenValue;
 
