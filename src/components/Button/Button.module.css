@@ -157,6 +157,6 @@
 
 .kzn-c-button--tertiary:focus-visible,
 .kzn-c-button--tertiary.kzn-c-button--focus {
-  outline: var(--border-width-2) solid var(--border-secondary-focus);
+  outline: var(--border-width-2) solid var(--border-default-focus);
   outline-offset: var(--scale-4);
 }

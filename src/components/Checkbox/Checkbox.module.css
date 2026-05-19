@@ -1,0 +1,131 @@
+/* ------------------------------------*\
+  #CHECKBOX (Kaizen)
+  Figma component set `checkbox` — node 8287:1739.
+  https://www.figma.com/design/JCQ4u9ytPIMpGaLzdAq8dD/Kaizen-Reworked-3-Lvls?node-id=8287-1739
+\*------------------------------------ */
+
+.kzn-c-checkbox {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-lg);
+  cursor: pointer;
+  user-select: none;
+}
+
+.kzn-c-checkbox--disabled {
+  cursor: not-allowed;
+}
+
+/* Visually hidden native input — retains keyboard and AT accessibility */
+.kzn-c-checkbox__input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ------------------------------------*\
+  Icon — visual checkbox box + checkmark
+\*------------------------------------ */
+
+.kzn-c-checkbox__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border-radius: var(--radius-xs);
+}
+
+.kzn-c-checkbox__icon svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* State colors — driven by `currentColor` in the inline SVG */
+.kzn-c-checkbox__icon--checked {
+  color: var(--icon-secondary-default);
+}
+
+.kzn-c-checkbox__icon--unchecked {
+  color: var(--icon-default-default);
+}
+
+.kzn-c-checkbox__icon--disabled {
+  color: var(--icon-disabled-default);
+}
+
+/* Hover on unchecked (not disabled) */
+.kzn-c-checkbox:not(.kzn-c-checkbox--disabled):hover .kzn-c-checkbox__icon--unchecked {
+  color: var(--icon-default-default-hover);
+}
+
+/* Focus ring via native input — appears on the visual icon */
+.kzn-c-checkbox__input:focus-visible + .kzn-c-checkbox__icon {
+  outline: var(--border-width-2) solid var(--border-secondary-focus);
+  outline-offset: var(--scale-4);
+}
+
+/* ------------------------------------*\
+  Size variants
+  sm → icon-size-sm (16px)
+  md → icon-size-default (24px)
+  lg → icon-size-lg (32px)
+\*------------------------------------ */
+
+.kzn-c-checkbox--sm .kzn-c-checkbox__icon {
+  width: var(--icon-size-sm);
+  height: var(--icon-size-sm);
+}
+
+.kzn-c-checkbox--md .kzn-c-checkbox__icon {
+  width: var(--icon-size-default);
+  height: var(--icon-size-default);
+}
+
+.kzn-c-checkbox--lg .kzn-c-checkbox__icon {
+  width: var(--icon-size-lg);
+  height: var(--icon-size-lg);
+}
+
+/* ------------------------------------*\
+  Label
+\*------------------------------------ */
+
+.kzn-c-checkbox__label {
+  font-family: var(--font-family-primary);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.kzn-c-checkbox:not(.kzn-c-checkbox--disabled) .kzn-c-checkbox__label {
+  color: var(--text-default-body);
+}
+
+.kzn-c-checkbox--disabled .kzn-c-checkbox__label {
+  color: var(--text-disabled-default);
+}
+
+/* Typography per size */
+.kzn-c-checkbox--sm .kzn-c-checkbox__label {
+  font-size: var(--typography-font-size-paragraph-xs);
+  line-height: var(--typography-line-height-paragraph-xs);
+  letter-spacing: var(--typography-letter-spacing-paragraph-xs);
+}
+
+.kzn-c-checkbox--md .kzn-c-checkbox__label {
+  font-size: var(--typography-font-size-paragraph-sm);
+  line-height: var(--typography-line-height-paragraph-sm);
+  letter-spacing: var(--typography-letter-spacing-paragraph-sm);
+}
+
+.kzn-c-checkbox--lg .kzn-c-checkbox__label {
+  font-size: var(--typography-font-size-paragraph-lg);
+  line-height: var(--typography-line-height-paragraph-lg);
+  letter-spacing: var(--typography-letter-spacing-paragraph-lg);
+}

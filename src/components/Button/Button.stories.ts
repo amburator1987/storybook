@@ -145,72 +145,179 @@ export const BothIcons: Story = {
 };
 
 // ------------------------------------
-// All variants matrix
+// All variants — Figma frame replica
+// Figma frame node 8091:1786 — 712×704px
+// Layout: 4 state columns × (4 types × 3 sizes) rows
+// Column width: 143px | Gap: 16px | Padding: 24px 46px
 // ------------------------------------
 
-/** Figma matrix: 4 types × 4 states × 3 sizes. */
+const LABEL = `
+  font-size:10px;
+  font-family:sans-serif;
+  text-transform:uppercase;
+  letter-spacing:.07em;
+  color:var(--text-default-caption,#9ca3af);
+  font-weight:600;
+  white-space:nowrap;
+`;
+
+const DIVIDER = `
+  grid-column:1/-1;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:8px 0 0;
+`;
+
+const DIVIDER_LINE = `
+  flex:1;
+  height:1px;
+  background:var(--border-default-default-elevated,#313540);
+`;
+
+/** Exact replica of the Figma component set frame — 4 states × 4 types × 3 sizes. */
 export const AllVariants: Story = {
+  name: "All Variants",
   parameters: {
-    layout: "padded",
     docs: {
       description: {
-        story: "Matches the Figma component set: 4 types × 4 states (rows) and 3 sizes.",
+        story:
+          "Replicates the Figma component set frame (node 8091:1786). " +
+          "Columns → states: default · pressed · disabled · focus. " +
+          "Rows → types: primary · secondary · tertiary · danger. " +
+          "Sections → sizes: sm · md · lg.",
       },
     },
   },
   render: () => ({
     components: { Button },
     template: `
-      <div style="display:flex;flex-direction:column;gap:40px;padding:32px;background:var(--surface-default-body,#1e2733);border-radius:8px;min-width:720px;">
+      <div style="
+        display:inline-flex;
+        flex-direction:column;
+        background:var(--surface-default-body,#1a1f2e);
+        padding:24px 46px;
+        border-radius:4px;
+        box-sizing:border-box;
+      ">
 
-        <section style="display:flex;flex-direction:column;gap:12px;">
-          <h3 style="margin:0;color:var(--text-default-caption,#efefef);font-size:11px;text-transform:uppercase;letter-spacing:.08em;font-family:sans-serif;">type × state — size sm</h3>
-          <div style="display:flex;flex-direction:column;gap:12px;">
-            <div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap;">
-              <Button type="primary" state="default" size="sm">primary</Button>
-              <Button type="primary" state="pressed" size="sm">pressed</Button>
-              <Button type="primary" state="disabled" size="sm">disabled</Button>
-              <Button type="primary" state="focus" size="sm">focus</Button>
-            </div>
-            <div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap;">
-              <Button type="secondary" state="default" size="sm">secondary</Button>
-              <Button type="secondary" state="pressed" size="sm">pressed</Button>
-              <Button type="secondary" state="disabled" size="sm">disabled</Button>
-              <Button type="secondary" state="focus" size="sm">focus</Button>
-            </div>
-            <div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap;">
-              <Button type="danger" state="default" size="sm">danger</Button>
-              <Button type="danger" state="pressed" size="sm">pressed</Button>
-              <Button type="danger" state="disabled" size="sm">disabled</Button>
-              <Button type="danger" state="focus" size="sm">focus</Button>
-            </div>
-            <div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap;">
-              <Button type="tertiary" state="default" size="sm">tertiary</Button>
-              <Button type="tertiary" state="pressed" size="sm">pressed</Button>
-              <Button type="tertiary" state="disabled" size="sm">disabled</Button>
-              <Button type="tertiary" state="focus" size="sm">focus</Button>
-            </div>
-          </div>
-        </section>
+        <!-- ── State column headers ── -->
+        <div style="
+          display:grid;
+          grid-template-columns:repeat(4,143px);
+          gap:16px;
+          margin-bottom:16px;
+        ">
+          <span style="${LABEL}text-align:center;">default</span>
+          <span style="${LABEL}text-align:center;">pressed</span>
+          <span style="${LABEL}text-align:center;">disabled</span>
+          <span style="${LABEL}text-align:center;">focus</span>
+        </div>
 
-        <section style="display:flex;flex-direction:column;gap:12px;">
-          <h3 style="margin:0;color:var(--text-default-caption,#efefef);font-size:11px;text-transform:uppercase;letter-spacing:.08em;font-family:sans-serif;">sizes — primary · default</h3>
-          <div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap;">
-            <Button type="primary" size="sm">sm (32px)</Button>
-            <Button type="primary" size="md">md (40px)</Button>
-            <Button type="primary" size="lg">lg (48px)</Button>
-          </div>
-        </section>
+        <!-- ══════════════════════════ SM ══════════════════════════ -->
+        <div style="display:grid;grid-template-columns:repeat(4,143px);gap:16px;align-items:center;justify-items:center;">
 
-        <section style="display:flex;flex-direction:column;gap:12px;">
-          <h3 style="margin:0;color:var(--text-default-caption,#efefef);font-size:11px;text-transform:uppercase;letter-spacing:.08em;font-family:sans-serif;">icon variants — primary sm</h3>
-          <div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap;">
-            <Button type="primary" :icon-left-show="true" :icon-right-show="false">left icon</Button>
-            <Button type="primary" :icon-left-show="false" :icon-right-show="true">right icon</Button>
-            <Button type="primary" :icon-left-show="true" :icon-right-show="true">both icons</Button>
-            <Button type="primary" :icon-left-show="false" :icon-right-show="false">no icons</Button>
+          <!-- SM divider row -->
+          <div style="${DIVIDER}">
+            <span style="${LABEL}">sm</span>
+            <span style="${DIVIDER_LINE}"></span>
           </div>
-        </section>
+
+          <!-- primary sm -->
+          <Button type="primary"   state="default"  size="sm">ButtonText</Button>
+          <Button type="primary"   state="pressed"  size="sm">ButtonText</Button>
+          <Button type="primary"   state="disabled" size="sm">ButtonText</Button>
+          <Button type="primary"   state="focus"    size="sm">ButtonText</Button>
+
+          <!-- secondary sm -->
+          <Button type="secondary" state="default"  size="sm">ButtonText</Button>
+          <Button type="secondary" state="pressed"  size="sm">ButtonText</Button>
+          <Button type="secondary" state="disabled" size="sm">ButtonText</Button>
+          <Button type="secondary" state="focus"    size="sm">ButtonText</Button>
+
+          <!-- tertiary sm -->
+          <Button type="tertiary"  state="default"  size="sm">ButtonText</Button>
+          <Button type="tertiary"  state="pressed"  size="sm">ButtonText</Button>
+          <Button type="tertiary"  state="disabled" size="sm">ButtonText</Button>
+          <Button type="tertiary"  state="focus"    size="sm">ButtonText</Button>
+
+          <!-- danger sm -->
+          <Button type="danger"    state="default"  size="sm">ButtonText</Button>
+          <Button type="danger"    state="pressed"  size="sm">ButtonText</Button>
+          <Button type="danger"    state="disabled" size="sm">ButtonText</Button>
+          <Button type="danger"    state="focus"    size="sm">ButtonText</Button>
+
+        </div>
+
+        <!-- ══════════════════════════ MD ══════════════════════════ -->
+        <div style="display:grid;grid-template-columns:repeat(4,143px);gap:16px;align-items:center;justify-items:center;margin-top:16px;">
+
+          <!-- MD divider row -->
+          <div style="${DIVIDER}">
+            <span style="${LABEL}">md</span>
+            <span style="${DIVIDER_LINE}"></span>
+          </div>
+
+          <!-- primary md -->
+          <Button type="primary"   state="default"  size="md">ButtonText</Button>
+          <Button type="primary"   state="pressed"  size="md">ButtonText</Button>
+          <Button type="primary"   state="disabled" size="md">ButtonText</Button>
+          <Button type="primary"   state="focus"    size="md">ButtonText</Button>
+
+          <!-- secondary md -->
+          <Button type="secondary" state="default"  size="md">ButtonText</Button>
+          <Button type="secondary" state="pressed"  size="md">ButtonText</Button>
+          <Button type="secondary" state="disabled" size="md">ButtonText</Button>
+          <Button type="secondary" state="focus"    size="md">ButtonText</Button>
+
+          <!-- tertiary md -->
+          <Button type="tertiary"  state="default"  size="md">ButtonText</Button>
+          <Button type="tertiary"  state="pressed"  size="md">ButtonText</Button>
+          <Button type="tertiary"  state="disabled" size="md">ButtonText</Button>
+          <Button type="tertiary"  state="focus"    size="md">ButtonText</Button>
+
+          <!-- danger md -->
+          <Button type="danger"    state="default"  size="md">ButtonText</Button>
+          <Button type="danger"    state="pressed"  size="md">ButtonText</Button>
+          <Button type="danger"    state="disabled" size="md">ButtonText</Button>
+          <Button type="danger"    state="focus"    size="md">ButtonText</Button>
+
+        </div>
+
+        <!-- ══════════════════════════ LG ══════════════════════════ -->
+        <div style="display:grid;grid-template-columns:repeat(4,143px);gap:16px;align-items:center;justify-items:center;margin-top:16px;">
+
+          <!-- LG divider row -->
+          <div style="${DIVIDER}">
+            <span style="${LABEL}">lg</span>
+            <span style="${DIVIDER_LINE}"></span>
+          </div>
+
+          <!-- primary lg -->
+          <Button type="primary"   state="default"  size="lg">ButtonText</Button>
+          <Button type="primary"   state="pressed"  size="lg">ButtonText</Button>
+          <Button type="primary"   state="disabled" size="lg">ButtonText</Button>
+          <Button type="primary"   state="focus"    size="lg">ButtonText</Button>
+
+          <!-- secondary lg -->
+          <Button type="secondary" state="default"  size="lg">ButtonText</Button>
+          <Button type="secondary" state="pressed"  size="lg">ButtonText</Button>
+          <Button type="secondary" state="disabled" size="lg">ButtonText</Button>
+          <Button type="secondary" state="focus"    size="lg">ButtonText</Button>
+
+          <!-- tertiary lg -->
+          <Button type="tertiary"  state="default"  size="lg">ButtonText</Button>
+          <Button type="tertiary"  state="pressed"  size="lg">ButtonText</Button>
+          <Button type="tertiary"  state="disabled" size="lg">ButtonText</Button>
+          <Button type="tertiary"  state="focus"    size="lg">ButtonText</Button>
+
+          <!-- danger lg -->
+          <Button type="danger"    state="default"  size="lg">ButtonText</Button>
+          <Button type="danger"    state="pressed"  size="lg">ButtonText</Button>
+          <Button type="danger"    state="disabled" size="lg">ButtonText</Button>
+          <Button type="danger"    state="focus"    size="lg">ButtonText</Button>
+
+        </div>
 
       </div>
     `,

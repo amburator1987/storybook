@@ -7,21 +7,15 @@ const FIGMA_URL =
 const meta = {
   title: "Components/Icon",
   component: Icon,
-  decorators: [
-    () => ({
-      template:
-        '<div style="box-sizing:border-box;width:100%;min-height:120px;padding:var(--scaler-24);display:flex;align-items:center;justify-content:center;background:var(--surface-default-body);"><story /></div>',
-    }),
-  ],
   parameters: {
-    layout: "fullscreen",
-    backgrounds: { default: "dark" },
+    layout: "centered",
     docs: {
       description: {
         component:
-          "Kaizen `Icon` — Figma `icon` (8026:1509). Property **`size`**: `small` | `default` | `lg` | `xl` (layer 16 / 24 / 32 / 40 px → tokeni `icon-size/sm`, `icon-size/default`, `icon-size/lg`, `icon-size/xlg` u `tokens.system-fixed.css`, vidi CLAUDE.md).\n\n" +
+          "Kaizen `Icon` — Figma `icon` (8026:1509). " +
+          "Property **`size`**: `small` | `default` | `lg` | `xl` " +
+          "(16 / 24 / 32 / 40 px → tokeni `--icon-size-sm`, `--icon-size-default`, `--icon-size-lg`, `--icon-size-xlg`).\n\n" +
           "Boja: `icon/default/default` → `var(--icon-default-default)`.\n\n" +
-          "Preview: `var(--surface-default-body)`.\n\n" +
           `[Open in Figma](${FIGMA_URL})`,
       },
     },
@@ -32,11 +26,12 @@ const meta = {
     name: {
       control: "select",
       options: ["activity", "chevron-down", "chevron-up", "document"],
+      description: "Glyph name.",
     },
     size: {
       control: "select",
       options: ["small", "default", "lg", "xl"],
-      description: "Figma component property `size` (variants `size=small` … `size=xl`).",
+      description: "Figma property `size`. small=16px, default=24px, lg=32px, xl=40px.",
     },
   },
   args: {
@@ -50,14 +45,52 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {};
 
-export const AllSizes: Story = {
+// ------------------------------------
+// Size variants — po jedna story per Figma size varijante
+// ------------------------------------
+
+export const Small: Story = {
+  name: "Size: small",
+  args: { size: "small" },
+};
+
+export const DefaultSize: Story = {
+  name: "Size: default",
+  args: { size: "default" },
+};
+
+export const Large: Story = {
+  name: "Size: lg",
+  args: { size: "lg" },
+};
+
+export const ExtraLarge: Story = {
+  name: "Size: xl",
+  args: { size: "xl" },
+};
+
+// ------------------------------------
+// All variants — sve veličine × svi glifovi
+// ------------------------------------
+
+const LABEL_STYLE =
+  "font-size:10px;font-family:sans-serif;text-transform:uppercase;letter-spacing:.07em;" +
+  "color:var(--text-default-caption,#9ca3af);font-weight:600;text-align:center;";
+
+/** Sve size varijante — activity glyph. */
+export const AllVariants: Story = {
+  name: "All Variants",
   render: () => ({
     components: { Icon },
     template: `
-      <div style="display:flex;align-items:flex-end;gap:24px;">
+      <div style="display:inline-flex;flex-direction:column;align-items:center;gap:16px;padding:24px;">
+        <span style="${LABEL_STYLE}">small</span>
         <Icon name="activity" size="small" />
+        <span style="${LABEL_STYLE}">default</span>
         <Icon name="activity" size="default" />
+        <span style="${LABEL_STYLE}">lg</span>
         <Icon name="activity" size="lg" />
+        <span style="${LABEL_STYLE}">xl</span>
         <Icon name="activity" size="xl" />
       </div>
     `,

@@ -1,24 +1,8 @@
 /* ------------------------------------*\
   #BADGE (Kaizen)
-  Recreated 1:1 from Figma `badge` component set (node 6507:1994).
+  Figma component set `badge` — node 6507:1994.
+  https://www.figma.com/design/JCQ4u9ytPIMpGaLzdAq8dD/Kaizen-Reworked-3-Lvls?node-id=6507-1994
 \*------------------------------------ */
-
-/**
- * CSS variable names match the Figma Code panel exactly. The token build
- * pipeline converts JSON paths like `surface/primary/default` to the
- * CSS-safe identifier `--surface-primary-default` (no collection prefix).
- *
- * Token sources:
- *   - colors / radius / font-family / font-weight  -> tokens.<brand>.<theme>.css
- *   - icon-size                                    -> tokens.system-fixed.css
- *   - padding / typography (font-size label, line-height, letter-spacing)
- *                                                  -> tokens.responsive.css
- *
- * Where Figma references aliases that don't exist in the JSON exports
- * (e.g. `--typography/family/body/font-family`, `--typography/weight/font-weight-secondary`),
- * the brand-aware aliases that DO exist are used:
- *   `--font-family-primary`, `--font-weight-secondary`.
- */
 
 /* ------------------------------------*\
   Base
@@ -29,65 +13,58 @@
   align-items: center;
   justify-content: center;
 
-  height: 16px;
-  min-width: 16px;
-
   border-radius: var(--radius-xl);
 
   font-family: var(--font-family-primary);
   font-weight: var(--font-weight-secondary);
-  font-size: var(--typography-font-size-label);
-  line-height: var(--typography-line-height-label);
-  letter-spacing: var(--typography-letter-spacing-label);
-  text-align: center;
   text-transform: uppercase;
-
   white-space: nowrap;
   vertical-align: middle;
 }
 
-/* Frame uses a single badge style (counter) */
-.kzn-c-badge {
+/* ------------------------------------*\
+  Type: text — 16px tall, min-width 16px, horizontal padding 4px
+\*------------------------------------ */
+
+.kzn-c-badge--text {
+  height: var(--icon-size-sm);
   min-width: var(--icon-size-sm);
   padding: 0 var(--spacing-md);
+
+  font-size: var(--typography-font-size-label);
+  line-height: var(--typography-line-height-label);
+  letter-spacing: var(--typography-letter-spacing-label);
 }
 
 /* ------------------------------------*\
-  Variant backgrounds (Figma property `badge`)
+  Type: dot — 8×8px circle, no content
+\*------------------------------------ */
+
+.kzn-c-badge--dot {
+  width: var(--spacing-lg);
+  height: var(--spacing-lg);
+}
+
+/* ------------------------------------*\
+  Style: background + text color
 \*------------------------------------ */
 
 .kzn-c-badge--brand {
   background-color: var(--surface-primary-default);
-}
-
-.kzn-c-badge--action {
-  background-color: var(--surface-secondary-default);
-}
-
-.kzn-c-badge--warrning {
-  background-color: var(--surface-error-default);
-}
-
-.kzn-c-badge--info {
-  background-color: var(--surface-information-default);
-}
-
-/* ------------------------------------*\
-  Text colors per variant
-\*------------------------------------ */
-
-.kzn-c-badge--brand {
   color: var(--text-default-body);
 }
 
 .kzn-c-badge--action {
+  background-color: var(--surface-secondary-default);
   color: var(--text-primary-on-color);
 }
 
 .kzn-c-badge--warrning {
+  background-color: var(--surface-error-default);
   color: var(--text-error-on-color);
 }
 
 .kzn-c-badge--info {
+  background-color: var(--surface-information-default);
   color: var(--text-information-on-color);
 }

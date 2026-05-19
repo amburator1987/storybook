@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/vue3-vite";
 import Badge from "./Badge.vue";
 
-const FIGMA_BADGE_URL =
-  "https://www.figma.com/design/JCQ4u9ytPIMpGaLzdAq8dD/Kaizen-Reworked-3-Lvls?node-id=6507-1994&t=hVNG5MaEmQHZtlRa-0";
+const FIGMA_URL =
+  "https://www.figma.com/design/JCQ4u9ytPIMpGaLzdAq8dD/Kaizen-Reworked-3-Lvls?node-id=6507-1994";
 
 const meta = {
   title: "Components/Badge",
@@ -12,57 +12,127 @@ const meta = {
     docs: {
       description: {
         component:
-          "Kaizen Badge — recreated 1:1 from Figma component set `badge` " +
-          `(node 6507:1994).\n\n[Open in Figma](${FIGMA_BADGE_URL})`,
+          "Compact label / counter component. " +
+          "Two types (`text` / `dot`), four styles (`brand`, `action`, `warrning`, `info`). " +
+          "The `dot` variant is a solid 8×8 pill used as a visual indicator with no text content.\n\n" +
+          `[Open in Figma](${FIGMA_URL})`,
       },
     },
-    design: {
-      type: "figma",
-      url: FIGMA_BADGE_URL,
-    },
+    design: { type: "figma", url: FIGMA_URL },
   },
   tags: ["autodocs"],
   argTypes: {
-    variant: {
+    style: {
       control: "select",
       options: ["brand", "action", "warrning", "info"],
       description:
-        "Figma property `badge`. Note: keeps the original `warrning` typo from the design.",
+        "Figma property `style`. Note: `warrning` preserves the original Figma typo.",
+    },
+    type: {
+      control: "select",
+      options: ["text", "dot"],
+      description:
+        "Figma property `type`. `text` = label with slot; `dot` = 8×8 pill, no text.",
     },
   },
   args: {
-    variant: "brand",
+    style: "brand",
+    type: "text",
   },
 } satisfies Meta<typeof Badge>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-/** Default — brand counter, matches the Figma component default. */
 export const Default: Story = {};
 
-/** Counter (numeric badge). */
-export const Counter: Story = {
-  args: { variant: "info" },
-  render: (args) => ({
-    components: { Badge },
-    setup: () => ({ args }),
-    template: `<Badge v-bind="args">99</Badge>`,
-  }),
+// ------------------------------------
+// Style variants
+// ------------------------------------
+
+export const Brand: Story = {
+  args: { style: "brand" },
 };
 
-/** All variants matching the Figma frame layout. */
+export const Action: Story = {
+  args: { style: "action" },
+};
+
+export const Warrning: Story = {
+  args: { style: "warrning" },
+};
+
+export const Info: Story = {
+  args: { style: "info" },
+};
+
+// ------------------------------------
+// Type variants
+// ------------------------------------
+
+export const Text: Story = {
+  name: "Type: text",
+  args: { type: "text" },
+};
+
+export const Dot: Story = {
+  name: "Type: dot",
+  args: { type: "dot" },
+};
+
+// ------------------------------------
+// All variants — Figma frame replica
+// node 6507:1994 — 69×312px
+// Vertical column: 4 text badges then 4 dot badges, gap=24px, padding=24px
+// ------------------------------------
+
+/**
+ * Replicates the Figma component set frame (node 6507:1994).
+ * Uses v-bind with a setup array so the `style` prop bypasses
+ * Vue's template-compiler CSS normalization of static style="…" attributes.
+ */
 export const AllVariants: Story = {
+  name: "All Variants",
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Replicates the Figma frame (node 6507:1994). " +
+          "Top 4 rows: type=text — brand · action · warrning · info. " +
+          "Bottom 4 rows: type=dot — same style order.",
+      },
+    },
+  },
   render: () => ({
     components: { Badge },
+    setup() {
+      const items = [
+        { style: "brand",    type: "text" },
+        { style: "action",   type: "text" },
+        { style: "warrning", type: "text" },
+        { style: "info",     type: "text" },
+        { style: "brand",    type: "dot"  },
+        { style: "action",   type: "dot"  },
+        { style: "warrning", type: "dot"  },
+        { style: "info",     type: "dot"  },
+      ];
+      return { items };
+    },
     template: `
-      <div style="display:flex;flex-direction:column;gap:24px;align-items:center;font-family:system-ui;">
-        <div style="display:flex;flex-direction:column;gap:8px;align-items:center;">
-          <Badge variant="brand">99</Badge>
-          <Badge variant="action">99</Badge>
-          <Badge variant="warrning">99</Badge>
-          <Badge variant="info">99</Badge>
-        </div>
+      <div style="
+        display:inline-flex;
+        flex-direction:column;
+        align-items:center;
+        gap:24px;
+        padding:24px;
+        background:var(--surface-default-body,#1a1d2e);
+        border-radius:8px;
+      ">
+        <Badge
+          v-for="item in items"
+          :key="item.style + item.type"
+          v-bind="item"
+        />
       </div>
     `,
   }),

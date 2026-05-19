@@ -7,6 +7,8 @@
   --text-default-headings: var(--neutral-50);
   --text-default-body: var(--neutral-100);
   --text-default-caption: var(--neutral-200);
+  --text-default-label: var(--neutral-200);
+  --text-default-paragraph: var(--neutral-200);
   --text-primary-default: var(--primary-400);
   --text-primary-default-hover: var(--primary-300);
   --text-primary-on-color: var(--neutral-900);
@@ -33,7 +35,7 @@
   --text-warrning-default-hover: var(--warrning-500);
   --text-warrning-on-color: var(--warrning-100);
   --text-warrning-on-color-hover: var(--warrning-200);
-  --text-disabled-default: var(--neutral-700);
+  --text-disabled-default: var(--neutral-400);
   --text-disabled-on-color: var(--neutral-600);
   --icon-primary-default: var(--primary-400);
   --icon-primary-default-hover: var(--primary-300);
@@ -59,7 +61,7 @@
   --icon-information-default-hover: var(--information-500);
   --icon-information-on-color: var(--information-100);
   --icon-information-on-color-hover: var(--information-200);
-  --icon-disabled-default: var(--neutral-700);
+  --icon-disabled-default: var(--neutral-400);
   --icon-disabled-on-color: var(--neutral-600);
   --icon-default-default: var(--neutral-200);
   --icon-default-default-hover: var(--neutral-300);

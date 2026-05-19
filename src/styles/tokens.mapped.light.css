@@ -7,6 +7,8 @@
   --text-default-headings: var(--neutral-50);
   --text-default-body: var(--neutral-100);
   --text-default-caption: var(--neutral-200);
+  --text-default-label: var(--neutral-200);
+  --text-default-paragraph: var(--neutral-200);
   --text-primary-default: var(--primary-400);
   --text-primary-default-hover: var(--primary-300);
   --text-primary-on-color: var(--neutral-900);

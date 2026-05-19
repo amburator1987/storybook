@@ -146,3 +146,15 @@ Uvek koristi token vrednosti za width i height ikonica, ne vrednosti iz SVG view
 - Ako Figma kaže `icon-right-show` → prop se zove `iconRightShow` (camelCase konverzija je jedina dozvoljena izmena)
 - Nikad ne hardkoduj dimenzionalne vrednosti (px, rem) — uvek koristi token iz Figme
 - border-width, outline-width, gap, padding, margin — sve mora biti token
+
+
+## Stories pravila
+- Sve varijante koriste isti `layout` parametar
+- Default: `layout: 'centered'`
+- Nikad ne mešaj centered i left-aligned varijante u istom fajlu
+
+
+## AllVariants Story pravilo
+- Nikad ne dodavaj `style="width:100%"` na komponente u AllVariants template-u
+- Komponente moraju biti Hug sadržaja — bez width override-a
+- Grid kolone definišu layout, ne širina komponente

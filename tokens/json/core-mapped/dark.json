@@ -30,6 +30,26 @@
         },
         "$type": "color",
         "$value": "{neutral.200}"
+      },
+      "label": {
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.hiddenFromPublishing": false
+        },
+        "$type": "color",
+        "$value": "{neutral.200}"
+      },
+      "paragraph": {
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.hiddenFromPublishing": false
+        },
+        "$type": "color",
+        "$value": "{neutral.200}"
       }
     },
     "primary": {
@@ -325,7 +345,7 @@
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
-        "$value": "{neutral.700}"
+        "$value": "{neutral.400}"
       },
       "on-color": {
         "$extensions": {
@@ -601,7 +621,7 @@
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
-        "$value": "{neutral.700}"
+        "$value": "{neutral.400}"
       },
       "on-color": {
         "$extensions": {

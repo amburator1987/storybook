@@ -2,50 +2,34 @@
   <span
     :class="[
       $style['kzn-c-badge'],
-      $style[`kzn-c-badge--${variant}`],
+      $style[`kzn-c-badge--${style}`],
+      $style[`kzn-c-badge--${type}`],
     ]"
-    :data-figma-node-id="figmaNodeId"
   >
-    <slot>{{ defaultContent }}</slot>
+    <slot v-if="type === 'text'">99</slot>
   </span>
 </template>
 
 <script setup lang="ts">
-import { computed } from "vue";
+export type BadgeStyle = "brand" | "action" | "warrning" | "info";
+export type BadgeType  = "text" | "dot";
 
-/**
- * Kaizen Badge — compact counter / label.
- *
- * Source of truth: Figma frame `badge` (node 6507:1994)
- * https://www.figma.com/design/JCQ4u9ytPIMpGaLzdAq8dD/Kaizen-Reworked-3-Lvls?node-id=6507-1994&t=dZErsjoqHF5sdRLw-0
- */
-export type BadgeVariant = "brand" | "action" | "warrning" | "info";
-
-const props = withDefaults(
+withDefaults(
   defineProps<{
-    /** Figma property `badge`. */
-    variant?: BadgeVariant;
+    /** Figma property `style`. */
+    style?: BadgeStyle;
+    /** Figma property `type`. `dot` = 8×8 pill, no text. */
+    type?: BadgeType;
   }>(),
   {
-    variant: "brand",
+    style: "brand",
+    type: "text",
   }
 );
 
 defineSlots<{
-  /** Badge content. Defaults to `9` for counter, `Text` for text. */
-  default?: () => unknown;
+  default?: () => any;
 }>();
-
-/** Mirrors the Figma sub-node IDs so designers can trace the rendered variant. */
-const FIGMA_NODE_IDS: Record<BadgeVariant, string> = {
-  brand: "6507:1995",
-  action: "6507:2015",
-  warrning: "6507:1997",
-  info: "6507:1999",
-};
-
-const figmaNodeId = computed(() => FIGMA_NODE_IDS[props.variant]);
-const defaultContent = computed(() => "99");
 </script>
 
 <style module src="./Badge.module.css"></style>

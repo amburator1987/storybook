@@ -43,19 +43,4 @@
   --spacing-2xl: 16px;
   --spacing-6xl: 48px;
   --spacing-sm: 2px;
-  --typography-fixed-size-paragraph-xs: 12px;
-  --typography-fixed-size-paragraph-sm: 14px;
-  --typography-fixed-size-paragraph-default: 16px;
-  --typography-fixed-size-caption: 11px;
-  --typography-fixed-size-label: 10px;
-  --typography-fixed-letter-spacing-paragraph-sm: 0px;
-  --typography-fixed-letter-spacing-paragraph-xs: 0px;
-  --typography-fixed-letter-spacing-label: 0px;
-  --typography-fixed-letter-spacing-caption: 0px;
-  --typography-fixed-letter-spacing-paragraph-default: 0px;
-  --typography-fixed-line-height-paragraph-xs: 14px;
-  --typography-fixed-line-height-paragraph-sm: 16px;
-  --typography-fixed-line-height-label: 16px;
-  --typography-fixed-line-height-paragraph-default: 20px;
-  --typography-fixed-line-height-caption: 16px;
 }

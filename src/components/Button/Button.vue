@@ -63,9 +63,9 @@ withDefaults(
 );
 
 defineSlots<{
-  default?: () => unknown;
-  "icon-left"?: () => unknown;
-  "icon-right"?: () => unknown;
+  default?: () => any;
+  "icon-left"?: () => any;
+  "icon-right"?: () => any;
 }>();
 </script>
 
