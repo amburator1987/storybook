@@ -18,8 +18,7 @@
   overflow: hidden;
   cursor: pointer;
   font-family: var(--font-family-primary);
-  /* --font-weight-secondary outputs "Semi Bold" (string), not numeric → use 600 directly */
-  font-weight: 600;
+  font-weight: var(--font-weight-secondary);
   font-size: var(--typography-font-size-paragraph-sm);
   line-height: var(--typography-line-height-paragraph-sm);
   letter-spacing: var(--typography-letter-spacing-paragraph-sm);

@@ -136,7 +136,7 @@ StyleDictionary.registerTransform({
   transitive: true,
   filter: (token) => {
     const t = token.$type ?? token.type;
-    if (t !== "string") return false;
+    if (t !== "string" && t !== "text") return false;
     if (!isFontWeightTokenPath(token.path)) return false;
     const v = token.$value !== undefined ? token.$value : token.value;
     return mapFontWeightStringToNumber(v) !== null;

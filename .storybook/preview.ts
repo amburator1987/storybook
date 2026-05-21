@@ -92,7 +92,7 @@ function injectCanvasOverride() {
   const el = document.createElement("style");
   el.id = id;
   el.textContent =
-    ".sb-show-main { background-color: var(--surface-default-body); }";
+    ".sb-show-main { background-color: var(--neutral-950); }";
   document.head.appendChild(el);
 }
 

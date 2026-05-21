@@ -718,6 +718,16 @@
         },
         "$type": "color",
         "$value": "{neutral.600}"
+      },
+      "default-hover": {
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.hiddenFromPublishing": false
+        },
+        "$type": "color",
+        "$value": "{neutral.500}"
       }
     },
     "primary": {
@@ -1026,6 +1036,16 @@
         },
         "$type": "color",
         "$value": "{neutral.800}"
+      },
+      "default-hover": {
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.hiddenFromPublishing": false
+        },
+        "$type": "color",
+        "$value": "{neutral.500}"
       }
     },
     "primary": {

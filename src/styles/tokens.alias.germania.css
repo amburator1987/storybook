@@ -45,9 +45,9 @@
   --warrning-400: #ff6221;
   --warrning-500: #ff4e0d;
   --font-family-primary: Roboto;
-  --font-weight-primary: Regular;
-  --font-weight-secondary: Semi Bold;
-  --font-weight-tertiary: Bold;
+  --font-weight-primary: 400;
+  --font-weight-secondary: 600;
+  --font-weight-tertiary: 700;
   --border-width-1: 1px;
   --border-width-2: 2px;
   --border-width-4: 4px;

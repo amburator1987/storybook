@@ -74,13 +74,16 @@ jobs:
           # --- Claude API: opis izmjena ---
           if diff.strip():
               prompt = (
-                  "Analiziraj ovaj git diff Vue 3 Storybook component library projekta (Kaizen design system).\n"
-                  "Opiši u 2-4 kratke rečenice za tim:\n"
-                  "- koje Storybook komponente su izmijenjene (iz putanja src/components/)\n"
-                  "- šta je konkretno promijenjeno (props, CSS tokeni, stilovi, stories, template logika)\n"
-                  "- kakav je uticaj na design system\n"
-                  "Odgovori na bosanskom jeziku. Budi koncizan. Ne koristi markdown formatiranje.\n\n"
-                  f"Git diff:\n{diff}"
+                    "Analiziraj ovaj git diff Vue 3 Storybook component library projekta (Kaizen design system).\n"
+                    "Vrati odgovor TAČNO u ovom formatu, bez dodatnog teksta:\n\n"
+                    "Kratak opis: [1-2 rečenice šta je generalno urađeno]\n\n"
+                    "---\n\n"
+                    "[Za svaku izmijenjenu komponentu iz src/components/ napravi sekciju]:\n"
+                    "ComponentName\n"
+                    "- [bullet šta je konkretno izmijenjeno: props, CSS tokeni, stilovi, stories, template]\n"
+                    "- [još bullet ako ima]\n\n"
+                    "Odgovori na bosanskom jeziku. Ne koristi markdown formatiranje osim crtica za bullet points.\n\n"
+                    f"Git diff:\n{diff}"
               )
               payload = {
                   "model": "claude-sonnet-4-20250514",
@@ -109,11 +112,12 @@ jobs:
           commit_link = f"{repo_url}/commit/{commit_url}"
           version_line = f"*Verzija:* `{version}`\n" if version != 'bez verzije' else ''
           message = (
-              f"*{commit_type}*\n"
-              f"*Commit:* <{commit_link}|`{commit_sha}`> — {commit_msg}\n"
-              f"*Autor:* {author}\n"
-              f"{version_line}"
-              f"\n{description}"
+                f"*{commit_type}*\n"
+                f"*Commit:* <{commit_link}|`{commit_sha}`> — {commit_msg}\n"
+                f"*Autor:* {author}\n"
+                f"{version_line}"
+                f"\n─────────────────────\n"
+                f"{description}"
           )
 
           gchat_payload = {"text": message}

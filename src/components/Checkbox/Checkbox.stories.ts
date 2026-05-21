@@ -85,6 +85,10 @@ export const SizeLg: Story = {
 
 /** Figma matrix: 3 states × 3 sizes. */
 export const AllVariants: Story = {
+  args: {
+    checkbox: "checked"
+  },
+
   parameters: {
     docs: {
       description: {
@@ -92,6 +96,7 @@ export const AllVariants: Story = {
       },
     },
   },
+
   render: () => ({
     components: { Checkbox },
     template: `
@@ -126,5 +131,5 @@ export const AllVariants: Story = {
 
       </div>
     `,
-  }),
+  })
 };

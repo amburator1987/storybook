@@ -71,6 +71,7 @@
   --surface-default-default: var(--neutral-800);
   --surface-default-default-elevated: var(--neutral-700);
   --surface-default-default-elevated-2: var(--neutral-600);
+  --surface-default-default-hover: var(--neutral-500);
   --surface-primary-default: var(--primary-400);
   --surface-primary-default-hover: var(--primary-300);
   --surface-primary-on-color: var(--neutral-900);
@@ -100,6 +101,7 @@
   --border-default-default-elevated: var(--neutral-700);
   --border-default-default-elevated-2: var(--neutral-600);
   --border-default-focus: var(--neutral-800);
+  --border-default-default-hover: var(--neutral-500);
   --border-primary-default: var(--primary-400);
   --border-primary-default-hover: var(--primary-300);
   --border-primary-on-color: var(--neutral-900);

@@ -99,7 +99,7 @@
 
 .kzn-c-checkbox__label {
   font-family: var(--font-family-primary);
-  font-weight: 600;
+  font-weight: var(--font-weight-primary);
   white-space: nowrap;
 }
 

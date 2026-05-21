@@ -1,0 +1,230 @@
+/* ------------------------------------*\
+  #DATEPICKER (Kaizen)
+  Figma component set `datepicker` — node 8337:1960.
+  https://www.figma.com/design/JCQ4u9ytPIMpGaLzdAq8dD/Kaizen-Reworked-3-Lvls?node-id=8337-1960
+
+  Cell states (Figma property1):
+    day             — weekday header label
+    unselected      — regular day, border only
+    unselected-guider — has transaction (dot), border
+    selected        — selected day, filled bg
+    selected-guider — selected + transaction (filled bg + dot)
+    disabled        — not clickable, dimmed
+\*------------------------------------ */
+
+/* ------------------------------------*\
+  Container
+  Figma: w=320px, p=spacing/2xl(16px), border-radius=radius/sm(8px), bg=surface/default/body
+\*------------------------------------ */
+
+.kzn-c-datepicker {
+  width: 320px;
+  padding: var(--spacing-2xl);
+  border-radius: var(--radius-sm);
+  background-color: var(--surface-default-body);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+/* ------------------------------------*\
+  Header — prev / month label / next
+  Figma: h=spacing/5xl(40px), px=spacing/2xl(16px), justify=space-between
+\*------------------------------------ */
+
+.kzn-c-datepicker__header {
+  width: 100%;
+  height: var(--spacing-5xl);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--spacing-2xl);
+  box-sizing: border-box;
+}
+
+.kzn-c-datepicker__nav {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  /* Figma control cell: 40×40px — matches day cell size for consistent hit area */
+  width: var(--spacing-5xl);
+  height: var(--spacing-5xl);
+  padding: 0;
+  background: none;
+  border: var(--border-width-1) solid transparent;
+  border-radius: var(--radius-s);
+  cursor: pointer;
+  color: var(--icon-default-default);
+  flex-shrink: 0;
+  box-sizing: border-box;
+}
+
+/* Figma hover: border/default/default-hover + icon/default/default-hover */
+.kzn-c-datepicker__nav:hover {
+  border-color: var(--border-default-default-hover);
+  color: var(--icon-default-default-hover);
+}
+
+.kzn-c-datepicker__nav:focus-visible {
+  outline: 2px solid var(--border-default-default-hover);
+  outline-offset: 2px;
+}
+
+.kzn-c-datepicker__month-label {
+  font-family: var(--font-family-primary);
+  font-weight: var(--font-weight-secondary);
+  font-size: var(--typography-font-size-h6);
+  line-height: var(--typography-line-height-h6);
+  letter-spacing: var(--typography-letter-spacing-h6);
+  color: var(--text-default-headings);
+  white-space: nowrap;
+}
+
+/* ------------------------------------*\
+  Weekday abbreviations row
+  Figma: h=spacing/5xl(40px), 7 columns, gap=border-width/1(1px)
+  text: font-size/label(10px), font-weight/primary, color=text/default/label
+\*------------------------------------ */
+
+.kzn-c-datepicker__weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: var(--border-width-1);
+  width: 100%;
+}
+
+.kzn-c-datepicker__weekday {
+  height: var(--spacing-5xl);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-family-primary);
+  font-weight: var(--font-weight-primary);
+  font-size: var(--typography-font-size-label);
+  line-height: var(--typography-line-height-label);
+  letter-spacing: var(--typography-letter-spacing-label);
+  color: var(--text-default-label);
+}
+
+/* ------------------------------------*\
+  Date grid
+  Figma: flex-wrap, gap=border-width/1(1px), 7 columns
+\*------------------------------------ */
+
+.kzn-c-datepicker__grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: var(--border-width-1);
+  width: 100%;
+}
+
+.kzn-c-datepicker__cell-empty {
+  aspect-ratio: 1;
+}
+
+/* ------------------------------------*\
+  Day cell — base = unselected
+  Figma: size=spacing/5xl(40px), border-radius=radius/s(4px)
+  border=border-width/1 solid border/default/default
+\*------------------------------------ */
+
+.kzn-c-datepicker__cell {
+  position: relative;
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-s);
+  border: var(--border-width-1) solid var(--border-default-default);
+  background: none;
+  padding: 0;
+  cursor: pointer;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.kzn-c-datepicker__cell:focus-visible {
+  outline: 2px solid var(--border-default-default-hover);
+  outline-offset: 2px;
+}
+
+/* ------------------------------------*\
+  Hover — unselected (and unselected-guider)
+  Figma: border=border/default/default-hover
+\*------------------------------------ */
+
+.kzn-c-datepicker__cell:not(.kzn-c-datepicker__cell--selected):not(.kzn-c-datepicker__cell--disabled):hover {
+  border-color: var(--border-default-default-hover);
+}
+
+/* ------------------------------------*\
+  Selected (property1=selected)
+  Figma: bg=surface/default/default, no border
+\*------------------------------------ */
+
+.kzn-c-datepicker__cell--selected {
+  background-color: var(--surface-default-default);
+  border-color: transparent;
+  cursor: pointer;
+}
+
+/* ------------------------------------*\
+  Hover — selected (and selected-guider)
+  Figma: bg=surface/default/default-hover
+\*------------------------------------ */
+
+.kzn-c-datepicker__cell--selected:hover {
+  background-color: var(--surface-default-default-hover);
+}
+
+/* ------------------------------------*\
+  Disabled (property1=disabled)
+  Figma: border=border/disabled/default, text=text/disabled/default, no hover
+\*------------------------------------ */
+
+.kzn-c-datepicker__cell--disabled,
+.kzn-c-datepicker__cell:disabled {
+  border-color: var(--border-disabled-default);
+  cursor: not-allowed;
+}
+
+.kzn-c-datepicker__cell--disabled .kzn-c-datepicker__cell-value,
+.kzn-c-datepicker__cell:disabled .kzn-c-datepicker__cell-value {
+  color: var(--text-disabled-default);
+}
+
+/* ------------------------------------*\
+  Cell text value
+  Figma: font-size=paragraph-xs(12px), font-weight=secondary
+  color=text/default/label
+\*------------------------------------ */
+
+.kzn-c-datepicker__cell-value {
+  font-family: var(--font-family-primary);
+  font-weight: var(--font-weight-secondary);
+  font-size: var(--typography-font-size-paragraph-xs);
+  line-height: var(--typography-line-height-paragraph-xs);
+  letter-spacing: var(--typography-letter-spacing-paragraph-default);
+  color: var(--text-default-label);
+  text-align: center;
+  pointer-events: none;
+}
+
+/* ------------------------------------*\
+  Indicator dot — transaction marker
+  Figma: 4×4px circle, top=4px, right=4px (left=32px of 40px cell)
+  Shown on: unselected-guider AND selected-guider
+  Color: surface/secondary/default (#fdb913 yellow)
+\*------------------------------------ */
+
+.kzn-c-datepicker__cell-indicator {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: var(--surface-secondary-default);
+  pointer-events: none;
+}

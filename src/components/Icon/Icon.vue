@@ -59,6 +59,38 @@
         stroke-linecap="round"
       />
     </svg>
+    <!-- Chevron left (16) -->
+    <svg
+      v-else-if="name === 'chevron-left'"
+      :class="$style['kzn-c-icon__svg']"
+      viewBox="0 0 16 16"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M10 4L6 8L10 12"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+    <!-- Chevron right (16) -->
+    <svg
+      v-else-if="name === 'chevron-right'"
+      :class="$style['kzn-c-icon__svg']"
+      viewBox="0 0 16 16"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M6 4L10 8L6 12"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
     <!-- Activity — Figma reference glyph (8026:1509) -->
     <svg
       v-else-if="name === 'activity'"
@@ -91,7 +123,7 @@ import { computed } from "vue";
  * Color: `icon/default/default` → `var(--icon-default-default)`.
  */
 export type IconSize = "small" | "default" | "lg" | "xl";
-export type IconName = "chevron-down" | "chevron-up" | "document" | "activity";
+export type IconName = "chevron-down" | "chevron-up" | "chevron-left" | "chevron-right" | "document" | "activity";
 
 const props = withDefaults(
   defineProps<{

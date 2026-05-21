@@ -96,7 +96,7 @@
 
 .kzn-c-action-list__title {
   width: 100%;
-  font-weight: 600;
+  font-weight: var(--font-weight-secondary);
   font-size: var(--typography-font-size-paragraph-sm);
   line-height: var(--typography-font-size-paragraph-sm);
   letter-spacing: var(--typography-letter-spacing-paragraph-sm);
@@ -106,7 +106,7 @@
 
 .kzn-c-action-list__subhead {
   width: 100%;
-  font-weight: 400;
+  font-weight: var(--font-weight-primary);
   font-size: var(--typography-font-size-paragraph-xs);
   line-height: var(--typography-line-height-paragraph-xs);
   letter-spacing: var(--typography-letter-spacing-paragraph-xs);
@@ -120,7 +120,7 @@
 
 .kzn-c-action-list__counter {
   flex-shrink: 0;
-  font-weight: 600;
+  font-weight: var(--font-weight-secondary);
   font-size: var(--typography-font-size-paragraph-sm);
   line-height: var(--typography-font-size-paragraph-sm);
   letter-spacing: var(--typography-letter-spacing-paragraph-sm);

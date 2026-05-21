@@ -1,0 +1,108 @@
+/* ------------------------------------*\
+  #DIALOG (Kaizen)
+  Figma component set `dialog` — node 8322:1745.
+  https://www.figma.com/design/JCQ4u9ytPIMpGaLzdAq8dD/Kaizen-Reworked-3-Lvls?node-id=8322-1745
+\*------------------------------------ */
+
+/* ------------------------------------*\
+  Overlay / backdrop
+\*------------------------------------ */
+
+.kzn-c-dialog-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+/* ------------------------------------*\
+  Dialog panel
+  Figma: w=400px, max-h=768px, py=spacing/3xl(24px), gap=spacing/lg(8px)
+  border-radius=radius/md(16px), bg=surface/default/body
+\*------------------------------------ */
+
+.kzn-c-dialog {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+  width: 400px;
+  max-height: 768px;
+  padding: var(--spacing-3xl) 0;
+  border-radius: var(--radius-md);
+  background-color: var(--surface-default-body);
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* ------------------------------------*\
+  Text content — title + body
+  Figma: px=spacing/3xl(24px), pb=spacing/lg(8px)
+\*------------------------------------ */
+
+.kzn-c-dialog__text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+  padding: 0 var(--spacing-3xl) var(--spacing-lg);
+}
+
+.kzn-c-dialog__header {
+  margin: 0;
+  font-family: var(--font-family-primary);
+  font-weight: var(--font-weight-secondary);
+  font-size: var(--typography-font-size-h6);
+  line-height: var(--typography-line-height-h6);
+  letter-spacing: var(--typography-letter-spacing-h6);
+  color: var(--text-default-headings);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.kzn-c-dialog__body {
+  margin: 0;
+  font-family: var(--font-family-primary);
+  font-weight: var(--font-weight-primary);
+  font-size: var(--typography-font-size-paragraph-xs);
+  line-height: var(--typography-line-height-paragraph-xs);
+  letter-spacing: var(--typography-letter-spacing-paragraph-default);
+  color: var(--text-default-body);
+  word-break: break-word;
+}
+
+/* ------------------------------------*\
+  Actions footer — stacked buttons (footerType=Default)
+  Figma: px=spacing/3xl(24px), gap=spacing/lg(8px) between buttons
+  Drop-shadow: 0 0 12px rgba(25,33,43,0.6) — visual separator from text
+\*------------------------------------ */
+
+.kzn-c-dialog__actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+  padding: 0 var(--spacing-3xl);
+  box-shadow: 0 0 12px rgba(25, 33, 43, 0.6);
+}
+
+/* Full-width buttons inside actions */
+.kzn-c-dialog__btn {
+  width: 100%;
+}
+
+/* ------------------------------------*\
+  Transition — fade in/out
+\*------------------------------------ */
+
+:global(.kzn-dialog-enter-active),
+:global(.kzn-dialog-leave-active) {
+  transition: opacity 0.2s ease;
+}
+
+:global(.kzn-dialog-enter-from),
+:global(.kzn-dialog-leave-to) {
+  opacity: 0;
+}

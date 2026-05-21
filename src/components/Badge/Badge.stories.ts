@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/vue3-vite";
+import { h } from "vue";
 import Badge from "./Badge.vue";
 
 const FIGMA_URL =
@@ -86,11 +87,6 @@ export const Dot: Story = {
 // Vertical column: 4 text badges then 4 dot badges, gap=24px, padding=24px
 // ------------------------------------
 
-/**
- * Replicates the Figma component set frame (node 6507:1994).
- * Uses v-bind with a setup array so the `style` prop bypasses
- * Vue's template-compiler CSS normalization of static style="…" attributes.
- */
 export const AllVariants: Story = {
   name: "All Variants",
   parameters: {
@@ -98,42 +94,27 @@ export const AllVariants: Story = {
       description: {
         story:
           "Replicates the Figma frame (node 6507:1994). " +
-          "Top 4 rows: type=text — brand · action · warrning · info. " +
-          "Bottom 4 rows: type=dot — same style order.",
+          "Top 4: type=text — brand · action · warrning · info. " +
+          "Bottom 4: type=dot — same style order.",
       },
     },
   },
   render: () => ({
-    components: { Badge },
-    setup() {
-      const items = [
-        { style: "brand",    type: "text" },
-        { style: "action",   type: "text" },
-        { style: "warrning", type: "text" },
-        { style: "info",     type: "text" },
-        { style: "brand",    type: "dot"  },
-        { style: "action",   type: "dot"  },
-        { style: "warrning", type: "dot"  },
-        { style: "info",     type: "dot"  },
-      ];
-      return { items };
+    render() {
+      return h(
+        "div",
+        { style: "display:inline-flex;flex-direction:column;align-items:center;gap:16px;" },
+        [
+          h(Badge, { style: "brand",    type: "text" }, { default: () => "99" }),
+          h(Badge, { style: "action",   type: "text" }, { default: () => "99" }),
+          h(Badge, { style: "warrning", type: "text" }, { default: () => "99" }),
+          h(Badge, { style: "info",     type: "text" }, { default: () => "99" }),
+          h(Badge, { style: "brand",    type: "dot"  }),
+          h(Badge, { style: "action",   type: "dot"  }),
+          h(Badge, { style: "warrning", type: "dot"  }),
+          h(Badge, { style: "info",     type: "dot"  }),
+        ],
+      );
     },
-    template: `
-      <div style="
-        display:inline-flex;
-        flex-direction:column;
-        align-items:center;
-        gap:24px;
-        padding:24px;
-        background:var(--surface-default-body,#1a1d2e);
-        border-radius:8px;
-      ">
-        <Badge
-          v-for="item in items"
-          :key="item.style + item.type"
-          v-bind="item"
-        />
-      </div>
-    `,
   }),
 };
