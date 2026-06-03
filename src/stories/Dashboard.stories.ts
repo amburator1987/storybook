@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/vue3-vite";
 import { h, ref, defineComponent } from "vue";
 import Button   from "../components/Button/Button.vue";
 import Badge    from "../components/Badge/Badge.vue";
-import ActionList from "../components/ActionList/ActionList.vue";
+import ActionList from "../components/Accordion/Accordion.vue";
 import Checkbox from "../components/Checkbox/Checkbox.vue";
 import Dialog   from "../components/Dialog/Dialog.vue";
 
