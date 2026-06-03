@@ -1,10 +1,10 @@
 /* ------------------------------------*\
-  #ACTION LIST (Kaizen)
-  Figma component set `action-list` — node 6507:1674.
+  #ACCORDION
+  Figma component set `accordion` — node 6507:1674.
   https://www.figma.com/design/JCQ4u9ytPIMpGaLzdAq8dD/Kaizen-Reworked-3-Lvls?node-id=6507-1674
 \*------------------------------------ */
 
-.kzn-c-action-list {
+.accordion {
   position: relative;
   display: flex;
   width: 414px;
@@ -31,9 +31,9 @@
   type=open   · all states    → surface/default/default
 \*------------------------------------ */
 
-.kzn-c-action-list:hover,
-.kzn-c-action-list--hover,
-.kzn-c-action-list--open {
+.accordion:hover,
+.accordion--hover,
+.accordion--open {
   background-color: var(--surface-default-default);
 }
 
@@ -42,8 +42,8 @@
   Figma: absolute div, inset=-4px, border=scale/2(2px) solid border/default/focus
 \*------------------------------------ */
 
-.kzn-c-action-list:focus-visible,
-.kzn-c-action-list--focus {
+.accordion:focus-visible,
+.accordion--focus {
   outline: var(--border-width-2) solid var(--border-default-focus);
   outline-offset: var(--scale-4);
 }
@@ -53,7 +53,7 @@
   Figma: flex-[1_0_0], gap=spacing/xl(12px)
 \*------------------------------------ */
 
-.kzn-c-action-list__inner {
+.accordion__inner {
   display: flex;
   flex: 1 0 0;
   align-items: center;
@@ -65,15 +65,15 @@
   Lead / trail icon wrappers
 \*------------------------------------ */
 
-.kzn-c-action-list__lead,
-.kzn-c-action-list__trail {
+.accordion__lead,
+.accordion__trail {
   display: flex;
   flex-shrink: 0;
   align-items: center;
 }
 
-.kzn-c-action-list__lead :global(.kzn-c-icon),
-.kzn-c-action-list__trail :global(.kzn-c-icon) {
+.accordion__lead :global(.kzn-c-icon),
+.accordion__trail :global(.kzn-c-icon) {
   color: var(--icon-default-default);
 }
 
@@ -82,7 +82,7 @@
   Figma: flex col, gap=spacing/md(4px), flex-[1_0_0]
 \*------------------------------------ */
 
-.kzn-c-action-list__info {
+.accordion__info {
   display: flex;
   flex: 1 0 0;
   flex-direction: column;
@@ -94,7 +94,7 @@
   white-space: nowrap;
 }
 
-.kzn-c-action-list__title {
+.accordion__title {
   width: 100%;
   font-weight: var(--font-weight-secondary);
   font-size: var(--typography-font-size-paragraph-sm);
@@ -104,7 +104,7 @@
   text-overflow: ellipsis;
 }
 
-.kzn-c-action-list__subhead {
+.accordion__subhead {
   width: 100%;
   font-weight: var(--font-weight-primary);
   font-size: var(--typography-font-size-paragraph-xs);
@@ -118,7 +118,7 @@
   Counter
 \*------------------------------------ */
 
-.kzn-c-action-list__counter {
+.accordion__counter {
   flex-shrink: 0;
   font-weight: var(--font-weight-secondary);
   font-size: var(--typography-font-size-paragraph-sm);
@@ -136,7 +136,7 @@
   color = surface/secondary/default (#fdb913)
 \*------------------------------------ */
 
-.kzn-c-action-list__selector {
+.accordion__selector {
   position: absolute;
   top: 0;
   left: 0;

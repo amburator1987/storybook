@@ -93,7 +93,12 @@ export const Interactive: Story = {
 // ------------------------------------
 
 export const AllVariants: Story = {
+  args: {
+    open: false
+  },
+
   name: "All Variants",
+
   parameters: {
     docs: {
       description: {
@@ -103,6 +108,7 @@ export const AllVariants: Story = {
       },
     },
   },
+
   render: () => ({
     components: { Dialog },
     template: `
@@ -112,5 +118,6 @@ export const AllVariants: Story = {
         ipusmLorem ipusmLorem ipusmLorem ipusm
       </Dialog>
     `,
-  }),
+  })
 };
+

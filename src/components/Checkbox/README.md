@@ -2,17 +2,16 @@
 
 ## 1) Overview
 
-Kontrola odabira koja korisniku omogućava da bira jednu ili više opcija iz liste. Svaki checkbox funkcioniše samostalno — odabrani state je vizuelno prikazan bojom ikone i oznake.
+Selection control za odabir jedne ili više opcija iz liste. Svaki checkbox radi neovisno, a odabrana stanja su vizualno prikazana. Koristi se za multi-select scenarije.
 
-**Kada koristiti:** višestruki odabir opcija, filteri, forme.  
-**Kada ne koristiti:** isključiv odabir jedne opcije (koristiti Radio), potvrdu radnje (koristiti Toggle/Switch).
+**Kada koristiti:** odabir jedne ili više stavki iz skupa opcija.  
+**Kada ne koristiti:** za isključivi odabir (koristiti Radio), za toggle on/off akciju (koristiti Toggle/Switch).
 
 ---
 
 ## 2) Figma
 
-- **Link:** https://www.figma.com/design/JCQ4u9ytPIMpGaLzdAq8dD/Kaizen-Reworked-3-Lvls?node-id=8287-1739
-- **Node ID:** `8287:1739`
+[Checkbox component set — node 8360:1195](https://www.figma.com/design/JCQ4u9ytPIMpGaLzdAq8dD/Kaizen-Reworked-3-Lvls?node-id=8360-1195)
 
 ---
 
@@ -22,78 +21,63 @@ Kontrola odabira koja korisniku omogućava da bira jednu ili više opcija iz lis
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `checkbox` | `"checked" \| "unchecked" \| "disabled"` | `"unchecked"` | Figma property `checkbox`. Vizuelni i interaktivni state. |
-| `size` | `"sm" \| "md" \| "lg"` | `"sm"` | Figma property `size`. Kontroliše veličinu ikone i tipografiju oznake. |
+| `size` | `'sm' \| 'lg'` | `'sm'` | Veličina ikone: sm=16px, lg=24px |
+| `selection` | `'unchecked' \| 'checked' \| 'undefined'` | `'unchecked'` | Stanje odabira; `undefined` = indeterminate |
+| `state` | `'default' \| 'hover' \| 'focus' \| 'disabled'` | `'default'` | Interaktivno stanje |
+| `hasLabel` | `boolean` | `true` | Prikazuje / skriva label pored ikone |
 
 ### Slots
 
-| Slot | Svrha |
-|------|-------|
-| `default` | Tekst oznake (label). Default: `"Label"`. |
+| Slot | Purpose |
+|------|---------|
+| `default` | Tekst labela. Fallback: `"Label"` |
 
 ### Events
 
 | Event | Payload | Description |
 |-------|---------|-------------|
-| `update:checkbox` | `"checked" \| "unchecked"` | Emituje se pri kliku; disabled state ne emituje. |
-
-Primjer `v-model:checkbox`:
-
-```vue
-<Checkbox v-model:checkbox="myState" size="md">Prihvatam uslove</Checkbox>
-```
+| `update:selection` | `CheckboxSelection` | Emitira se pri kliku; payload je `'checked'` ili `'unchecked'` |
 
 ---
 
 ## 4) Usage examples
 
-### Basic — nekontrolisani prikaz
-
 ```vue
-<Checkbox checkbox="unchecked" size="sm">Newsletter</Checkbox>
-<Checkbox checkbox="checked" size="sm">Prihvatam uvjete</Checkbox>
-<Checkbox checkbox="disabled" size="sm">Nedostupno</Checkbox>
-```
+<!-- Basic unchecked checkbox -->
+<Checkbox selection="unchecked" @update:selection="val => console.log(val)">
+  Prihvati uvjete
+</Checkbox>
 
-### Kontrolisana upotreba (v-model)
+<!-- Controlled checked + disabled -->
+<Checkbox
+  size="lg"
+  selection="checked"
+  state="disabled"
+>
+  Automatski odabrano
+</Checkbox>
 
-```vue
-<script setup lang="ts">
-import { ref } from 'vue';
-import type { CheckboxState } from './Checkbox.vue';
+<!-- Indeterminate (select all) -->
+<Checkbox
+  selection="undefined"
+  @update:selection="handleSelectAll"
+>
+  Odaberi sve
+</Checkbox>
 
-const agree = ref<CheckboxState>('unchecked');
-</script>
-
-<template>
-  <Checkbox v-model:checkbox="agree" size="md">
-    Prihvatam uslove korišćenja
-  </Checkbox>
-  <p>State: {{ agree }}</p>
-</template>
-```
-
-### Edge case — veličine u listi opcija
-
-```vue
-<div style="display:flex;flex-direction:column;gap:8px;">
-  <Checkbox checkbox="checked" size="lg">Velika opcija (lg)</Checkbox>
-  <Checkbox checkbox="unchecked" size="md">Srednja opcija (md)</Checkbox>
-  <Checkbox checkbox="disabled" size="sm">Mala onemogućena (sm)</Checkbox>
-</div>
+<!-- Without label -->
+<Checkbox selection="checked" :hasLabel="false" />
 ```
 
 ---
 
 ## 5) Accessibility notes
 
-- Koristi nativni `<input type="checkbox">` koji je vizuelno skriven ali dostupan screen readerima i tastaturnoj navigaciji.
-- Cijeli `<label>` element je klikabilan — klik na oznaku (tekst) mijenja state.
-- **Keyboard:** `Space` toggleuje state; `Tab` / `Shift+Tab` za navigaciju.
-- **Focus ring:** vidljiv outline via `:focus-visible` na vizuelnoj ikoni (ne na nativnom inputu).
-- `disabled` state: nativni `disabled` atribut na inputu, `cursor: not-allowed` na labelu.
-- ARIA: nema potrebe za ručnim `aria-*` atributima — nativni `<input type="checkbox">` osigurava semantiku.
-- Kontrast: `--icon-secondary-default` (gold) na tamnoj pozadini zadovoljava WCAG AA 4.5:1 za veliku ikonografiju.
+- Nativni `<input type="checkbox">` je uvijek u DOM-u (visually hidden), što osigurava podršku za AT i keyboard.
+- `indeterminate` DOM property se postavlja via `ref` kada je `selection === 'undefined'`.
+- `disabled` state: `<input>` ima `:disabled` atribut; cursor je `not-allowed` na wrapperu.
+- Focus ring se prikazuje pri `:focus-visible` (keyboard focus) — ne na mouse click.
+- Za grupe checkboxova koristiti `<fieldset>` + `<legend>` na razini liste.
 
 ---
 
@@ -102,32 +86,40 @@ const agree = ref<CheckboxState>('unchecked');
 | Concern | CSS variable |
 |---------|-------------|
 | Gap (icon ↔ label) | `--spacing-lg` |
-| Icon size (sm) | `--icon-size-sm` |
-| Icon size (md) | `--icon-size-default` |
-| Icon size (lg) | `--icon-size-lg` |
-| Icon color — checked | `--icon-secondary-default` |
-| Icon color — unchecked | `--icon-default-default` |
-| Icon color — unchecked hover | `--icon-default-default-hover` |
-| Icon color — disabled | `--icon-disabled-default` |
-| Label color — active | `--text-default-body` |
-| Label color — disabled | `--text-disabled-default` |
-| Label font family | `--font-family-primary` |
-| Label font size (sm) | `--typography-font-size-paragraph-xs` |
-| Label font size (md) | `--typography-font-size-paragraph-sm` |
-| Label font size (lg) | `--typography-font-size-paragraph-lg` |
-| Label line height (sm) | `--typography-line-height-paragraph-xs` |
-| Label line height (md) | `--typography-line-height-paragraph-sm` |
-| Label line height (lg) | `--typography-line-height-paragraph-lg` |
-| Focus ring border | `--border-secondary-focus` |
-| Focus ring width | `--border-width-2` |
-| Focus ring offset | `--scale-4` |
-| Icon border radius | `--radius-xs` |
+| Icon size sm | `--icon-size-sm` |
+| Icon size lg | `--icon-size-default` |
+| Box border radius | `--radius-xs` |
+| Border width sm | `--border-width-1` |
+| Border width lg | `--border-width-2` |
+| Unchecked border (default) | `--icon-default-default` |
+| Unchecked border (hover) | `--icon-default-default-hover` |
+| Unchecked border (disabled/focus) | `--icon-disabled-default` |
+| Checked bg (default) | `--icon-secondary-default` |
+| Checked bg (hover) | `--icon-secondary-default-hover` |
+| Checked/undefined bg (disabled) | `--icon-disabled-default` |
+| Focus ring (unchecked) | `--border-default-focus` |
+| Focus ring (checked/undefined) | `--border-secondary-focus` |
+| Inner icon color | `--icon-secondary-on-color` |
+| Inner icon color (disabled) | `--icon-disabled-on-color` |
+| Label text | `--text-default-body` |
+| Label text (disabled) | `--text-disabled-default` |
+| Font family | `--font-family-primary` |
+| Font weight | `--font-weight-primary` |
+| Label sm | `--typography-font-size-paragraph-xs` / `--typography-line-height-paragraph-xs` / `--typography-letter-spacing-paragraph-xs` |
+| Label lg | `--typography-font-size-paragraph-sm` / `--typography-line-height-paragraph-sm` / `--typography-letter-spacing-paragraph-sm` |
 
 ---
 
 ## 7) Storybook
 
-- **Lokacija:** `Components/Checkbox`
-- **Stories:** `Default`, `Checked`, `Unchecked`, `Disabled`, `Size: sm`, `Size: md`, `Size: lg`, `AllVariants`
-- **Controls:** `checkbox` (select), `size` (select), `default` slot (text)
-- `AllVariants` story prikazuje kompletnu Figma matricu 3 stanja × 3 veličine
+Story lokacija: **Components / Checkbox**
+
+Stories:
+- `Default` — sm, unchecked, default
+- `Unchecked` / `Checked` / `Indeterminate` — per-selection varijante
+- `StateHover` / `StateFocus` / `StateDisabled` — per-state varijante
+- `SizeSm` / `SizeLg` — size varijante
+- `NoLabel` — bez labela
+- `AllVariants` — puna matrica 2×3×4 (24 varijante)
+
+Controls: `size`, `selection`, `state`, `hasLabel` — sve su dostupne kao Storybook controls.

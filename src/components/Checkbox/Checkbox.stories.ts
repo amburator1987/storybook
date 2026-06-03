@@ -1,98 +1,132 @@
-import type { Meta, StoryObj } from "@storybook/vue3-vite";
-import Checkbox from "./Checkbox.vue";
+import type { Meta, StoryObj } from '@storybook/vue3-vite';
+import Checkbox from './Checkbox.vue';
 
 const FIGMA_URL =
-  "https://www.figma.com/design/JCQ4u9ytPIMpGaLzdAq8dD/Kaizen-Reworked-3-Lvls?node-id=8287-1739";
+  'https://www.figma.com/design/JCQ4u9ytPIMpGaLzdAq8dD/Kaizen-Reworked-3-Lvls?node-id=8360-1195';
 
 const meta = {
-  title: "Components/Checkbox",
+  title: 'Components/Checkbox',
   component: Checkbox,
   parameters: {
-    layout: "centered",
+    layout: 'centered',
     docs: {
       description: {
         component:
-          "A selection control that allows users to choose one or more options from a list. " +
-          "Each checkbox operates independently. Three states (`checked`, `unchecked`, `disabled`), " +
-          "three sizes (`sm`, `md`, `lg`).\n\n" +
-          `[Open in Figma](${FIGMA_URL})`,
+          'Selection control za odabir jedne ili više opcija. Svaki checkbox radi neovisno. ' +
+          'Dvije veličine (`sm`, `lg`), tri stanja odabira (`unchecked`, `checked`, `undefined`), ' +
+          'četiri interaktivna stanja (`default`, `hover`, `focus`, `disabled`).\n\n' +
+          `[Otvori u Figmi](${FIGMA_URL})`,
       },
     },
-    design: { type: "figma", url: FIGMA_URL },
+    design: { type: 'figma', url: FIGMA_URL },
   },
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {
-    checkbox: {
-      control: "select",
-      options: ["checked", "unchecked", "disabled"],
-      description: "Figma property `checkbox`. Visual and interactive state.",
-    },
     size: {
-      control: "select",
-      options: ["sm", "md", "lg"],
-      description: "Figma property `size`. sm=16px icon, md=24px icon, lg=32px icon.",
+      control: 'select',
+      options: ['sm', 'lg'],
+      description: 'Veličina ikone. `sm` = 16px, `lg` = 24px.',
+    },
+    selection: {
+      control: 'select',
+      options: ['unchecked', 'checked', 'undefined'],
+      description: 'Stanje odabira. `undefined` = indeterminate.',
+    },
+    state: {
+      control: 'select',
+      options: ['default', 'hover', 'focus', 'disabled'],
+      description: 'Interaktivno stanje.',
+    },
+    hasLabel: {
+      control: 'boolean',
+      description: 'Prikazuje ili skriva label.',
     },
   },
   args: {
-    checkbox: "unchecked",
-    size: "sm",
+    size:      'sm',
+    selection: 'unchecked',
+    state:     'default',
+    hasLabel:  true,
   },
 } satisfies Meta<typeof Checkbox>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+// ------------------------------------
+// Default
+// ------------------------------------
+
 export const Default: Story = {};
 
 // ------------------------------------
-// States
+// Selection variants
 // ------------------------------------
-
-export const Checked: Story = {
-  args: { checkbox: "checked" },
-};
 
 export const Unchecked: Story = {
-  args: { checkbox: "unchecked" },
+  args: { selection: 'unchecked', state: 'default' },
 };
 
-export const Disabled: Story = {
-  args: { checkbox: "disabled" },
+export const Checked: Story = {
+  args: { selection: 'checked', state: 'default' },
+};
+
+export const Indeterminate: Story = {
+  name: 'Indeterminate (undefined)',
+  args: { selection: 'undefined', state: 'default' },
 };
 
 // ------------------------------------
-// Sizes
+// State variants
+// ------------------------------------
+
+export const StateHover: Story = {
+  name: 'State: hover',
+  args: { selection: 'unchecked', state: 'hover' },
+};
+
+export const StateFocus: Story = {
+  name: 'State: focus',
+  args: { selection: 'checked', state: 'focus' },
+};
+
+export const StateDisabled: Story = {
+  name: 'State: disabled',
+  args: { selection: 'unchecked', state: 'disabled' },
+};
+
+// ------------------------------------
+// Size variants
 // ------------------------------------
 
 export const SizeSm: Story = {
-  name: "Size: sm",
-  args: { checkbox: "checked", size: "sm" },
-};
-
-export const SizeMd: Story = {
-  name: "Size: md",
-  args: { checkbox: "checked", size: "md" },
+  name: 'Size: sm',
+  args: { size: 'sm', selection: 'checked', state: 'default' },
 };
 
 export const SizeLg: Story = {
-  name: "Size: lg",
-  args: { checkbox: "checked", size: "lg" },
+  name: 'Size: lg',
+  args: { size: 'lg', selection: 'checked', state: 'default' },
+};
+
+// ------------------------------------
+// No label
+// ------------------------------------
+
+export const NoLabel: Story = {
+  name: 'Without label',
+  args: { selection: 'checked', state: 'default', hasLabel: false },
 };
 
 // ------------------------------------
 // All variants matrix
 // ------------------------------------
 
-/** Figma matrix: 3 states × 3 sizes. */
 export const AllVariants: Story = {
-  args: {
-    checkbox: "checked"
-  },
-
   parameters: {
     docs: {
       description: {
-        story: "Matches the Figma component set: 3 states × 3 sizes.",
+        story: 'Figma matrica: 2 veličine × 3 stanja odabira × 4 interaktivna stanja = 24 varijante.',
       },
     },
   },
@@ -100,36 +134,41 @@ export const AllVariants: Story = {
   render: () => ({
     components: { Checkbox },
     template: `
-      <div style="display:flex;flex-direction:column;gap:40px;padding:32px;background:var(--surface-default-body,#1e2733);border-radius:8px;">
+      <div style="display:flex;flex-direction:column;gap:32px;padding:32px;background:var(--surface-default-body,#1e2733);border-radius:8px;">
 
-        <section style="display:flex;flex-direction:column;gap:12px;">
-          <h3 style="margin:0;color:var(--text-default-caption,#efefef);font-size:11px;text-transform:uppercase;letter-spacing:.08em;font-family:sans-serif;">size sm</h3>
-          <div style="display:flex;flex-direction:column;gap:12px;">
-            <Checkbox checkbox="checked" size="sm">Checked</Checkbox>
-            <Checkbox checkbox="unchecked" size="sm">Unchecked</Checkbox>
-            <Checkbox checkbox="disabled" size="sm">Disabled</Checkbox>
-          </div>
-        </section>
+        <template v-for="sz in ['sm', 'lg']" :key="sz">
+          <div style="display:flex;flex-direction:column;gap:16px;">
+            <p style="margin:0;color:var(--text-default-caption,#efefef);font-size:11px;text-transform:uppercase;letter-spacing:.08em;font-family:sans-serif;">
+              size {{ sz }}
+            </p>
 
-        <section style="display:flex;flex-direction:column;gap:12px;">
-          <h3 style="margin:0;color:var(--text-default-caption,#efefef);font-size:11px;text-transform:uppercase;letter-spacing:.08em;font-family:sans-serif;">size md</h3>
-          <div style="display:flex;flex-direction:column;gap:12px;">
-            <Checkbox checkbox="checked" size="md">Checked</Checkbox>
-            <Checkbox checkbox="unchecked" size="md">Unchecked</Checkbox>
-            <Checkbox checkbox="disabled" size="md">Disabled</Checkbox>
-          </div>
-        </section>
+            <div style="display:grid;grid-template-columns:120px repeat(4,80px);gap:12px;align-items:center;">
+              <!-- Header row -->
+              <span style="color:var(--text-default-caption,#efefef);font-size:10px;font-family:sans-serif;"></span>
+              <span v-for="st in ['default','hover','focus','disabled']" :key="st"
+                    style="color:var(--text-default-caption,#efefef);font-size:10px;font-family:sans-serif;text-align:center;">
+                {{ st }}
+              </span>
 
-        <section style="display:flex;flex-direction:column;gap:12px;">
-          <h3 style="margin:0;color:var(--text-default-caption,#efefef);font-size:11px;text-transform:uppercase;letter-spacing:.08em;font-family:sans-serif;">size lg</h3>
-          <div style="display:flex;flex-direction:column;gap:12px;">
-            <Checkbox checkbox="checked" size="lg">Checked</Checkbox>
-            <Checkbox checkbox="unchecked" size="lg">Unchecked</Checkbox>
-            <Checkbox checkbox="disabled" size="lg">Disabled</Checkbox>
+              <!-- unchecked row -->
+              <span style="color:var(--text-default-caption,#efefef);font-size:10px;font-family:sans-serif;">unchecked</span>
+              <Checkbox v-for="st in ['default','hover','focus','disabled']" :key="st"
+                        :size="sz" selection="unchecked" :state="st" />
+
+              <!-- checked row -->
+              <span style="color:var(--text-default-caption,#efefef);font-size:10px;font-family:sans-serif;">checked</span>
+              <Checkbox v-for="st in ['default','hover','focus','disabled']" :key="st"
+                        :size="sz" selection="checked" :state="st" />
+
+              <!-- undefined row -->
+              <span style="color:var(--text-default-caption,#efefef);font-size:10px;font-family:sans-serif;">undefined</span>
+              <Checkbox v-for="st in ['default','hover','focus','disabled']" :key="st"
+                        :size="sz" selection="undefined" :state="st" />
+            </div>
           </div>
-        </section>
+        </template>
 
       </div>
     `,
-  })
+  }),
 };

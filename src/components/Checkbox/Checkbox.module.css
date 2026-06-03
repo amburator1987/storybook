@@ -1,23 +1,24 @@
 /* ------------------------------------*\
-  #CHECKBOX (Kaizen)
-  Figma component set `checkbox` — node 8287:1739.
-  https://www.figma.com/design/JCQ4u9ytPIMpGaLzdAq8dD/Kaizen-Reworked-3-Lvls?node-id=8287-1739
+  #CHECKBOX
+  Figma: https://www.figma.com/design/JCQ4u9ytPIMpGaLzdAq8dD/Kaizen-Reworked-3-Lvls?node-id=8360-1195
+  Icons exported directly from Figma nodes 8360:1277 (unchecked), 8360:1313 (checked), 8360:1340 (undefined)
 \*------------------------------------ */
 
-.kzn-c-checkbox {
+.checkbox {
   display: inline-flex;
   align-items: center;
   gap: var(--spacing-lg);
   cursor: pointer;
   user-select: none;
+  position: relative;
 }
 
-.kzn-c-checkbox--disabled {
+.checkbox--disabled {
   cursor: not-allowed;
 }
 
-/* Visually hidden native input — retains keyboard and AT accessibility */
-.kzn-c-checkbox__input {
+/* Visually hidden native input — retains keyboard/AT accessibility */
+.checkbox__input {
   position: absolute;
   width: 1px;
   height: 1px;
@@ -30,102 +31,137 @@
 }
 
 /* ------------------------------------*\
-  Icon — visual checkbox box + checkmark
+  Visual icon box
+  SVG fills 100% of the box; color is set via CSS `color` → currentColor
 \*------------------------------------ */
 
-.kzn-c-checkbox__icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+.checkbox__box {
   flex-shrink: 0;
-  border-radius: var(--radius-xs);
-}
-
-.kzn-c-checkbox__icon svg {
   display: block;
-  width: 100%;
-  height: 100%;
+  border-radius: var(--radius-xs);
+  position: relative;
+  line-height: 0;
 }
 
-/* State colors — driven by `currentColor` in the inline SVG */
-.kzn-c-checkbox__icon--checked {
-  color: var(--icon-secondary-default);
-}
-
-.kzn-c-checkbox__icon--unchecked {
-  color: var(--icon-default-default);
-}
-
-.kzn-c-checkbox__icon--disabled {
-  color: var(--icon-disabled-default);
-}
-
-/* Hover on unchecked (not disabled) */
-.kzn-c-checkbox:not(.kzn-c-checkbox--disabled):hover .kzn-c-checkbox__icon--unchecked {
-  color: var(--icon-default-default-hover);
-}
-
-/* Focus ring via native input — appears on the visual icon */
-.kzn-c-checkbox__input:focus-visible + .kzn-c-checkbox__icon {
-  outline: var(--border-width-2) solid var(--border-secondary-focus);
-  outline-offset: var(--scale-4);
-}
-
-/* ------------------------------------*\
-  Size variants
-  sm → icon-size-sm (16px)
-  md → icon-size-default (24px)
-  lg → icon-size-lg (32px)
-\*------------------------------------ */
-
-.kzn-c-checkbox--sm .kzn-c-checkbox__icon {
+.checkbox--sm .checkbox__box {
   width: var(--icon-size-sm);
   height: var(--icon-size-sm);
 }
 
-.kzn-c-checkbox--md .kzn-c-checkbox__icon {
+.checkbox--lg .checkbox__box {
   width: var(--icon-size-default);
   height: var(--icon-size-default);
 }
 
-.kzn-c-checkbox--lg .kzn-c-checkbox__icon {
-  width: var(--icon-size-lg);
-  height: var(--icon-size-lg);
+/* ------------------------------------*\
+  Icon color — unchecked
+  default → neutral-200 (#efefef)
+  hover   → neutral-300 (#e1e1e1)
+  focus   → neutral-400 (#cfc4c4) — same as disabled, focus ring is the visual cue
+  disabled → neutral-400 (#cfc4c4)
+\*------------------------------------ */
+
+.checkbox--unchecked .checkbox__box {
+  color: var(--icon-default-default);
+}
+
+.checkbox--unchecked.checkbox--hover .checkbox__box,
+.checkbox--unchecked:not(.checkbox--disabled):hover .checkbox__box {
+  color: var(--icon-default-default-hover);
+}
+
+.checkbox--unchecked.checkbox--focus .checkbox__box,
+.checkbox--unchecked .checkbox__input:focus-visible + .checkbox__box {
+  color: var(--icon-disabled-default);
+}
+
+.checkbox--unchecked.checkbox--disabled .checkbox__box {
+  color: var(--icon-disabled-default);
+}
+
+/* ------------------------------------*\
+  Icon color — checked / undefined
+  default → secondary-400 (#fdb913)
+  hover   → secondary-300 (#ffcd27)
+  focus   → secondary-400 (same as default, ring is the cue)
+  disabled → neutral-400 (#cfc4c4)
+\*------------------------------------ */
+
+.checkbox--checked .checkbox__box,
+.checkbox--undefined .checkbox__box {
+  color: var(--icon-secondary-default);
+}
+
+.checkbox--checked.checkbox--hover .checkbox__box,
+.checkbox--checked:not(.checkbox--disabled):hover .checkbox__box,
+.checkbox--undefined.checkbox--hover .checkbox__box,
+.checkbox--undefined:not(.checkbox--disabled):hover .checkbox__box {
+  color: var(--icon-secondary-default-hover);
+}
+
+.checkbox--checked.checkbox--disabled .checkbox__box,
+.checkbox--undefined.checkbox--disabled .checkbox__box {
+  color: var(--icon-disabled-default);
+}
+
+/* ------------------------------------*\
+  Focus ring — outline around the icon box
+\*------------------------------------ */
+
+.checkbox--focus .checkbox__box,
+.checkbox__input:focus-visible + .checkbox__box {
+  outline-style: solid;
+  outline-offset: 2px;
+  border-radius: var(--radius-xs);
+}
+
+.checkbox--sm.checkbox--focus .checkbox__box,
+.checkbox--sm .checkbox__input:focus-visible + .checkbox__box {
+  outline-width: var(--border-width-1);
+}
+
+.checkbox--lg.checkbox--focus .checkbox__box,
+.checkbox--lg .checkbox__input:focus-visible + .checkbox__box {
+  outline-width: var(--border-width-2);
+}
+
+/* unchecked focus: neutral ring */
+.checkbox--unchecked.checkbox--focus .checkbox__box,
+.checkbox--unchecked .checkbox__input:focus-visible + .checkbox__box {
+  outline-color: var(--border-default-focus);
+}
+
+/* checked / undefined focus: gold ring */
+.checkbox--checked.checkbox--focus .checkbox__box,
+.checkbox--undefined.checkbox--focus .checkbox__box,
+.checkbox--checked .checkbox__input:focus-visible + .checkbox__box,
+.checkbox--undefined .checkbox__input:focus-visible + .checkbox__box {
+  outline-color: var(--border-secondary-focus);
 }
 
 /* ------------------------------------*\
   Label
 \*------------------------------------ */
 
-.kzn-c-checkbox__label {
+.checkbox__label {
   font-family: var(--font-family-primary);
   font-weight: var(--font-weight-primary);
   white-space: nowrap;
-}
-
-.kzn-c-checkbox:not(.kzn-c-checkbox--disabled) .kzn-c-checkbox__label {
   color: var(--text-default-body);
 }
 
-.kzn-c-checkbox--disabled .kzn-c-checkbox__label {
+.checkbox--disabled .checkbox__label {
   color: var(--text-disabled-default);
 }
 
-/* Typography per size */
-.kzn-c-checkbox--sm .kzn-c-checkbox__label {
+.checkbox--sm .checkbox__label {
   font-size: var(--typography-font-size-paragraph-xs);
   line-height: var(--typography-line-height-paragraph-xs);
   letter-spacing: var(--typography-letter-spacing-paragraph-xs);
 }
 
-.kzn-c-checkbox--md .kzn-c-checkbox__label {
+.checkbox--lg .checkbox__label {
   font-size: var(--typography-font-size-paragraph-sm);
   line-height: var(--typography-line-height-paragraph-sm);
   letter-spacing: var(--typography-letter-spacing-paragraph-sm);
-}
-
-.kzn-c-checkbox--lg .kzn-c-checkbox__label {
-  font-size: var(--typography-font-size-paragraph-lg);
-  line-height: var(--typography-line-height-paragraph-lg);
-  letter-spacing: var(--typography-letter-spacing-paragraph-lg);
 }
