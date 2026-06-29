@@ -7,7 +7,9 @@
       "Read(//c/Users/sead/.claude/**)",
       "Read(//c/Users/sead/AppData/Roaming/Claude/**)",
       "Bash(cat \"D:\\\\D particija\\\\SEAD FAJLOVI\\\\cursor_projects\\\\storyBook\\\\kaizen\\\\.claude\\\\settings.json\" 2>/dev/null; cat \"C:\\\\Users\\\\sead\\\\.claude\\\\settings.json\" 2>/dev/null)",
-      "mcp__FigmaConsole__figma_get_status"
+      "mcp__FigmaConsole__figma_get_status",
+      "mcp__Figma__whoami",
+      "mcp__DesignSystemsAssistant__get_all_tags"
     ]
   },
   "enableAllProjectMcpServers": true,

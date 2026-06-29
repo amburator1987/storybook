@@ -49,13 +49,13 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 
-export type RadioSize      = 'sm';
+export type RadioSize      = 'sm' | 'lg';
 export type RadioSelection = 'unchecked' | 'checked';
 export type RadioState     = 'default' | 'hover' | 'focus' | 'disabled';
 
 withDefaults(
   defineProps<{
-    /** Figma property `size`. Jedina dostupna veličina. */
+    /** Figma property `size`. sm = 16px, lg = 24px. */
     size?:      RadioSize;
     /** Figma property `selection`. */
     selection?: RadioSelection;

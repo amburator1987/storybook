@@ -35,8 +35,10 @@
   --text-warrning-default-hover: var(--warrning-500);
   --text-warrning-on-color: var(--warrning-100);
   --text-warrning-on-color-hover: var(--warrning-200);
-  --text-disabled-default: var(--neutral-400);
+  --text-disabled-default: var(--neutral-600);
   --text-disabled-on-color: var(--neutral-600);
+  --text-content-primary: var(--neutral-100);
+  --text-content-negative-primary: var(--neutral-900);
   --icon-primary-default: var(--primary-400);
   --icon-primary-default-hover: var(--primary-300);
   --icon-primary-on-color: var(--neutral-50);
@@ -61,8 +63,8 @@
   --icon-information-default-hover: var(--information-500);
   --icon-information-on-color: var(--information-100);
   --icon-information-on-color-hover: var(--information-200);
-  --icon-disabled-default: var(--neutral-400);
-  --icon-disabled-on-color: var(--neutral-600);
+  --icon-disabled-default: var(--neutral-600);
+  --icon-disabled-on-color: var(--neutral-500);
   --icon-default-default: var(--neutral-200);
   --icon-default-default-hover: var(--neutral-300);
   --icon-default-on-color: var(--neutral-900);
@@ -97,6 +99,10 @@
   --surface-information-on-color: var(--information-100);
   --surface-information-on-color-hover: var(--information-200);
   --surface-disabled-default: var(--neutral-700);
+  --surface-content-secondary: var(--neutral-800);
+  --surface-content-tertiary: var(--neutral-700);
+  --surface-content-negative-primary: var(--neutral-100);
+  --surface-content-negative-tertiary: var(--neutral-300);
   --border-default-default: var(--neutral-800);
   --border-default-default-elevated: var(--neutral-700);
   --border-default-default-elevated-2: var(--neutral-600);

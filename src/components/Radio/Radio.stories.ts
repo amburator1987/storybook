@@ -25,8 +25,8 @@ const meta = {
   argTypes: {
     size: {
       control: 'select',
-      options: ['sm'],
-      description: 'Veličina ikone. Jedina dostupna: `sm` = 16px.',
+      options: ['sm', 'lg'],
+      description: 'Veličina ikone. `sm` = 16px, `lg` = 24px.',
     },
     selection: {
       control: 'select',
@@ -89,6 +89,20 @@ export const StateFocus: Story = {
 export const StateDisabled: Story = {
   name: 'State: disabled',
   args: { selection: 'unchecked', state: 'disabled' },
+};
+
+// ------------------------------------
+// Size variants
+// ------------------------------------
+
+export const SizeSm: Story = {
+  name: 'Size: sm (16px)',
+  args: { size: 'sm', selection: 'unchecked', state: 'default' },
+};
+
+export const SizeLg: Story = {
+  name: 'Size: lg (24px)',
+  args: { size: 'lg', selection: 'unchecked', state: 'default' },
 };
 
 // ------------------------------------
@@ -175,9 +189,19 @@ export const AllVariants: Story = {
                     style="color:var(--text-default-caption,#efefef);font-size:10px;font-family:sans-serif;text-align:center;">
                 {{ st }}
               </span>
+
               <span style="color:var(--text-default-caption,#efefef);font-size:10px;font-family:sans-serif;">sm</span>
               <Radio
-                v-for="st in ['default','hover','focus','disabled']" :key="st"
+                v-for="st in ['default','hover','focus','disabled']" :key="'sm-'+st"
+                size="sm"
+                :selection="sel"
+                :state="st"
+              />
+
+              <span style="color:var(--text-default-caption,#efefef);font-size:10px;font-family:sans-serif;">lg</span>
+              <Radio
+                v-for="st in ['default','hover','focus','disabled']" :key="'lg-'+st"
+                size="lg"
                 :selection="sel"
                 :state="st"
               />

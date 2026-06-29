@@ -1,0 +1,126 @@
+/* ------------------------------------*\
+  #CHIP
+  Figma: https://www.figma.com/design/JCQ4u9ytPIMpGaLzdAq8dD/Kaizen-Reworked-3-Lvls?node-id=8412-1906
+\*------------------------------------ */
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding-inline: var(--spacing-lg);
+  border: none;
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+  white-space: nowrap;
+  outline: none;
+}
+
+.chip--disabled {
+  cursor: not-allowed;
+}
+
+/* ------------------------------------*\
+  Sizes
+  sm = 24px, md = 32px
+\*------------------------------------ */
+
+.chip--sm {
+  height: var(--spacing-3xl);
+}
+
+.chip--md {
+  height: var(--spacing-4xl);
+}
+
+/* ------------------------------------*\
+  Backgrounds — unchecked
+\*------------------------------------ */
+
+.chip--unchecked {
+  background-color: var(--surface-content-tertiary);
+}
+
+.chip--unchecked.chip--hover,
+.chip--unchecked:not(.chip--disabled):hover {
+  background-color: var(--surface-content-secondary);
+}
+
+.chip--unchecked.chip--focus,
+.chip--unchecked:not(.chip--disabled):focus-visible {
+  background-color: var(--surface-content-secondary);
+}
+
+.chip--unchecked.chip--disabled {
+  background-color: var(--surface-disabled-default);
+}
+
+/* ------------------------------------*\
+  Backgrounds — checked
+\*------------------------------------ */
+
+.chip--checked {
+  background-color: var(--surface-content-negative-primary);
+}
+
+.chip--checked.chip--hover,
+.chip--checked:not(.chip--disabled):hover {
+  background-color: var(--surface-content-negative-tertiary);
+}
+
+.chip--checked.chip--focus,
+.chip--checked:not(.chip--disabled):focus-visible {
+  background-color: var(--surface-content-negative-tertiary);
+}
+
+.chip--checked.chip--disabled {
+  background-color: var(--surface-disabled-default);
+}
+
+/* ------------------------------------*\
+  Label
+\*------------------------------------ */
+
+.chip__label {
+  position: relative;
+  font-family: var(--font-family-primary);
+  font-weight: var(--font-weight-primary);
+  font-size: var(--typography-font-size-paragraph-xs);
+  line-height: var(--typography-line-height-paragraph-xs);
+  letter-spacing: var(--typography-letter-spacing-paragraph-xs);
+  white-space: nowrap;
+  color: var(--text-content-primary);
+  pointer-events: none;
+}
+
+.chip--checked .chip__label {
+  color: var(--text-content-negative-primary);
+}
+
+.chip--disabled .chip__label {
+  color: var(--text-disabled-default);
+}
+
+/* ------------------------------------*\
+  Focus ring
+  Figma: border-width/1, border/default/focus, inset=-2px, radius-round
+\*------------------------------------ */
+
+.chip__focus {
+  position: absolute;
+  inset: -4px;
+  border: var(--border-width-2) solid var(--border-default-focus);
+  border-radius: var(--radius-round);
+  pointer-events: none;
+}
+
+/* Native focus-visible ring (keyboard) */
+.chip:focus-visible::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border: var(--border-width-2) solid var(--border-default-focus);
+  border-radius: var(--radius-round);
+  pointer-events: none;
+}

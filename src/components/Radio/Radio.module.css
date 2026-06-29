@@ -48,6 +48,11 @@
   height: var(--icon-size-sm);
 }
 
+.radio--lg .radio__box {
+  width: var(--icon-size-default);
+  height: var(--icon-size-default);
+}
+
 /* Inner dot for checked state */
 .radio--checked .radio__box::after,
 .radio__input:checked + .radio__box::after {
@@ -142,4 +147,10 @@
 
 .radio--disabled .radio__label {
   color: var(--text-disabled-default);
+}
+
+.radio--lg .radio__label {
+  font-size: var(--typography-font-size-paragraph-sm);
+  line-height: var(--typography-line-height-paragraph-sm);
+  letter-spacing: var(--typography-letter-spacing-paragraph-sm);
 }
