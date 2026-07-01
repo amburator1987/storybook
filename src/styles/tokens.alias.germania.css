@@ -48,17 +48,4 @@
   --font-weight-primary: 400;
   --font-weight-secondary: 600;
   --font-weight-tertiary: 700;
-  --border-width-1: 1px;
-  --border-width-2: 2px;
-  --border-width-4: 4px;
-  --border-width-none: 0px;
-  --radius-2xl: 40px;
-  --radius-xl: 32px;
-  --radius-lg: 24px;
-  --radius-s: 4px;
-  --radius-md: 16px;
-  --radius-sm: 8px;
-  --radius-xs: 2px;
-  --radius-round: 9999px;
-  --radius-none: 0px;
 }

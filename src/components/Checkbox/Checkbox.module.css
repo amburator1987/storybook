@@ -38,7 +38,7 @@
 .checkbox__box {
   flex-shrink: 0;
   display: block;
-  border-radius: var(--radius-xs);
+  border-radius: var(--border-radius-xs);
   position: relative;
   line-height: 0;
 }
@@ -112,7 +112,7 @@
 .checkbox__input:focus-visible + .checkbox__box {
   outline-style: solid;
   outline-offset: 2px;
-  border-radius: var(--radius-xs);
+  border-radius: var(--border-radius-xs);
 }
 
 .checkbox--sm.checkbox--focus .checkbox__box,

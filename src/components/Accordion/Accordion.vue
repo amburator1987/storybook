@@ -4,9 +4,10 @@
     :aria-expanded="type === 'open'"
     :class="[
       $style.accordion,
-      { [$style['accordion--open']]:  type === 'open' },
-      { [$style['accordion--hover']]: state === 'hover' },
-      { [$style['accordion--focus']]: state === 'focus' },
+      { [$style['accordion--open']]:     type === 'open' },
+      { [$style['accordion--selected']]: selected },
+      { [$style['accordion--hover']]:    state === 'hover' },
+      { [$style['accordion--focus']]:    state === 'focus' },
     ]"
   >
     <span :class="$style['accordion__inner']">
@@ -37,8 +38,12 @@
       </span>
     </span>
 
-    <!-- type=open: yellow left accent bar (Figma node: Selector) -->
-    <span v-if="type === 'open'" :class="$style['accordion__selector']" aria-hidden="true" />
+    <!-- Selector: yellow left bar — shown when selected AND (default state OR open type) -->
+    <span
+      v-if="selected && (state === 'default' || type === 'open')"
+      :class="$style['accordion__selector']"
+      aria-hidden="true"
+    />
   </button>
 </template>
 
@@ -51,10 +56,12 @@ export type AccordionState = 'default' | 'hover' | 'focus';
 
 withDefaults(
   defineProps<{
-    /** Figma property `type`. `open` = expanded — yellow accent bar + chevron-up + aria-expanded. */
+    /** Figma property `type`. `open` = chevron-up + aria-expanded. */
     type?: AccordionType;
-    /** Figma property `State`. */
+    /** Figma property `state`. */
     state?: AccordionState;
+    /** Figma property `style`. `true` = selected — shows yellow Selector bar. */
+    selected?: boolean;
     /** Figma property `showLeadIcon`. */
     showLeadIcon?: boolean;
     /** Figma property `showSubhead`. */
@@ -65,12 +72,13 @@ withDefaults(
     leadIconName?: IconName;
   }>(),
   {
-    type:         'closed',
-    state:        'default',
-    showLeadIcon: true,
-    showSubhead:  true,
+    type:          'closed',
+    state:         'default',
+    selected:      false,
+    showLeadIcon:  true,
+    showSubhead:   true,
     showTrailIcon: true,
-    leadIconName: 'activity',
+    leadIconName:  'activity',
   }
 );
 

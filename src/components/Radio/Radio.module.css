@@ -59,7 +59,7 @@
   content: '';
   position: absolute;
   inset: 25%;
-  border-radius: var(--radius-round);
+  border-radius: var(--border-radius-round);
   background-color: currentColor;
 }
 
@@ -122,7 +122,7 @@
 .radio__input:focus-visible + .radio__box {
   outline: var(--border-width-1) solid var(--border-default-focus);
   outline-offset: 2px;
-  border-radius: var(--radius-round);
+  border-radius: var(--border-radius-round);
 }
 
 /* Checked focus ring — secondary (gold) */

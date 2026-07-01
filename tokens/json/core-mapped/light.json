@@ -357,30 +357,6 @@
         "$type": "color",
         "$value": "{neutral.600}"
       }
-    },
-    "content": {
-      "primary": {
-        "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
-          "com.figma.hiddenFromPublishing": false
-        },
-        "$type": "color",
-        "$value": "{neutral.100}"
-      }
-    },
-    "content-negative": {
-      "primary": {
-        "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
-          "com.figma.hiddenFromPublishing": false
-        },
-        "$type": "color",
-        "$value": "{neutral.900}"
-      }
     }
   },
   "icon": {
@@ -1017,50 +993,6 @@
         "$type": "color",
         "$value": "{neutral.700}"
       }
-    },
-    "content": {
-      "secondary": {
-        "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
-          "com.figma.hiddenFromPublishing": false
-        },
-        "$type": "color",
-        "$value": "{neutral.800}"
-      },
-      "tertiary": {
-        "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
-          "com.figma.hiddenFromPublishing": false
-        },
-        "$type": "color",
-        "$value": "{neutral.700}"
-      }
-    },
-    "content-negative": {
-      "primary": {
-        "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
-          "com.figma.hiddenFromPublishing": false
-        },
-        "$type": "color",
-        "$value": "{neutral.100}"
-      },
-      "tertiary": {
-        "$extensions": {
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
-          "com.figma.hiddenFromPublishing": false
-        },
-        "$type": "color",
-        "$value": "{neutral.300}"
-      }
     }
   },
   "border": {
@@ -1103,7 +1035,7 @@
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
-        "$value": "{neutral.800}"
+        "$value": "{information.400}"
       },
       "default-hover": {
         "$extensions": {

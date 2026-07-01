@@ -3,29 +3,21 @@
  */
 
 :root {
-  --elevation-none-shade: rgba(0, 0, 0, 0);
-  --elevation-none-blur: 0px;
+  --elevation-none-shade: rgba(0, 0, 0, 0.05);
+  --elevation-none-blur: 2px;
   --elevation-none-position-y: 0px;
   --elevation-none-position-x: 0px;
-  --elevation-none-spread: 0px;
-  --elevation-none-number: 0px;
-  --elevation-elevation-01-shade: rgba(0, 0, 0, 0.15);
-  --elevation-elevation-01-number: 0px;
+  --elevation-none-spread: 2px;
+  --elevation-elevation-01-shade: rgba(0, 0, 0, 0.1);
   --elevation-elevation-01-position-x: 2px;
   --elevation-elevation-01-position-y: 2px;
-  --elevation-elevation-01-blur: 2px;
-  --elevation-elevation-01-spread: 2px;
-  --elevation-elevation-02-shade: rgba(0, 0, 0, 0.3);
-  --elevation-elevation-02-number: 0px;
-  --elevation-elevation-02-position-x: 12px;
-  --elevation-elevation-02-position-y: 12px;
-  --elevation-elevation-02-blur: 12px;
-  --elevation-elevation-02-spread: 12px;
-  --states-focused: rgba(0, 0, 0, 0.4);
-  --states-pressed: rgba(0, 0, 0, 0.25);
-  --states-disabled: rgba(0, 0, 0, 0.6);
-  --states-hover: rgba(0, 0, 0, 0.15);
-  --states-none: rgba(0, 0, 0, 0);
+  --elevation-elevation-01-blur: 8px;
+  --elevation-elevation-01-spread: 8px;
+  --elevation-elevation-02-shade: rgba(0, 0, 0, 0.2);
+  --elevation-elevation-02-position-x: 4px;
+  --elevation-elevation-02-position-y: 4px;
+  --elevation-elevation-02-blur: 16px;
+  --elevation-elevation-02-spread: 16px;
   --icon-size-default: 24px;
   --icon-size-xsm: 8px;
   --icon-size-sm: 16px;
@@ -43,4 +35,17 @@
   --spacing-2xl: 16px;
   --spacing-6xl: 48px;
   --spacing-sm: 2px;
+  --border-width-1: 1px;
+  --border-width-2: 2px;
+  --border-width-4: 4px;
+  --border-width-none: 0px;
+  --border-radius-2xl: 40px;
+  --border-radius-lg: 24px;
+  --border-radius-xl: 32px;
+  --border-radius-md: 16px;
+  --border-radius-sm: 8px;
+  --border-radius-s: 4px;
+  --border-radius-round: 9999px;
+  --border-radius-xs: 2px;
+  --border-radius-none: 0px;
 }

@@ -32,7 +32,7 @@
   width: 400px;
   max-height: 768px;
   padding: var(--spacing-3xl) 0;
-  border-radius: var(--radius-md);
+  border-radius: var(--border-radius-md);
   background-color: var(--surface-default-body);
   box-sizing: border-box;
   overflow: hidden;

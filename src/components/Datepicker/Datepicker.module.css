@@ -20,7 +20,7 @@
 .kzn-c-datepicker {
   width: 320px;
   padding: var(--spacing-2xl);
-  border-radius: var(--radius-sm);
+  border-radius: var(--border-radius-sm);
   background-color: var(--surface-default-body);
   display: flex;
   flex-direction: column;
@@ -53,7 +53,7 @@
   padding: 0;
   background: none;
   border: var(--border-width-1) solid transparent;
-  border-radius: var(--radius-s);
+  border-radius: var(--border-radius-s);
   cursor: pointer;
   color: var(--icon-default-default);
   flex-shrink: 0;
@@ -67,8 +67,8 @@
 }
 
 .kzn-c-datepicker__nav:focus-visible {
-  outline: 2px solid var(--border-default-default-hover);
-  outline-offset: 2px;
+  outline: var(--border-width-2) solid var(--border-default-default-hover);
+  outline-offset: var(--border-width-2);
 }
 
 .kzn-c-datepicker__month-label {
@@ -135,7 +135,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: var(--radius-s);
+  border-radius: var(--border-radius-s);
   border: var(--border-width-1) solid var(--border-default-default);
   background: none;
   padding: 0;
@@ -145,8 +145,8 @@
 }
 
 .kzn-c-datepicker__cell:focus-visible {
-  outline: 2px solid var(--border-default-default-hover);
-  outline-offset: 2px;
+  outline: var(--border-width-2) solid var(--border-default-default-hover);
+  outline-offset: var(--border-width-2);
 }
 
 /* ------------------------------------*\
@@ -220,10 +220,10 @@
 
 .kzn-c-datepicker__cell-indicator {
   position: absolute;
-  top: 4px;
-  right: 4px;
-  width: 4px;
-  height: 4px;
+  top: var(--spacing-md);
+  right: var(--spacing-md);
+  width: var(--spacing-md);
+  height: var(--spacing-md);
   border-radius: 50%;
   background-color: var(--surface-secondary-default);
   pointer-events: none;
