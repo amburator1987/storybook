@@ -50,6 +50,56 @@
         },
         "$type": "color",
         "$value": "{neutral.200}"
+      },
+      "heading-hover": {
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.hiddenFromPublishing": false
+        },
+        "$type": "color",
+        "$value": "{neutral.50}"
+      },
+      "body-hover": {
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.hiddenFromPublishing": false
+        },
+        "$type": "color",
+        "$value": "{neutral.100}"
+      },
+      "caption-hover": {
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.hiddenFromPublishing": false
+        },
+        "$type": "color",
+        "$value": "{neutral.200}"
+      },
+      "label-hover": {
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.hiddenFromPublishing": false
+        },
+        "$type": "color",
+        "$value": "{neutral.200}"
+      },
+      "paragraph-hover": {
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.hiddenFromPublishing": false
+        },
+        "$type": "color",
+        "$value": "{neutral.200}"
       }
     },
     "primary": {
@@ -116,6 +166,16 @@
         "$value": "{neutral.900}"
       },
       "caption": {
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.hiddenFromPublishing": false
+        },
+        "$type": "color",
+        "$value": "{neutral.800}"
+      },
+      "on-color-hover": {
         "$extensions": {
           "com.figma.scopes": [
             "ALL_SCOPES"
@@ -717,7 +777,7 @@
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
-        "$value": "{neutral.600}"
+        "$value": "{neutral.700}"
       },
       "default-hover": {
         "$extensions": {

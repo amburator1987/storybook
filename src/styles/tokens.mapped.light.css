@@ -9,6 +9,11 @@
   --text-default-caption: var(--neutral-200);
   --text-default-label: var(--neutral-200);
   --text-default-paragraph: var(--neutral-200);
+  --text-default-heading-hover: var(--neutral-50);
+  --text-default-body-hover: var(--neutral-100);
+  --text-default-caption-hover: var(--neutral-200);
+  --text-default-label-hover: var(--neutral-200);
+  --text-default-paragraph-hover: var(--neutral-200);
   --text-primary-default: var(--primary-400);
   --text-primary-default-hover: var(--primary-300);
   --text-primary-on-color: var(--neutral-900);
@@ -16,6 +21,7 @@
   --text-on-color-headings: var(--neutral-950);
   --text-on-color-body: var(--neutral-900);
   --text-on-color-caption: var(--neutral-800);
+  --text-on-color-on-color-hover: var(--neutral-800);
   --text-error-default-hover: var(--error-500);
   --text-error-default: var(--error-400);
   --text-error-on-color: var(--error-100);
@@ -70,7 +76,7 @@
   --surface-default-body: var(--neutral-900);
   --surface-default-default: var(--neutral-800);
   --surface-default-default-elevated: var(--neutral-700);
-  --surface-default-default-elevated-2: var(--neutral-600);
+  --surface-default-default-elevated-2: var(--neutral-700);
   --surface-default-default-hover: var(--neutral-500);
   --surface-primary-default: var(--primary-400);
   --surface-primary-default-hover: var(--primary-300);

@@ -87,7 +87,7 @@
 import { ref, onMounted, watch } from 'vue';
 
 export type CheckboxSize      = 'sm' | 'lg';
-export type CheckboxSelection = 'unchecked' | 'checked' | 'undefined';
+export type CheckboxSelection = 'unchecked' | 'checked' | 'inderteminate';
 export type CheckboxState     = 'default' | 'hover' | 'focus' | 'disabled';
 
 const props = withDefaults(
@@ -115,7 +115,7 @@ const inputRef = ref<HTMLInputElement | null>(null);
 
 function syncIndeterminate() {
   if (inputRef.value) {
-    inputRef.value.indeterminate = props.selection === 'undefined';
+    inputRef.value.indeterminate = props.selection === 'inderteminate';
   }
 }
 

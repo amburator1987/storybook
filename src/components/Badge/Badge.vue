@@ -11,7 +11,7 @@
 </template>
 
 <script setup lang="ts">
-export type BadgeStyle = "brand" | "action" | "warrning" | "info";
+export type BadgeStyle = "brand" | "action" | "warrning" | "info" | "neutral";
 export type BadgeType  = "text" | "dot";
 
 withDefaults(

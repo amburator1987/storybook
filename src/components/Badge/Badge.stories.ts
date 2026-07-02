@@ -14,7 +14,7 @@ const meta = {
       description: {
         component:
           "Compact label / counter component. " +
-          "Two types (`text` / `dot`), four styles (`brand`, `action`, `warrning`, `info`). " +
+          "Two types (`text` / `dot`), five styles (`brand`, `action`, `warrning`, `info`, `neutral`). " +
           "The `dot` variant is a solid 8×8 pill used as a visual indicator with no text content.\n\n" +
           `[Open in Figma](${FIGMA_URL})`,
       },
@@ -25,7 +25,7 @@ const meta = {
   argTypes: {
     style: {
       control: "select",
-      options: ["brand", "action", "warrning", "info"],
+      options: ["brand", "action", "warrning", "info", "neutral"],
       description:
         "Figma property `style`. Note: `warrning` preserves the original Figma typo.",
     },
@@ -67,6 +67,10 @@ export const Info: Story = {
   args: { style: "info" },
 };
 
+export const Neutral: Story = {
+  args: { style: "neutral" },
+};
+
 // ------------------------------------
 // Type variants
 // ------------------------------------
@@ -94,8 +98,8 @@ export const AllVariants: Story = {
       description: {
         story:
           "Replicates the Figma frame (node 6507:1994). " +
-          "Top 4: type=text — brand · action · warrning · info. " +
-          "Bottom 4: type=dot — same style order.",
+          "Top 5: type=text — brand · action · warrning · info · neutral. " +
+          "Bottom 5: type=dot — same style order.",
       },
     },
   },
@@ -109,10 +113,12 @@ export const AllVariants: Story = {
           h(Badge, { style: "action",   type: "text" }, { default: () => "99" }),
           h(Badge, { style: "warrning", type: "text" }, { default: () => "99" }),
           h(Badge, { style: "info",     type: "text" }, { default: () => "99" }),
+          h(Badge, { style: "neutral",  type: "text" }, { default: () => "99" }),
           h(Badge, { style: "brand",    type: "dot"  }),
           h(Badge, { style: "action",   type: "dot"  }),
           h(Badge, { style: "warrning", type: "dot"  }),
           h(Badge, { style: "info",     type: "dot"  }),
+          h(Badge, { style: "neutral",  type: "dot"  }),
         ],
       );
     },

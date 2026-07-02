@@ -134,54 +134,47 @@ export const ChipGroup: Story = {
 };
 
 // ------------------------------------
-// All variants — Figma matrix
+// All variants — tačna replika Figma frame-a (node 8412:1906)
+// Frame: 806×136px — koordinate iz Figma metadata
 // ------------------------------------
 
 export const AllVariants: Story = {
-  name: 'All variants',
+  name: 'All Variants',
   parameters: {
     docs: {
       description: {
         story:
-          'Figma matrica: 2 veličine × 2 stanja odabira × 4 interaktivna stanja.',
+          'Tačna replika Figma frame-a (node 8412:1906, 806×136px). ' +
+          'Pozicije su preuzete direktno iz Figma metadata koordinata.',
       },
     },
   },
   render: () => ({
     components: { Chip },
     template: `
-      <div style="display:flex;flex-direction:column;gap:24px;padding:32px;background:var(--surface-default-body,#1e2733);border-radius:8px;">
+      <div style="position:relative;width:806px;height:136px;background:var(--surface-default-body,#1e2733);">
 
-        <template v-for="size in ['sm', 'md']" :key="size">
-          <div style="display:flex;flex-direction:column;gap:12px;">
-            <p style="margin:0;color:var(--text-default-caption,#efefef);font-size:11px;text-transform:uppercase;letter-spacing:.08em;font-family:sans-serif;">
-              {{ size }}
-            </p>
-            <div style="display:grid;grid-template-columns:100px repeat(4,90px);gap:8px;align-items:center;">
-              <span></span>
-              <span v-for="st in ['default','hover','focus','disabled']" :key="st"
-                    style="color:var(--text-default-caption,#efefef);font-size:10px;font-family:sans-serif;text-align:center;">
-                {{ st }}
-              </span>
+        <!-- Row 1 (y=28, sm): isChecked=true ×4, isChecked=false ×4 -->
+        <Chip style="position:absolute;left:35.5px;top:28px;"  size="sm" :isChecked="true"  state="default"  />
+        <Chip style="position:absolute;left:104.5px;top:28px;" size="sm" :isChecked="true"  state="hover"    />
+        <Chip style="position:absolute;left:173.5px;top:28px;" size="sm" :isChecked="true"  state="focus"    />
+        <Chip style="position:absolute;left:242.5px;top:28px;" size="sm" :isChecked="true"  state="disabled" />
+        <Chip style="position:absolute;left:311.5px;top:28px;" size="sm" :isChecked="false" state="default"  />
+        <Chip style="position:absolute;left:380.5px;top:28px;" size="sm" :isChecked="false" state="hover"    />
+        <Chip style="position:absolute;left:449.5px;top:28px;" size="sm" :isChecked="false" state="focus"    />
+        <Chip style="position:absolute;left:518.5px;top:28px;" size="sm" :isChecked="false" state="disabled" />
 
-              <span style="color:var(--text-default-caption,#efefef);font-size:10px;font-family:sans-serif;">unchecked</span>
-              <Chip
-                v-for="st in ['default','hover','focus','disabled']" :key="'u-'+st"
-                :size="size"
-                :isChecked="false"
-                :state="st"
-              />
+        <!-- Row 1 cont. (y=24, md): isChecked=true ×3 -->
+        <Chip style="position:absolute;left:587.5px;top:24px;" size="md" :isChecked="true"  state="default"  />
+        <Chip style="position:absolute;left:656.5px;top:24px;" size="md" :isChecked="true"  state="hover"    />
+        <Chip style="position:absolute;left:725.5px;top:24px;" size="md" :isChecked="true"  state="focus"    />
 
-              <span style="color:var(--text-default-caption,#efefef);font-size:10px;font-family:sans-serif;">checked</span>
-              <Chip
-                v-for="st in ['default','hover','focus','disabled']" :key="'c-'+st"
-                :size="size"
-                :isChecked="true"
-                :state="st"
-              />
-            </div>
-          </div>
-        </template>
+        <!-- Row 2 (y=80, md): isChecked=true disabled, isChecked=false ×4 -->
+        <Chip style="position:absolute;left:242.5px;top:80px;" size="md" :isChecked="true"  state="disabled" />
+        <Chip style="position:absolute;left:311.5px;top:80px;" size="md" :isChecked="false" state="default"  />
+        <Chip style="position:absolute;left:380.5px;top:80px;" size="md" :isChecked="false" state="hover"    />
+        <Chip style="position:absolute;left:449.5px;top:80px;" size="md" :isChecked="false" state="focus"    />
+        <Chip style="position:absolute;left:518.5px;top:80px;" size="md" :isChecked="false" state="disabled" />
 
       </div>
     `,

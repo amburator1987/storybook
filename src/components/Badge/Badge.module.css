@@ -13,7 +13,7 @@
   align-items: center;
   justify-content: center;
 
-  border-radius: var(--border-radius-xl);
+  border-radius: var(--border-radius-round);
 
   font-family: var(--font-family-primary);
   font-weight: var(--font-weight-secondary);
@@ -67,4 +67,9 @@
 .kzn-c-badge--info {
   background-color: var(--surface-information-default);
   color: var(--text-information-on-color);
+}
+
+.kzn-c-badge--neutral {
+  background-color: var(--surface-default-default-elevated-2);
+  color: var(--text-on-color-body);
 }

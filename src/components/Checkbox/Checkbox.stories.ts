@@ -13,7 +13,7 @@ const meta = {
       description: {
         component:
           'Selection control za odabir jedne ili više opcija. Svaki checkbox radi neovisno. ' +
-          'Dvije veličine (`sm`, `lg`), tri stanja odabira (`unchecked`, `checked`, `undefined`), ' +
+          'Dvije veličine (`sm`, `lg`), tri stanja odabira (`unchecked`, `checked`, `inderteminate`), ' +
           'četiri interaktivna stanja (`default`, `hover`, `focus`, `disabled`).\n\n' +
           `[Otvori u Figmi](${FIGMA_URL})`,
       },
@@ -29,8 +29,8 @@ const meta = {
     },
     selection: {
       control: 'select',
-      options: ['unchecked', 'checked', 'undefined'],
-      description: 'Stanje odabira. `undefined` = indeterminate.',
+      options: ['unchecked', 'checked', 'inderteminate'],
+      description: 'Stanje odabira. `inderteminate` = indeterminate (Figma spelling).',
     },
     state: {
       control: 'select',
@@ -53,10 +53,6 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// ------------------------------------
-// Default
-// ------------------------------------
-
 export const Default: Story = {};
 
 // ------------------------------------
@@ -72,8 +68,8 @@ export const Checked: Story = {
 };
 
 export const Indeterminate: Story = {
-  name: 'Indeterminate (undefined)',
-  args: { selection: 'undefined', state: 'default' },
+  name: 'Indeterminate',
+  args: { selection: 'inderteminate', state: 'default' },
 };
 
 // ------------------------------------
@@ -119,54 +115,57 @@ export const NoLabel: Story = {
 };
 
 // ------------------------------------
-// All variants matrix
+// All Variants — tačna replika Figma frame-a (node 8360:1195)
+// Frame: 526×168px — koordinate iz Figma metadata
 // ------------------------------------
 
 export const AllVariants: Story = {
+  name: 'All Variants',
   parameters: {
     docs: {
       description: {
-        story: 'Figma matrica: 2 veličine × 3 stanja odabira × 4 interaktivna stanja = 24 varijante.',
+        story:
+          'Tačna replika Figma frame-a (node 8360:1195, 526×168px). ' +
+          'Pozicije su preuzete direktno iz Figma metadata koordinata.',
       },
     },
   },
-
   render: () => ({
     components: { Checkbox },
     template: `
-      <div style="display:flex;flex-direction:column;gap:32px;padding:32px;background:var(--surface-default-body,#1e2733);border-radius:8px;">
+      <div style="position:relative;width:526px;height:168px;background:var(--surface-default-body,#1e2733);">
 
-        <template v-for="sz in ['sm', 'lg']" :key="sz">
-          <div style="display:flex;flex-direction:column;gap:16px;">
-            <p style="margin:0;color:var(--text-default-caption,#efefef);font-size:11px;text-transform:uppercase;letter-spacing:.08em;font-family:sans-serif;">
-              size {{ sz }}
-            </p>
+        <!-- Row 1 (y=16, sm): unchecked ×4 states, checked ×3 states -->
+        <Checkbox style="position:absolute;left:22.5px;top:16px;"  size="sm" selection="unchecked"    state="default"  />
+        <Checkbox style="position:absolute;left:93.5px;top:16px;"  size="sm" selection="unchecked"    state="hover"    />
+        <Checkbox style="position:absolute;left:164.5px;top:16px;" size="sm" selection="unchecked"    state="focus"    />
+        <Checkbox style="position:absolute;left:235.5px;top:16px;" size="sm" selection="unchecked"    state="disabled" />
+        <Checkbox style="position:absolute;left:306.5px;top:16px;" size="sm" selection="checked"      state="default"  />
+        <Checkbox style="position:absolute;left:377.5px;top:16px;" size="sm" selection="checked"      state="hover"    />
+        <Checkbox style="position:absolute;left:448.5px;top:16px;" size="sm" selection="checked"      state="focus"    />
 
-            <div style="display:grid;grid-template-columns:120px repeat(4,80px);gap:12px;align-items:center;">
-              <!-- Header row -->
-              <span style="color:var(--text-default-caption,#efefef);font-size:10px;font-family:sans-serif;"></span>
-              <span v-for="st in ['default','hover','focus','disabled']" :key="st"
-                    style="color:var(--text-default-caption,#efefef);font-size:10px;font-family:sans-serif;text-align:center;">
-                {{ st }}
-              </span>
+        <!-- Row 2 (y=52, sm + 1 lg): checked disabled, inderteminate ×4 states, lg unchecked default -->
+        <Checkbox style="position:absolute;left:51.5px;top:52px;"  size="sm" selection="checked"       state="disabled" />
+        <Checkbox style="position:absolute;left:122.5px;top:52px;" size="sm" selection="inderteminate" state="default"  />
+        <Checkbox style="position:absolute;left:193.5px;top:52px;" size="sm" selection="inderteminate" state="hover"    />
+        <Checkbox style="position:absolute;left:264.5px;top:52px;" size="sm" selection="inderteminate" state="focus"    />
+        <Checkbox style="position:absolute;left:335.5px;top:52px;" size="sm" selection="inderteminate" state="disabled" />
+        <Checkbox style="position:absolute;left:406.5px;top:48px;" size="lg" selection="unchecked"     state="default"  />
 
-              <!-- unchecked row -->
-              <span style="color:var(--text-default-caption,#efefef);font-size:10px;font-family:sans-serif;">unchecked</span>
-              <Checkbox v-for="st in ['default','hover','focus','disabled']" :key="st"
-                        :size="sz" selection="unchecked" :state="st" />
+        <!-- Row 3 (y=88, lg): unchecked ×3 states, checked ×3 states -->
+        <Checkbox style="position:absolute;left:19px;top:88px;"   size="lg" selection="unchecked"    state="hover"    />
+        <Checkbox style="position:absolute;left:103px;top:88px;"  size="lg" selection="unchecked"    state="focus"    />
+        <Checkbox style="position:absolute;left:187px;top:88px;"  size="lg" selection="unchecked"    state="disabled" />
+        <Checkbox style="position:absolute;left:271px;top:88px;"  size="lg" selection="checked"      state="default"  />
+        <Checkbox style="position:absolute;left:355px;top:88px;"  size="lg" selection="checked"      state="hover"    />
+        <Checkbox style="position:absolute;left:439px;top:88px;"  size="lg" selection="checked"      state="focus"    />
 
-              <!-- checked row -->
-              <span style="color:var(--text-default-caption,#efefef);font-size:10px;font-family:sans-serif;">checked</span>
-              <Checkbox v-for="st in ['default','hover','focus','disabled']" :key="st"
-                        :size="sz" selection="checked" :state="st" />
-
-              <!-- undefined row -->
-              <span style="color:var(--text-default-caption,#efefef);font-size:10px;font-family:sans-serif;">undefined</span>
-              <Checkbox v-for="st in ['default','hover','focus','disabled']" :key="st"
-                        :size="sz" selection="undefined" :state="st" />
-            </div>
-          </div>
-        </template>
+        <!-- Row 4 (y=128, lg): checked disabled, inderteminate ×4 states -->
+        <Checkbox style="position:absolute;left:61px;top:128px;"  size="lg" selection="checked"      state="disabled" />
+        <Checkbox style="position:absolute;left:145px;top:128px;" size="lg" selection="inderteminate" state="default"  />
+        <Checkbox style="position:absolute;left:229px;top:128px;" size="lg" selection="inderteminate" state="hover"    />
+        <Checkbox style="position:absolute;left:313px;top:128px;" size="lg" selection="inderteminate" state="focus"    />
+        <Checkbox style="position:absolute;left:397px;top:128px;" size="lg" selection="inderteminate" state="disabled" />
 
       </div>
     `,

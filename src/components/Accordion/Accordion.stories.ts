@@ -26,13 +26,16 @@ const meta = {
     type: {
       control: 'select',
       options: ['closed', 'open'],
-      description:
-        'Figma property `type`. `open` = expanded item — yellow left accent bar, chevron-up, aria-expanded=true.',
+      description: 'Figma property `type`. `open` = chevron-up + aria-expanded=true.',
     },
     state: {
       control: 'select',
       options: ['default', 'hover', 'focus'],
-      description: 'Figma property `State`.',
+      description: 'Figma property `state`.',
+    },
+    selected: {
+      control: 'boolean',
+      description: 'Figma property `style`. `true` = selected — shows yellow Selector bar.',
     },
     showLeadIcon: {
       control: 'boolean',
@@ -55,6 +58,7 @@ const meta = {
   args: {
     type:          'closed',
     state:         'default',
+    selected:      false,
     showLeadIcon:  true,
     showSubhead:   true,
     showTrailIcon: true,
@@ -76,7 +80,21 @@ export const Closed: Story = {
 };
 
 export const Open: Story = {
-  args: { type: 'open' },
+  args: { type: 'open', selected: true },
+};
+
+// ------------------------------------
+// Selected variants
+// ------------------------------------
+
+export const ClosedSelected: Story = {
+  name: 'Closed — Selected',
+  args: { type: 'closed', selected: true },
+};
+
+export const OpenSelected: Story = {
+  name: 'Open — Selected',
+  args: { type: 'open', selected: true },
 };
 
 // ------------------------------------
@@ -114,7 +132,7 @@ export const Minimal: Story = {
 // 414×416px · 6 rows × 48px · gap 16px
 // ------------------------------------
 
-/** Replica of the Figma component set frame — 2 types × 3 states. */
+/** Replica of the Figma component set frame — 8 varijante (node 6507:1674). */
 export const AllVariants: Story = {
   name: 'All Variants',
   parameters: {
@@ -122,8 +140,8 @@ export const AllVariants: Story = {
       description: {
         story:
           'Replicira Figma component set frame (node 6507:1674). ' +
-          'Rows 1–3: type=closed (default · hover · focus). ' +
-          'Rows 4–6: type=open (default · hover · focus).',
+          'closed: unselected default · selected default · hover · focus. ' +
+          'open: selected default · unselected default · selected hover · selected focus.',
       },
     },
   },
@@ -138,12 +156,14 @@ export const AllVariants: Story = {
         padding:24px 0;
         border-radius:4px;
       ">
-        <Accordion type="closed" state="default">Accordion</Accordion>
-        <Accordion type="closed" state="hover">Accordion</Accordion>
-        <Accordion type="closed" state="focus">Accordion</Accordion>
-        <Accordion type="open"   state="default">Accordion</Accordion>
-        <Accordion type="open"   state="hover">Accordion</Accordion>
-        <Accordion type="open"   state="focus">Accordion</Accordion>
+        <Accordion type="closed" state="default" :selected="false">Accordion</Accordion>
+        <Accordion type="closed" state="default" :selected="true">Accordion</Accordion>
+        <Accordion type="closed" state="hover"   :selected="false">Accordion</Accordion>
+        <Accordion type="closed" state="focus"   :selected="false">Accordion</Accordion>
+        <Accordion type="open"   state="default" :selected="true">Accordion</Accordion>
+        <Accordion type="open"   state="default" :selected="false">Accordion</Accordion>
+        <Accordion type="open"   state="hover"   :selected="true">Accordion</Accordion>
+        <Accordion type="open"   state="focus"   :selected="true">Accordion</Accordion>
       </div>
     `,
   }),

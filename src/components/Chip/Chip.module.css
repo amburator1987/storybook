@@ -36,20 +36,11 @@
 
 /* ------------------------------------*\
   Backgrounds — unchecked
+  default/hover/focus → surface/default/default
 \*------------------------------------ */
 
 .chip--unchecked {
-  background-color: var(--surface-content-tertiary);
-}
-
-.chip--unchecked.chip--hover,
-.chip--unchecked:not(.chip--disabled):hover {
-  background-color: var(--surface-content-secondary);
-}
-
-.chip--unchecked.chip--focus,
-.chip--unchecked:not(.chip--disabled):focus-visible {
-  background-color: var(--surface-content-secondary);
+  background-color: var(--surface-default-default);
 }
 
 .chip--unchecked.chip--disabled {
@@ -58,20 +49,17 @@
 
 /* ------------------------------------*\
   Backgrounds — checked
+  default/focus → surface/default/default-elevated-2
+  hover         → surface/default/default-hover
 \*------------------------------------ */
 
 .chip--checked {
-  background-color: var(--surface-content-negative-primary);
+  background-color: var(--surface-default-default-elevated-2);
 }
 
 .chip--checked.chip--hover,
 .chip--checked:not(.chip--disabled):hover {
-  background-color: var(--surface-content-negative-tertiary);
-}
-
-.chip--checked.chip--focus,
-.chip--checked:not(.chip--disabled):focus-visible {
-  background-color: var(--surface-content-negative-tertiary);
+  background-color: var(--surface-default-default-hover);
 }
 
 .chip--checked.chip--disabled {
@@ -90,12 +78,17 @@
   line-height: var(--typography-line-height-paragraph-xs);
   letter-spacing: var(--typography-letter-spacing-paragraph-xs);
   white-space: nowrap;
-  color: var(--text-content-primary);
+  color: var(--text-default-body);
   pointer-events: none;
 }
 
+.chip--unchecked.chip--hover .chip__label,
+.chip--unchecked:not(.chip--disabled):hover .chip__label {
+  color: var(--text-default-body-hover);
+}
+
 .chip--checked .chip__label {
-  color: var(--text-content-negative-primary);
+  color: var(--text-on-color-body);
 }
 
 .chip--disabled .chip__label {
@@ -109,7 +102,7 @@
 
 .chip__focus {
   position: absolute;
-  inset: -4px;
+  inset: calc(-1 * var(--scale-4));
   border: var(--border-width-2) solid var(--border-default-focus);
   border-radius: var(--border-radius-round);
   pointer-events: none;
@@ -119,7 +112,7 @@
 .chip:focus-visible::after {
   content: '';
   position: absolute;
-  inset: -4px;
+  inset: calc(-1 * var(--scale-4));
   border: var(--border-width-2) solid var(--border-default-focus);
   border-radius: var(--border-radius-round);
   pointer-events: none;

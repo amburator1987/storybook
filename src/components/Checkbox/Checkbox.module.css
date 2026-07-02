@@ -1,7 +1,6 @@
 /* ------------------------------------*\
   #CHECKBOX
   Figma: https://www.figma.com/design/JCQ4u9ytPIMpGaLzdAq8dD/Kaizen-Reworked-3-Lvls?node-id=8360-1195
-  Icons exported directly from Figma nodes 8360:1277 (unchecked), 8360:1313 (checked), 8360:1340 (undefined)
 \*------------------------------------ */
 
 .checkbox {
@@ -55,10 +54,10 @@
 
 /* ------------------------------------*\
   Icon color — unchecked
-  default → neutral-200 (#efefef)
-  hover   → neutral-300 (#e1e1e1)
-  focus   → neutral-400 (#cfc4c4) — same as disabled, focus ring is the visual cue
-  disabled → neutral-400 (#cfc4c4)
+  default  → icon/default/default        (#efefef)
+  hover    → icon/default/default-hover  (#e1e1e1)
+  focus    → icon/default/default        (#efefef, same as default)
+  disabled → icon/disabled/default       (#706e6e)
 \*------------------------------------ */
 
 .checkbox--unchecked .checkbox__box {
@@ -70,73 +69,61 @@
   color: var(--icon-default-default-hover);
 }
 
-.checkbox--unchecked.checkbox--focus .checkbox__box,
-.checkbox--unchecked .checkbox__input:focus-visible + .checkbox__box {
-  color: var(--icon-disabled-default);
-}
-
 .checkbox--unchecked.checkbox--disabled .checkbox__box {
   color: var(--icon-disabled-default);
 }
 
 /* ------------------------------------*\
-  Icon color — checked / undefined
-  default → secondary-400 (#fdb913)
-  hover   → secondary-300 (#ffcd27)
-  focus   → secondary-400 (same as default, ring is the cue)
-  disabled → neutral-400 (#cfc4c4)
+  Icon color — checked
+  default  → icon/secondary/default       (#fdb913)
+  hover    → icon/secondary/default-hover (#ffcd27)
+  focus    → icon/secondary/default       (same, ring is the cue)
+  disabled → icon/disabled/default        (#706e6e)
 \*------------------------------------ */
 
-.checkbox--checked .checkbox__box,
-.checkbox--undefined .checkbox__box {
+.checkbox--checked .checkbox__box {
   color: var(--icon-secondary-default);
 }
 
 .checkbox--checked.checkbox--hover .checkbox__box,
-.checkbox--checked:not(.checkbox--disabled):hover .checkbox__box,
-.checkbox--undefined.checkbox--hover .checkbox__box,
-.checkbox--undefined:not(.checkbox--disabled):hover .checkbox__box {
+.checkbox--checked:not(.checkbox--disabled):hover .checkbox__box {
   color: var(--icon-secondary-default-hover);
 }
 
-.checkbox--checked.checkbox--disabled .checkbox__box,
-.checkbox--undefined.checkbox--disabled .checkbox__box {
+.checkbox--checked.checkbox--disabled .checkbox__box {
   color: var(--icon-disabled-default);
 }
 
 /* ------------------------------------*\
-  Focus ring — outline around the icon box
+  Icon color — inderteminate
+  default  → icon/default/default         (#efefef, same as unchecked)
+  hover    → icon/default/default-hover   (#e1e1e1)
+  focus    → icon/default/default         (same as default)
+  disabled → icon/disabled/default        (#706e6e)
+\*------------------------------------ */
+
+.checkbox--inderteminate .checkbox__box {
+  color: var(--icon-default-default);
+}
+
+.checkbox--inderteminate.checkbox--hover .checkbox__box,
+.checkbox--inderteminate:not(.checkbox--disabled):hover .checkbox__box {
+  color: var(--icon-default-default-hover);
+}
+
+.checkbox--inderteminate.checkbox--disabled .checkbox__box {
+  color: var(--icon-disabled-default);
+}
+
+/* ------------------------------------*\
+  Focus ring — Figma: border/default/focus, border-width/2, inset=-2px
+  All sizes and all selection states use the same blue ring.
 \*------------------------------------ */
 
 .checkbox--focus .checkbox__box,
 .checkbox__input:focus-visible + .checkbox__box {
-  outline-style: solid;
-  outline-offset: 2px;
-  border-radius: var(--border-radius-xs);
-}
-
-.checkbox--sm.checkbox--focus .checkbox__box,
-.checkbox--sm .checkbox__input:focus-visible + .checkbox__box {
-  outline-width: var(--border-width-1);
-}
-
-.checkbox--lg.checkbox--focus .checkbox__box,
-.checkbox--lg .checkbox__input:focus-visible + .checkbox__box {
-  outline-width: var(--border-width-2);
-}
-
-/* unchecked focus: neutral ring */
-.checkbox--unchecked.checkbox--focus .checkbox__box,
-.checkbox--unchecked .checkbox__input:focus-visible + .checkbox__box {
-  outline-color: var(--border-default-focus);
-}
-
-/* checked / undefined focus: gold ring */
-.checkbox--checked.checkbox--focus .checkbox__box,
-.checkbox--undefined.checkbox--focus .checkbox__box,
-.checkbox--checked .checkbox__input:focus-visible + .checkbox__box,
-.checkbox--undefined .checkbox__input:focus-visible + .checkbox__box {
-  outline-color: var(--border-secondary-focus);
+  outline: var(--border-width-2) solid var(--border-default-focus);
+  outline-offset: var(--scale-2);
 }
 
 /* ------------------------------------*\

@@ -65,10 +65,10 @@
 
 /* ------------------------------------*\
   Icon color — unchecked
-  default  → icon/default/default   (#efefef)
+  default  → icon/default/default       (#efefef)
   hover    → icon/default/default-hover (#e1e1e1)
-  focus    → icon/disabled/default  (#cfc4c4) — ring is the visual cue
-  disabled → icon/disabled/default  (#cfc4c4)
+  focus    → icon/default/default       (#efefef, same as default — ring is the visual cue)
+  disabled → icon/disabled/default      (#706e6e)
 \*------------------------------------ */
 
 .radio--unchecked .radio__box {
@@ -78,11 +78,6 @@
 .radio--unchecked.radio--hover .radio__box,
 .radio--unchecked:not(.radio--disabled):hover .radio__box {
   color: var(--icon-default-default-hover);
-}
-
-.radio--unchecked.radio--focus .radio__box,
-.radio--unchecked .radio__input:focus-visible + .radio__box {
-  color: var(--icon-disabled-default);
 }
 
 .radio--unchecked.radio--disabled .radio__box {
@@ -115,20 +110,14 @@
 
 /* ------------------------------------*\
   Focus ring — round (radius-round = 9999px)
-  Figma: border-width/1, border/default/focus, inset=-2px
+  Figma: border-width/2, border/default/focus, inset=-2px
 \*------------------------------------ */
 
 .radio--focus .radio__box,
 .radio__input:focus-visible + .radio__box {
-  outline: var(--border-width-1) solid var(--border-default-focus);
-  outline-offset: 2px;
+  outline: var(--border-width-2) solid var(--border-default-focus);
+  outline-offset: var(--scale-2);
   border-radius: var(--border-radius-round);
-}
-
-/* Checked focus ring — secondary (gold) */
-.radio--checked.radio--focus .radio__box,
-.radio__input:checked:focus-visible + .radio__box {
-  outline-color: var(--border-secondary-focus);
 }
 
 /* ------------------------------------*\

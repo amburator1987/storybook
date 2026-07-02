@@ -50,6 +50,56 @@
         },
         "$type": "color",
         "$value": "{neutral.200}"
+      },
+      "heading-hover": {
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.hiddenFromPublishing": false
+        },
+        "$type": "color",
+        "$value": "{neutral.500}"
+      },
+      "body-hover": {
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.hiddenFromPublishing": false
+        },
+        "$type": "color",
+        "$value": "{neutral.500}"
+      },
+      "caption-hover": {
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.hiddenFromPublishing": false
+        },
+        "$type": "color",
+        "$value": "{neutral.500}"
+      },
+      "label-hover": {
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.hiddenFromPublishing": false
+        },
+        "$type": "color",
+        "$value": "{neutral.500}"
+      },
+      "paragraph-hover": {
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.hiddenFromPublishing": false
+        },
+        "$type": "color",
+        "$value": "{neutral.500}"
       }
     },
     "primary": {
@@ -124,6 +174,16 @@
         },
         "$type": "color",
         "$value": "{neutral.800}"
+      },
+      "on-color-hover": {
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.hiddenFromPublishing": false
+        },
+        "$type": "color",
+        "$value": "{neutral.700}"
       }
     },
     "error": {
@@ -673,7 +733,7 @@
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
-        "$value": "{neutral.900}"
+        "$value": "{neutral.700}"
       }
     }
   },
@@ -717,7 +777,7 @@
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
-        "$value": "{neutral.600}"
+        "$value": "{neutral.400}"
       },
       "default-hover": {
         "$extensions": {

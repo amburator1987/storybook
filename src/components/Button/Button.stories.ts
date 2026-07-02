@@ -34,9 +34,9 @@ const meta = {
     },
     state: {
       control: "select",
-      options: ["default", "pressed", "disabled", "focus"],
+      options: ["default", "hover", "disabled", "focus"],
       description:
-        "Figma property `state`. `disabled` maps to native disabled; `focus` renders the focus ring statically.",
+        "Figma property `state`. `disabled` maps to native disabled; `hover` renders static hover bg; `focus` renders the focus ring statically.",
     },
     iconLeftShow: {
       control: "boolean",
@@ -97,8 +97,8 @@ export const Tertiary: Story = {
 // States
 // ------------------------------------
 
-export const Pressed: Story = {
-  args: { state: "pressed" },
+export const Hover: Story = {
+  args: { state: "hover" },
 };
 
 export const Disabled: Story = {
@@ -183,7 +183,7 @@ export const AllVariants: Story = {
       description: {
         story:
           "Replicates the Figma component set frame (node 8091:1786). " +
-          "Columns → states: default · pressed · disabled · focus. " +
+          "Columns → states: default · hover · disabled · focus. " +
           "Rows → types: primary · secondary · tertiary · danger. " +
           "Sections → sizes: sm · md · lg.",
       },
@@ -209,7 +209,7 @@ export const AllVariants: Story = {
           margin-bottom:16px;
         ">
           <span style="${LABEL}text-align:center;">default</span>
-          <span style="${LABEL}text-align:center;">pressed</span>
+          <span style="${LABEL}text-align:center;">hover</span>
           <span style="${LABEL}text-align:center;">disabled</span>
           <span style="${LABEL}text-align:center;">focus</span>
         </div>
@@ -225,25 +225,25 @@ export const AllVariants: Story = {
 
           <!-- primary sm -->
           <Button type="primary"   state="default"  size="sm">ButtonText</Button>
-          <Button type="primary"   state="pressed"  size="sm">ButtonText</Button>
+          <Button type="primary"   state="hover"  size="sm">ButtonText</Button>
           <Button type="primary"   state="disabled" size="sm">ButtonText</Button>
           <Button type="primary"   state="focus"    size="sm">ButtonText</Button>
 
           <!-- secondary sm -->
           <Button type="secondary" state="default"  size="sm">ButtonText</Button>
-          <Button type="secondary" state="pressed"  size="sm">ButtonText</Button>
+          <Button type="secondary" state="hover"  size="sm">ButtonText</Button>
           <Button type="secondary" state="disabled" size="sm">ButtonText</Button>
           <Button type="secondary" state="focus"    size="sm">ButtonText</Button>
 
           <!-- tertiary sm -->
           <Button type="tertiary"  state="default"  size="sm">ButtonText</Button>
-          <Button type="tertiary"  state="pressed"  size="sm">ButtonText</Button>
+          <Button type="tertiary"  state="hover"  size="sm">ButtonText</Button>
           <Button type="tertiary"  state="disabled" size="sm">ButtonText</Button>
           <Button type="tertiary"  state="focus"    size="sm">ButtonText</Button>
 
           <!-- danger sm -->
           <Button type="danger"    state="default"  size="sm">ButtonText</Button>
-          <Button type="danger"    state="pressed"  size="sm">ButtonText</Button>
+          <Button type="danger"    state="hover"  size="sm">ButtonText</Button>
           <Button type="danger"    state="disabled" size="sm">ButtonText</Button>
           <Button type="danger"    state="focus"    size="sm">ButtonText</Button>
 
@@ -260,25 +260,25 @@ export const AllVariants: Story = {
 
           <!-- primary md -->
           <Button type="primary"   state="default"  size="md">ButtonText</Button>
-          <Button type="primary"   state="pressed"  size="md">ButtonText</Button>
+          <Button type="primary"   state="hover"  size="md">ButtonText</Button>
           <Button type="primary"   state="disabled" size="md">ButtonText</Button>
           <Button type="primary"   state="focus"    size="md">ButtonText</Button>
 
           <!-- secondary md -->
           <Button type="secondary" state="default"  size="md">ButtonText</Button>
-          <Button type="secondary" state="pressed"  size="md">ButtonText</Button>
+          <Button type="secondary" state="hover"  size="md">ButtonText</Button>
           <Button type="secondary" state="disabled" size="md">ButtonText</Button>
           <Button type="secondary" state="focus"    size="md">ButtonText</Button>
 
           <!-- tertiary md -->
           <Button type="tertiary"  state="default"  size="md">ButtonText</Button>
-          <Button type="tertiary"  state="pressed"  size="md">ButtonText</Button>
+          <Button type="tertiary"  state="hover"  size="md">ButtonText</Button>
           <Button type="tertiary"  state="disabled" size="md">ButtonText</Button>
           <Button type="tertiary"  state="focus"    size="md">ButtonText</Button>
 
           <!-- danger md -->
           <Button type="danger"    state="default"  size="md">ButtonText</Button>
-          <Button type="danger"    state="pressed"  size="md">ButtonText</Button>
+          <Button type="danger"    state="hover"  size="md">ButtonText</Button>
           <Button type="danger"    state="disabled" size="md">ButtonText</Button>
           <Button type="danger"    state="focus"    size="md">ButtonText</Button>
 
@@ -295,25 +295,25 @@ export const AllVariants: Story = {
 
           <!-- primary lg -->
           <Button type="primary"   state="default"  size="lg">ButtonText</Button>
-          <Button type="primary"   state="pressed"  size="lg">ButtonText</Button>
+          <Button type="primary"   state="hover"  size="lg">ButtonText</Button>
           <Button type="primary"   state="disabled" size="lg">ButtonText</Button>
           <Button type="primary"   state="focus"    size="lg">ButtonText</Button>
 
           <!-- secondary lg -->
           <Button type="secondary" state="default"  size="lg">ButtonText</Button>
-          <Button type="secondary" state="pressed"  size="lg">ButtonText</Button>
+          <Button type="secondary" state="hover"  size="lg">ButtonText</Button>
           <Button type="secondary" state="disabled" size="lg">ButtonText</Button>
           <Button type="secondary" state="focus"    size="lg">ButtonText</Button>
 
           <!-- tertiary lg -->
           <Button type="tertiary"  state="default"  size="lg">ButtonText</Button>
-          <Button type="tertiary"  state="pressed"  size="lg">ButtonText</Button>
+          <Button type="tertiary"  state="hover"  size="lg">ButtonText</Button>
           <Button type="tertiary"  state="disabled" size="lg">ButtonText</Button>
           <Button type="tertiary"  state="focus"    size="lg">ButtonText</Button>
 
           <!-- danger lg -->
           <Button type="danger"    state="default"  size="lg">ButtonText</Button>
-          <Button type="danger"    state="pressed"  size="lg">ButtonText</Button>
+          <Button type="danger"    state="hover"  size="lg">ButtonText</Button>
           <Button type="danger"    state="disabled" size="lg">ButtonText</Button>
           <Button type="danger"    state="focus"    size="lg">ButtonText</Button>
 

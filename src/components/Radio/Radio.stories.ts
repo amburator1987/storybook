@@ -161,53 +161,47 @@ export const RadioGroup: Story = {
 };
 
 // ------------------------------------
-// All variants — Figma frame replica (+ checked)
+// All Variants — tačna replika Figma frame-a (node 8364:1323)
+// Frame: 806×96px — koordinate iz Figma metadata
 // ------------------------------------
 
 export const AllVariants: Story = {
+  name: 'All Variants',
   parameters: {
     docs: {
       description: {
         story:
-          'Figma matrica (node 8364:1323): 1 veličina × 2 stanja odabira × 4 interaktivna stanja.',
+          'Tačna replika Figma frame-a (node 8364:1323, 806×96px). ' +
+          'Pozicije su preuzete direktno iz Figma metadata koordinata.',
       },
     },
   },
   render: () => ({
     components: { Radio },
     template: `
-      <div style="display:flex;flex-direction:column;gap:24px;padding:32px;background:var(--surface-default-body,#1e2733);border-radius:8px;">
+      <div style="position:relative;width:806px;height:96px;background:var(--surface-default-body,#1e2733);">
 
-        <template v-for="sel in ['unchecked', 'checked']" :key="sel">
-          <div style="display:flex;flex-direction:column;gap:12px;">
-            <p style="margin:0;color:var(--text-default-caption,#efefef);font-size:11px;text-transform:uppercase;letter-spacing:.08em;font-family:sans-serif;">
-              {{ sel }}
-            </p>
-            <div style="display:grid;grid-template-columns:80px repeat(4,90px);gap:8px;align-items:center;">
-              <span></span>
-              <span v-for="st in ['default','hover','focus','disabled']" :key="st"
-                    style="color:var(--text-default-caption,#efefef);font-size:10px;font-family:sans-serif;text-align:center;">
-                {{ st }}
-              </span>
+        <!-- Row 1 (y=20, sm): unchecked ×4 states, checked ×4 states -->
+        <Radio style="position:absolute;left:43px;top:20px;"  size="sm" selection="unchecked" state="default"  />
+        <Radio style="position:absolute;left:114px;top:20px;" size="sm" selection="unchecked" state="hover"    />
+        <Radio style="position:absolute;left:185px;top:20px;" size="sm" selection="unchecked" state="focus"    />
+        <Radio style="position:absolute;left:256px;top:20px;" size="sm" selection="unchecked" state="disabled" />
+        <Radio style="position:absolute;left:327px;top:20px;" size="sm" selection="checked"   state="default"  />
+        <Radio style="position:absolute;left:398px;top:20px;" size="sm" selection="checked"   state="hover"    />
+        <Radio style="position:absolute;left:469px;top:20px;" size="sm" selection="checked"   state="focus"    />
+        <Radio style="position:absolute;left:540px;top:20px;" size="sm" selection="checked"   state="disabled" />
 
-              <span style="color:var(--text-default-caption,#efefef);font-size:10px;font-family:sans-serif;">sm</span>
-              <Radio
-                v-for="st in ['default','hover','focus','disabled']" :key="'sm-'+st"
-                size="sm"
-                :selection="sel"
-                :state="st"
-              />
+        <!-- Row 1 cont. (y=16, lg): unchecked default + hover -->
+        <Radio style="position:absolute;left:611px;top:16px;" size="lg" selection="unchecked" state="default"  />
+        <Radio style="position:absolute;left:695px;top:16px;" size="lg" selection="unchecked" state="hover"    />
 
-              <span style="color:var(--text-default-caption,#efefef);font-size:10px;font-family:sans-serif;">lg</span>
-              <Radio
-                v-for="st in ['default','hover','focus','disabled']" :key="'lg-'+st"
-                size="lg"
-                :selection="sel"
-                :state="st"
-              />
-            </div>
-          </div>
-        </template>
+        <!-- Row 2 (y=56, lg): unchecked focus+disabled, checked ×4 states -->
+        <Radio style="position:absolute;left:159px;top:56px;" size="lg" selection="unchecked" state="focus"    />
+        <Radio style="position:absolute;left:243px;top:56px;" size="lg" selection="unchecked" state="disabled" />
+        <Radio style="position:absolute;left:327px;top:56px;" size="lg" selection="checked"   state="default"  />
+        <Radio style="position:absolute;left:411px;top:56px;" size="lg" selection="checked"   state="hover"    />
+        <Radio style="position:absolute;left:495px;top:56px;" size="lg" selection="checked"   state="focus"    />
+        <Radio style="position:absolute;left:579px;top:56px;" size="lg" selection="checked"   state="disabled" />
 
       </div>
     `,
