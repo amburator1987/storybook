@@ -4,7 +4,7 @@ import Dialog from "./Dialog.vue";
 import Button from "../Button/Button.vue";
 
 const FIGMA_URL =
-  "https://www.figma.com/design/JCQ4u9ytPIMpGaLzdAq8dD/Kaizen-Reworked-3-Lvls?node-id=8322-1745";
+  "https://www.figma.com/design/JCQ4u9ytPIMpGaLzdAq8dD/Kaizen-Reworked-3-Lvls?node-id=8322-1725";
 
 const meta = {
   title: "Components/Dialog",
@@ -15,8 +15,11 @@ const meta = {
       description: {
         component:
           "Modal dialog used to present information, notifications, or confirmation requests " +
-          "that temporarily suspend interaction with the underlying interface. " +
-          "One variant: `footerType=Default` (two stacked full-width buttons).\n\n" +
+          "that temporarily suspend interaction with the underlying interface.\n\n" +
+          "- `footerType`: `inline` (default) = Cancel+Confirm side-by-side flex:1; `stacked` = Confirm primary on top, Cancel tertiary below (full-width)\n" +
+          "- `size`: `default`=360px, `medium`=760px, `mobile`=100% + 16px side padding on overlay\n\n" +
+          "Visibility is controlled by the parent via `v-if`. " +
+          "Wrap in `<Transition name=\"kzn-dialog\">` to animate open/close.\n\n" +
           `[Open in Figma](${FIGMA_URL})`,
       },
     },
@@ -24,23 +27,27 @@ const meta = {
   },
   tags: ["autodocs"],
   argTypes: {
-    open: {
-      control: "boolean",
-      description: "Controls dialog visibility.",
-    },
     footerType: {
       control: "select",
-      options: ["Default"],
-      description: "Figma property `FooterType`. Stacked buttons layout.",
+      options: ["inline", "stacked"],
+      description:
+        "Figma `FooterType`. `inline` = Cancel+Confirm side-by-side (flex:1). `stacked` = Confirm primary top, Cancel tertiary bottom (full-width).",
+    },
+    size: {
+      control: "select",
+      options: ["default", "medium", "mobile"],
+      description:
+        "Figma `size`. default=360px, medium=760px, mobile=100% (overlay gets 16px side padding).",
     },
     overlay: {
       control: "boolean",
-      description: "Shows backdrop overlay. Disable in Storybook to see only the dialog panel.",
+      description:
+        "Shows backdrop overlay + Teleports to body. Disable in Storybook to render inline.",
     },
   },
   args: {
-    open: true,
-    footerType: "Default",
+    footerType: "inline",
+    size: "default",
     overlay: false,
   },
 } satisfies Meta<typeof Dialog>;
@@ -51,17 +58,62 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {};
 
 // ------------------------------------
-// Interactive — toggle open/close
+// Size variants
+// ------------------------------------
+
+export const SizeDefault: Story = {
+  name: "Size: default (360px)",
+  args: { size: "default" },
+};
+
+export const SizeMedium: Story = {
+  name: "Size: medium (760px)",
+  args: { size: "medium" },
+};
+
+export const SizeMobile: Story = {
+  name: "Size: mobile (100%)",
+  render: () => ({
+    components: { Dialog },
+    template: `
+      <div style="width:414px;padding-inline:var(--spacing-2xl,16px);background:rgba(0,0,0,0.6);border-radius:8px;">
+        <Dialog :overlay="false" size="mobile">
+          <template #header>Header</template>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor.
+        </Dialog>
+      </div>
+    `,
+  }),
+};
+
+// ------------------------------------
+// FooterType variants
+// ------------------------------------
+
+export const FooterTypeInline: Story = {
+  name: "FooterType: inline",
+  args: { footerType: "inline" },
+};
+
+export const FooterTypeStacked: Story = {
+  name: "FooterType: stacked",
+  args: { footerType: "stacked" },
+};
+
+// ------------------------------------
+// Interactive — parent controls visibility via v-if
 // ------------------------------------
 
 export const Interactive: Story = {
   name: "Interactive (toggle)",
+  args: { overlay: true },
   parameters: {
     docs: {
       description: {
         story:
-          "Click the trigger button to open the dialog. Confirm or Cancel closes it. " +
-          "Clicking the overlay also closes it.",
+          "Klik na dugme otvara dialog. Confirm ili Cancel ga zatvara. " +
+          "Klik na overlay ga zatvara. " +
+          "Dialog je kontrolisan `v-if` na parent strani — nema internog `open` prop-a.",
       },
     },
   },
@@ -72,52 +124,60 @@ export const Interactive: Story = {
       return { isOpen };
     },
     template: `
-      <Button type="primary" size="md" :iconLeftShow="false" :iconRightShow="false" @click="isOpen = true">
+      <Button type="primary" size="lg" :iconLeftShow="false" :iconRightShow="false" @click="isOpen = true">
         Open Dialog
       </Button>
-      <Dialog
-        :open="isOpen"
-        @close="isOpen = false"
-        @confirm="isOpen = false"
-      >
-        <template #header>Confirm action</template>
-        Are you sure you want to proceed? This action cannot be undone.
-      </Dialog>
+      <Transition name="kzn-dialog">
+        <Dialog
+          v-if="isOpen"
+          @close="isOpen = false"
+          @confirm="isOpen = false"
+        >
+          <template #header>Confirm action</template>
+          Are you sure you want to proceed? This action cannot be undone.
+        </Dialog>
+      </Transition>
     `,
   }),
 };
 
 // ------------------------------------
-// All Variants — Figma frame replica
-// node 8322:1745 — 400×248px, FooterType=Default
+// All Variants — Figma frame node 8322:1725
 // ------------------------------------
 
 export const AllVariants: Story = {
-  args: {
-    open: false
-  },
-
   name: "All Variants",
-
   parameters: {
     docs: {
       description: {
         story:
-          "Replicates the Figma component set frame (node 8322:1745). " +
-          "FooterType=Default: two stacked full-width buttons (primary + tertiary).",
+          "FooterType × size — sve kombinacije iz Figma frame-a (node 8322:1725).",
       },
     },
   },
-
   render: () => ({
     components: { Dialog },
     template: `
-      <Dialog :open="true" :overlay="false">
-        <template #header>Header</template>
-        Lorem ipusmLorem ipusmLorem ipusmLorem ipusmLorem ipusmLorem ipusmLorem
-        ipusmLorem ipusmLorem ipusmLorem ipusm
-      </Dialog>
+      <div style="display:flex;flex-direction:column;gap:48px;align-items:flex-start;">
+        <div v-for="footer in ['inline','stacked']" :key="footer">
+          <p style="margin:0 0 16px;font-size:11px;font-family:sans-serif;color:#efefef;text-transform:uppercase;letter-spacing:.08em;">FooterType: {{ footer }}</p>
+          <div style="display:flex;flex-direction:column;gap:24px;align-items:flex-start;">
+            <div v-for="s in ['default','medium','mobile']" :key="s">
+              <p style="margin:0 0 8px;font-size:10px;font-family:sans-serif;color:#9ba3af;text-transform:uppercase;letter-spacing:.06em;">size: {{ s }}</p>
+              <div v-if="s === 'mobile'" style="width:414px;padding-inline:var(--spacing-2xl,16px);background:rgba(0,0,0,0.6);border-radius:8px;">
+                <Dialog :overlay="false" :footerType="footer" size="mobile">
+                  <template #header>Header</template>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor.
+                </Dialog>
+              </div>
+              <Dialog v-else :overlay="false" :footerType="footer" :size="s">
+                <template #header>Header</template>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor.
+              </Dialog>
+            </div>
+          </div>
+        </div>
+      </div>
     `,
-  })
+  }),
 };
-

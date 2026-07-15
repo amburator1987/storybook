@@ -893,7 +893,7 @@
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "color",
-        "$value": "{error.500}"
+        "$value": "{error.300}"
       },
       "on-color": {
         "$extensions": {

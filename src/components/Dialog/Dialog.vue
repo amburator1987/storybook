@@ -1,30 +1,36 @@
 <template>
   <Teleport to="body" :disabled="!overlay">
-    <Transition name="kzn-dialog">
+    <div
+      v-bind="overlay ? {
+        class: [$style['kzn-c-dialog-overlay'], size === 'mobile' && $style['kzn-c-dialog-overlay--mobile']],
+        onClick: () => emit('close'),
+      } : {}"
+    >
       <div
-        v-if="open"
-        v-bind="overlay ? { class: $style['kzn-c-dialog-overlay'], onClick: () => emit('close') } : {}"
+        :class="[
+          $style['kzn-c-dialog'],
+          size !== 'default' && $style[`kzn-c-dialog--${size}`],
+        ]"
+        role="dialog"
+        aria-modal="true"
+        :aria-labelledby="titleId"
+        @click.stop
       >
-        <div
-          :class="$style['kzn-c-dialog']"
-          role="dialog"
-          aria-modal="true"
-          :aria-labelledby="titleId"
-          @click.stop
-        >
-          <!-- Text content -->
-          <div :class="$style['kzn-c-dialog__text']">
-            <p :id="titleId" :class="$style['kzn-c-dialog__header']">
-              <slot name="header">Header</slot>
-            </p>
-            <p :class="$style['kzn-c-dialog__body']">
-              <slot>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor.</slot>
-            </p>
-          </div>
+        <!-- Text content -->
+        <div :class="$style['kzn-c-dialog__text']">
+          <p :id="titleId" :class="$style['kzn-c-dialog__header']">
+            <slot name="header">Header</slot>
+          </p>
+          <p :class="$style['kzn-c-dialog__body']">
+            <slot>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor.</slot>
+          </p>
+        </div>
 
-          <!-- Actions footer (footerType=Default → stacked buttons) -->
-          <div :class="$style['kzn-c-dialog__actions']">
-            <slot name="actions">
+        <!-- Actions footer -->
+        <div :class="[$style['kzn-c-dialog__actions'], footerType === 'inline' && $style['kzn-c-dialog__actions--inline']]">
+          <slot name="actions">
+            <!-- stacked: Confirm (primary, top) + Cancel (tertiary, bottom) -->
+            <template v-if="footerType === 'stacked'">
               <Button
                 type="primary"
                 size="lg"
@@ -32,7 +38,7 @@
                 :iconRightShow="false"
                 :class="$style['kzn-c-dialog__btn']"
                 @click="emit('confirm')"
-              >ButtonText</Button>
+              >Confirm</Button>
               <Button
                 type="tertiary"
                 size="lg"
@@ -40,53 +46,79 @@
                 :iconRightShow="false"
                 :class="$style['kzn-c-dialog__btn']"
                 @click="emit('close')"
-              >ButtonText</Button>
-            </slot>
-          </div>
+              >Cancel</Button>
+            </template>
+            <!-- inline: Cancel (tertiary, left) + Confirm (primary, right) -->
+            <template v-else>
+              <Button
+                type="tertiary"
+                size="lg"
+                :iconLeftShow="false"
+                :iconRightShow="false"
+                :class="$style['kzn-c-dialog__btn']"
+                @click="emit('close')"
+              >Cancel</Button>
+              <Button
+                type="primary"
+                size="lg"
+                :iconLeftShow="false"
+                :iconRightShow="false"
+                :class="$style['kzn-c-dialog__btn']"
+                @click="emit('confirm')"
+              >Confirm</Button>
+            </template>
+          </slot>
         </div>
+
+        <!-- Close button — top-right, always visible -->
+        <button :class="$style['kzn-c-dialog__close']" @click="emit('close')" aria-label="Close dialog">
+          <svg viewBox="0 0 16 16" width="16" height="16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M12.5 3.5L3.5 12.5M3.5 3.5L12.5 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </button>
       </div>
-    </Transition>
+    </div>
   </Teleport>
 </template>
 
 <script setup lang="ts">
 import Button from "../Button/Button.vue";
 
-export type DialogFooterType = "Default";
+export type DialogFooterType = "stacked" | "inline";
+export type DialogSize = "default" | "medium" | "mobile";
 
 withDefaults(
   defineProps<{
-    /** Controls dialog visibility. */
-    open?: boolean;
-    /** Figma property `FooterType`. Currently only "Default" (stacked buttons). */
+    /** Figma property `FooterType`. stacked = full-width stacked buttons. inline = side-by-side flex:1 buttons. */
     footerType?: DialogFooterType;
-    /** When false, renders only the dialog panel without the backdrop overlay and Teleport. Use in Storybook. */
+    /** Figma property `size`. Controls dialog width: default=360px, medium=760px, mobile=100%. */
+    size?: DialogSize;
+    /** When false, renders inline without backdrop — use in Storybook. */
     overlay?: boolean;
   }>(),
   {
-    open: false,
-    footerType: "Default",
+    footerType: "inline",
+    size: "default",
     overlay: true,
   }
 );
 
 const emit = defineEmits<{
-  /** Emitted when overlay is clicked or cancel button is activated. */
+  /** Emitted when overlay or close button is clicked, or Cancel is activated. */
   close: [];
-  /** Emitted when the primary confirm button is activated. */
+  /** Emitted when the primary Confirm button is activated. */
   confirm: [];
 }>();
 
 defineSlots<{
-  /** Dialog title — rendered with h6-style typography. */
+  /** Dialog title — rendered with h6 typography. */
   header?: () => any;
   /** Dialog body / description text. */
   default?: () => any;
-  /** Overrides the default stacked action buttons. */
+  /** Overrides the default action buttons. */
   actions?: () => any;
 }>();
 
-// Stable per-instance ID — set once at component setup, not reactive.
 const titleId = `kzn-dialog-title-${Math.random().toString(36).slice(2, 9)}`;
 </script>
 

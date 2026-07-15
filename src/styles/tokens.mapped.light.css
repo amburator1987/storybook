@@ -87,7 +87,7 @@
   --surface-secondary-on-color: var(--neutral-900);
   --surface-secondary-on-color-hover: var(--neutral-900);
   --surface-error-default: var(--error-400);
-  --surface-error-default-hover: var(--error-500);
+  --surface-error-default-hover: var(--error-300);
   --surface-error-on-color: var(--error-100);
   --surface-error-on-color-hover: var(--error-200);
   --surface-success-default: var(--success-400);

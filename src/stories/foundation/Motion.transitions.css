@@ -1,0 +1,54 @@
+/* ------------------------------------*\
+  Foundation/Motion — Vue <Transition> classes
+  Used by elements that mount/unmount in Motion.stories.ts (Accordion row content
+  crossfade, Accordion row 4 enter/exit).
+
+  Page Render's header box does NOT use <Transition> — it stays permanently mounted
+  and animates via CSS grid-template-rows (0fr<->1fr), since Vue's mount/unmount is
+  synchronous for layout and would snap the sibling content box's height instantly.
+
+  TODO: timing/easing are hardcoded literals for now — replace with
+  var(--motion-duration-*) / var(--motion-easing-*) once the "motion" token
+  category is added to the Style Dictionary pipeline (tokens/build.mjs).
+\*------------------------------------ */
+
+/* Accordion row 2 — content crossfade (dot+text <-> 4-line block) */
+.kzn-motion-accordion-content-enter-active {
+  transition: opacity 260ms cubic-bezier(1, 0.75, 0.25, 1.22);
+}
+.kzn-motion-accordion-content-leave-active {
+  transition: opacity 140ms cubic-bezier(1, 0.97, 0.2, 1);
+}
+.kzn-motion-accordion-content-enter-from,
+.kzn-motion-accordion-content-leave-to {
+  opacity: 0;
+}
+
+/* Accordion row 4 — new row enters/exits the layout */
+.kzn-motion-accordion-row-enter-active {
+  transition: opacity 260ms cubic-bezier(1, 0.75, 0.25, 1.22),
+              transform 260ms cubic-bezier(1, 0.75, 0.25, 1.22);
+}
+.kzn-motion-accordion-row-leave-active {
+  transition: opacity 140ms cubic-bezier(1, 0.97, 0.2, 1),
+              transform 140ms cubic-bezier(1, 0.97, 0.2, 1);
+}
+.kzn-motion-accordion-row-enter-from,
+.kzn-motion-accordion-row-leave-to {
+  opacity: 0;
+  transform: translateY(-8px);
+}
+
+/* ------------------------------------*\
+  Responsive layout — 3 columns × 442px + 2×1px gap = 1328px (Figma 6380:2591).
+  Below that, stack columns vertically so the story is readable on mobile/tablet.
+\*------------------------------------ */
+@media (max-width: 1327px) {
+  .kzn-motion-columns {
+    flex-direction: column !important;
+  }
+  .kzn-motion-column {
+    width: 100% !important;
+    max-width: 442px !important;
+  }
+}
