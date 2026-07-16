@@ -170,6 +170,7 @@ const preview: Preview = {
 
     options: {
       storySort: {
+        method: "alphabetical",
         order: ["Foundation", "Components", "Pages", "*"],
       },
     },
