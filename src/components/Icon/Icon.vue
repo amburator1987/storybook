@@ -91,20 +91,19 @@
         stroke-linejoin="round"
       />
     </svg>
-    <!-- Activity — Figma reference glyph (8026:1509) -->
+    <!-- Activity — Figma reference glyph (8026:1509), exact vector path -->
     <svg
       v-else-if="name === 'activity'"
       :class="$style['kzn-c-icon__svg']"
-      viewBox="0 0 24 24"
+      viewBox="0 0 40 40"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
-        d="M4 12h3.5l2-5 2.5 10 2.5-13 2 8H20"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M15 1.66667C15.7174 1.66667 16.3543 2.12572 16.5811 2.80629L25 28.0629L28.4189 17.8063C28.6457 17.1257 29.2826 16.6667 30 16.6667H36.6667C37.5871 16.6667 38.3333 17.4129 38.3333 18.3333C38.3333 19.2538 37.5871 20 36.6667 20H31.2013L26.5811 33.8604C26.3543 34.5409 25.7174 35 25 35C24.2826 35 23.6457 34.5409 23.4189 33.8604L15 8.6038L11.5811 18.8604C11.3543 19.5409 10.7174 20 10 20H3.33333C2.41286 20 1.66667 19.2538 1.66667 18.3333C1.66667 17.4129 2.41286 16.6667 3.33333 16.6667H8.79873L13.4189 2.80629C13.6457 2.12572 14.2826 1.66667 15 1.66667Z"
+        fill="currentColor"
       />
     </svg>
   </span>

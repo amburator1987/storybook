@@ -1,8 +1,5 @@
 name: Storybook Component Change Notifier
 
-# Pokreće se nakon što Release workflow završi — tako je novi tag već kreiran
-# i možemo ga pouzdano pročitati. head_sha = originalni push commit (prije
-# semantic-release chore commita), pa git diff HEAD~1 HEAD daje pravi diff koda.
 on:
   workflow_run:
     workflows: ["Release"]
@@ -14,14 +11,13 @@ on:
 jobs:
   notify:
     runs-on: ubuntu-latest
-    # Notifikacija se šalje i kad nema nove verzije (neutral commits)
     if: ${{ github.event.workflow_run.conclusion != 'cancelled' }}
 
     steps:
       - uses: actions/checkout@v4
         with:
           ref: ${{ github.event.workflow_run.head_sha }}
-          fetch-depth: 2          # HEAD i HEAD~1 za diff originalnog commita
+          fetch-depth: 2
 
       - name: Fetch tags
         run: git fetch --tags --force
@@ -37,6 +33,7 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           GOOGLE_CHAT_WEBHOOK_URL: ${{ secrets.GOOGLE_CHAT_WEBHOOK_URL }}
           RELEASE_VERSION: ${{ steps.version.outputs.tag }}
+          HEAD_SHA: ${{ github.event.workflow_run.head_sha }}
         run: |
           python3 << 'PYEOF'
           import json, os, subprocess, urllib.request
@@ -44,13 +41,15 @@ jobs:
           def git(*args):
               return subprocess.check_output(['git'] + list(args), text=True).strip()
 
-          # --- Commit info (originalni push commit = HEAD ovdje) ---
-          commit_msg = git('log', '-1', '--pretty=%s')
-          commit_sha = git('log', '-1', '--pretty=%h')
-          commit_url = git('log', '-1', '--pretty=%H')
-          author     = git('log', '-1', '--pretty=%an')
+          head_sha = os.environ.get('HEAD_SHA', 'HEAD')
+
+          # --- Commit info ---
+          commit_msg = git('log', '-1', '--pretty=%s', head_sha)
+          commit_sha = git('log', '-1', '--pretty=%h', head_sha)
+          commit_url = git('log', '-1', '--pretty=%H', head_sha)
+          author     = git('log', '-1', '--pretty=%an', head_sha)
           repo_url   = git('remote', 'get-url', 'origin').replace('.git', '')
-          diff       = git('diff', 'HEAD~1', 'HEAD')[:12000]
+          diff       = git('diff', f'{head_sha}~1', head_sha)[:12000]
           version    = os.environ.get('RELEASE_VERSION', 'bez verzije')
 
           # --- Conventional commits → tip izmjene ---

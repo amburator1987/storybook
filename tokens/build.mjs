@@ -295,7 +295,7 @@ function extractVarLines(cssText) {
 async function buildResponsive() {
   // Responsive JSON files live in `tokens/json/system-responsive/`.
   const breakpoints = [
-    { key: "desktop", file: "dekstop.json" },
+    { key: "desktop", file: "desktop.json" },
     { key: "tablet", file: "tablet.json" },
     { key: "mobile", file: "mobile.json" },
     { key: "desktopLarge", file: "desktop-large.json" },

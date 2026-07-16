@@ -173,7 +173,7 @@
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "dimension",
-        "$value": "32px"
+        "$value": "40px"
       },
       "h5": {
         "$extensions": {
@@ -213,7 +213,7 @@
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "dimension",
-        "$value": "16px"
+        "$value": "20px"
       },
       "paragraph-default": {
         "$extensions": {
@@ -223,7 +223,7 @@
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "dimension",
-        "$value": "16px"
+        "$value": "20px"
       },
       "paragraph-lg": {
         "$extensions": {
@@ -233,7 +233,7 @@
           "com.figma.hiddenFromPublishing": false
         },
         "$type": "dimension",
-        "$value": "16px"
+        "$value": "24px"
       },
       "caption": {
         "$extensions": {

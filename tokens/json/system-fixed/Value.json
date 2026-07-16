@@ -157,6 +157,18 @@
       }
     }
   },
+  "dialog-holders": {
+    "bg": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.hiddenFromPublishing": false
+      },
+      "$type": "color",
+      "$value": "#00000099"
+    }
+  },
   "icon-size": {
     "default": {
       "$extensions": {
