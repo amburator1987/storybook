@@ -1,0 +1,43 @@
+/* ------------------------------------*\
+  #SNACKBAR (Kaizen)
+  Figma component set `snackbar` — node 8621:1957.
+  https://www.figma.com/design/JCQ4u9ytPIMpGaLzdAq8dD/Kaizen-Reworked-3-Lvls?node-id=8621-1957
+\*------------------------------------ */
+
+.kzn-c-snackbar {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-2xl);
+  padding: var(--spacing-2xl);
+  background-color: var(--surface-default-body);
+  border: var(--border-width-1) solid var(--border-default-default);
+  border-radius: var(--border-radius-s);
+}
+
+.kzn-c-snackbar__message {
+  flex: 1 0 0;
+  min-width: 0;
+
+  font-family: var(--font-family-primary);
+  font-weight: var(--font-weight-primary);
+  font-size: var(--typography-font-size-paragraph-sm);
+  line-height: var(--typography-line-height-paragraph-sm);
+  letter-spacing: var(--typography-letter-spacing-paragraph-default);
+  color: var(--text-default-headings);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.kzn-c-snackbar__close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  padding: 0;
+  border: none;
+  background: none;
+  color: var(--icon-default-default);
+  cursor: pointer;
+}

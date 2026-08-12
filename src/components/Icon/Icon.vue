@@ -91,6 +91,21 @@
         stroke-linejoin="round"
       />
     </svg>
+    <!-- Close / X (16) -->
+    <svg
+      v-else-if="name === 'close'"
+      :class="$style['kzn-c-icon__svg']"
+      viewBox="0 0 16 16"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M4 4L12 12M12 4L4 12"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linecap="round"
+      />
+    </svg>
     <!-- Activity — Figma reference glyph (8026:1509), exact vector path -->
     <svg
       v-else-if="name === 'activity'"
@@ -122,7 +137,7 @@ import { computed } from "vue";
  * Color: `icon/default/default` → `var(--icon-default-default)`.
  */
 export type IconSize = "small" | "default" | "lg" | "xl";
-export type IconName = "chevron-down" | "chevron-up" | "chevron-left" | "chevron-right" | "document" | "activity";
+export type IconName = "chevron-down" | "chevron-up" | "chevron-left" | "chevron-right" | "document" | "activity" | "close";
 
 const props = withDefaults(
   defineProps<{
