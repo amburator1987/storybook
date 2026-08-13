@@ -14,8 +14,9 @@ const meta = {
       description: {
         component:
           "Toast notifikacija se koristi za obavestenje o izvrsenoj akciji korisnika " +
-          "koja traje odredjeni period i sklanja se sama. `action` varijanta se " +
-          "manuelno moze skloniti klikom na close ikonicu; `noAction` nema close.\n\n" +
+          "koja traje odredjeni period i sklanja se sama. `intent` odredjuje boju " +
+          "(Neutral / Attention / Error), a `showButton` prikazuje opcionalno dugme za akciju. " +
+          "Close ikonica je uvek prisutna.\n\n" +
           `[Open in Figma](${FIGMA_URL})`,
       },
     },
@@ -23,15 +24,19 @@ const meta = {
   },
   tags: ["autodocs"],
   argTypes: {
-    snackbar: {
+    intent: {
       control: "select",
-      options: ["action", "noAction"],
-      description:
-        "Figma property `snackbar`. `action` = manual close icon shown; `noAction` = no close icon.",
+      options: ["Neutral", "Attention", "Error"],
+      description: "Figma property `Intent`. Drives background/text/icon color.",
+    },
+    showButton: {
+      control: "boolean",
+      description: "Figma property `ShowButton`. Shows the inline action button when true.",
     },
   },
   args: {
-    snackbar: "action",
+    intent: "Neutral",
+    showButton: true,
   },
 } satisfies Meta<typeof Snackbar>;
 
@@ -44,17 +49,27 @@ export const Default: Story = {};
 // Variants
 // ------------------------------------
 
-export const Action: Story = {
-  args: { snackbar: "action" },
+export const Neutral: Story = {
+  args: { intent: "Neutral" },
 };
 
-export const NoAction: Story = {
-  args: { snackbar: "noAction" },
+export const Attention: Story = {
+  args: { intent: "Attention" },
+};
+
+export const ErrorIntent: Story = {
+  name: "Error",
+  args: { intent: "Error" },
+};
+
+export const NoButton: Story = {
+  name: "Without Button",
+  args: { intent: "Neutral", showButton: false },
 };
 
 // ------------------------------------
 // All variants — Figma frame replica
-// node 8621:1957 — action then noAction, stacked
+// node 8621:1957 — Neutral, Error, Attention, stacked
 // ------------------------------------
 
 export const AllVariants: Story = {
@@ -62,9 +77,7 @@ export const AllVariants: Story = {
   parameters: {
     docs: {
       description: {
-        story:
-          "Replicates the Figma frame (node 8621:1957). " +
-          "Top: `snackbar=action`. Bottom: `snackbar=noAction`.",
+        story: "Replicates the Figma frame (node 8621:1957): Neutral, Error, Attention.",
       },
     },
   },
@@ -74,8 +87,9 @@ export const AllVariants: Story = {
         "div",
         { style: "display:flex;flex-direction:column;gap:16px;" },
         [
-          h(Snackbar, { snackbar: "action" }),
-          h(Snackbar, { snackbar: "noAction" }),
+          h(Snackbar, { intent: "Neutral" }),
+          h(Snackbar, { intent: "Error" }),
+          h(Snackbar, { intent: "Attention" }),
         ],
       );
     },

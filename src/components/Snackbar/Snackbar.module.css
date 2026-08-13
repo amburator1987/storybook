@@ -6,38 +6,133 @@
 
 .kzn-c-snackbar {
   display: inline-flex;
-  align-items: center;
+  align-items: flex-start;
+  justify-content: flex-end;
   gap: var(--spacing-2xl);
+
   padding: var(--spacing-2xl);
-  background-color: var(--surface-default-body);
   border: var(--border-width-1) solid var(--border-default-default);
   border-radius: var(--border-radius-s);
+  box-shadow: var(--elevation-elevation-02-position-x) var(--elevation-elevation-02-position-y)
+    var(--elevation-elevation-02-blur) var(--elevation-elevation-02-spread)
+    var(--elevation-elevation-02-shade);
+}
+
+/* ------------------------------------*\
+  Intent — Figma property `Intent`
+\*------------------------------------ */
+
+.kzn-c-snackbar--neutral {
+  background-color: var(--surface-default-body);
+  color: var(--text-default-headings);
+}
+
+.kzn-c-snackbar--neutral :global(.kzn-c-icon) {
+  color: var(--icon-default-default);
+}
+
+.kzn-c-snackbar--neutral .kzn-c-snackbar__close:hover :global(.kzn-c-icon) {
+  color: var(--icon-default-default-hover);
+}
+
+.kzn-c-snackbar--attention {
+  background-color: var(--surface-warrning-on-color);
+  color: var(--text-on-color-headings);
+}
+
+.kzn-c-snackbar--attention :global(.kzn-c-icon) {
+  color: var(--icon-warrning-default);
+}
+
+.kzn-c-snackbar--attention .kzn-c-snackbar__close:hover :global(.kzn-c-icon) {
+  color: var(--icon-warrning-default-hover);
+}
+
+.kzn-c-snackbar--error {
+  background-color: var(--surface-error-on-color);
+  color: var(--text-error-default);
+}
+
+.kzn-c-snackbar--error :global(.kzn-c-icon) {
+  color: var(--icon-error-default);
+}
+
+.kzn-c-snackbar--error .kzn-c-snackbar__close:hover :global(.kzn-c-icon) {
+  color: var(--icon-error-default-hover);
+}
+
+/* ------------------------------------*\
+  Content — leading icon + main column
+\*------------------------------------ */
+
+.kzn-c-snackbar__content {
+  display: flex;
+  flex: 1 0 0;
+  align-items: flex-start;
+  gap: var(--spacing-xl);
+  min-width: 0;
+}
+
+.kzn-c-snackbar__icon {
+  flex-shrink: 0;
+}
+
+.kzn-c-snackbar__main {
+  display: flex;
+  flex: 1 0 0;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--spacing-lg);
+  min-width: 0;
+}
+
+.kzn-c-snackbar__heading {
+  align-self: stretch;
+  margin: 0;
+
+  font-family: var(--font-family-primary);
+  font-weight: var(--font-weight-secondary);
+  font-size: var(--typography-font-size-h6);
+  line-height: var(--typography-line-height-h6);
+  letter-spacing: var(--typography-letter-spacing-paragraph-default);
+  word-break: break-word;
 }
 
 .kzn-c-snackbar__message {
-  flex: 1 0 0;
-  min-width: 0;
+  align-self: stretch;
+  margin: 0;
 
   font-family: var(--font-family-primary);
   font-weight: var(--font-weight-primary);
-  font-size: var(--typography-font-size-paragraph-sm);
-  line-height: var(--typography-line-height-paragraph-sm);
+  font-size: var(--typography-font-size-paragraph-default);
+  line-height: var(--typography-line-height-paragraph-default);
   letter-spacing: var(--typography-letter-spacing-paragraph-default);
-  color: var(--text-default-headings);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  word-break: break-word;
+  display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
+
+.kzn-c-snackbar__button-holder {
+  display: flex;
+  align-items: flex-start;
+  margin-top: var(--spacing-lg);
+}
+
+/* ------------------------------------*\
+  Close — top-right icon button
+\*------------------------------------ */
 
 .kzn-c-snackbar__close {
   display: inline-flex;
+  flex-shrink: 0;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
 
   padding: 0;
   border: none;
   background: none;
-  color: var(--icon-default-default);
   cursor: pointer;
+  line-height: 0;
 }
